@@ -24,8 +24,8 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
             "ids": {
                 "collections": [],
                 "products": [],
-                "images": [],
-                "menus": [],
+                "images": ["611d8553af093e19cef7e21c", "611d7a4eaf093e19cef7dbce", "615b20f62d03a91d18935093", "615b20f42d03a91d18935092"],
+                "menus": ["6152f5462d03a91d18898c6c"],
                 "pages": [],
                 "brands": []
             }
@@ -35,8 +35,48 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
         },
         "current": {
             "style": {
-                "primary_color": "#2196f3",
-                "logo": "892462983424"
+                "primary_color": "#00825a"
+            },
+            "sections": {
+                "header": {
+                    "logo": "611d8553af093e19cef7e21c",
+                    "menu": "6152f5462d03a91d18898c6c"
+                },
+                "banner": {
+                    "items": [
+                        { 
+                            "image": "615b20f62d03a91d18935093",
+                            "title": "Renal & Urology Nutrition News, Diet Tips",
+                            "description": "Greater consumption of healthful plant-based foods is associated with significantly reduced risks for advanced, lethal, and fatal prostate cancer, especially among men younger than 65 years",
+                            "button": {
+                                "active": true,
+                                "url": "/shop",
+                                "text": "Order now"
+                            }
+                        },
+                        { 
+                            "image": "615b20f42d03a91d18935092",
+                            "title": "Renal & Urology Nutrition News, Diet Tips",
+                            "description": "Greater consumption of healthful plant-based foods is associated with significantly reduced risks for advanced, lethal, and fatal prostate cancer, especially among men younger than 65 years",
+                            "button": {
+                                "active": true,
+                                "url": "/shop",
+                                "text": "Order now"
+                            }
+                        }
+                    ],
+                    "right": {
+                        "image": "611d7a4eaf093e19cef7dbce",
+                        "url": "/shop"
+                    }
+                },
+                "collections": {},
+                "products": {},
+                "posts": {},
+                "services": {},
+                "footer": {
+                    "menu": "6152f5462d03a91d18898c6c"
+                }
             },
             "translates": []
         }
