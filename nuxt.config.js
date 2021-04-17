@@ -23,7 +23,8 @@ export default {
   plugins: [
     '~/plugins/tools.js',
     '~/plugins/http.js',
-    '~/plugins/init.js'
+    '~/plugins/init.js',
+    '~/plugins/storeino.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
