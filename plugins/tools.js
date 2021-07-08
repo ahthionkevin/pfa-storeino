@@ -18,7 +18,6 @@ export default function({ store }, inject){
     }
     tools.cookieToObject = (cookie)=> {
         if(!cookie) return {};
-        console.log(cookie);
         const cookies = cookie.split(';');
         const result = {};
         for(let i = 0; i < cookies.length; i++){
@@ -35,7 +34,6 @@ export default function({ store }, inject){
         window.dispatchEvent(window.events[name]);
     }
     tools.reformCartItem = (item) => {
-        console.log({item});
         const result = {};
         result._id = item._id;
         result.quantity = item.quantity;
@@ -49,13 +47,11 @@ export default function({ store }, inject){
                 value: item.upsell.value
             };
         }
-        console.log({result});
         return result;
     }
     tools.setCart = (cart) => {
         const cartString = JSON.stringify(cart);
         document.cookie = `STOREINO-CART=${cartString};`;
-        console.log(`STOREINO-CART=${cartString};`);
     }
     inject('tools', tools);
 }
