@@ -20,96 +20,17 @@
 export default {
     data() {
         return {
-            items: [
-                {
-                    image: {
-                    url: "https://storeno.b-cdn.net/stores/8-2021/1629324402666.jpeg",
-                    alt: "image"
-                    },
-                    publisher: {
-                    role: {
-                        name: "admin",
-                        _id: "611d7030af093e19cef7d5c3"
-                    },
-                    _id: "5fdb82158095db00d7780886",
-                    firstname: "storeino",
-                    lastname: "developer"
-                    },
-                    status: "DRAFT",
-                    type: "POST",
-                    tags: [],
-                    _id: "611d847aaf093e19cef7e19e",
-                    title: "Black Friday In Yellow",
-                    slug: "black-friday-in-yellow",
-                    excerpt: "Black Friday In Yellow",
-                    content: "<p>Black Friday In Yellow</p>",
-                    categories: [],
-                    translates: [],
-                    storeId: "611d702e23de571fb9b97d94",
-                    createdAt: "2021-08-18T22:06:50.882Z",
-                    updatedAt: "2021-08-18T22:06:50.882Z",
-                    __v: 0
-                },
-                {
-                    image: {
-                    url: "https://storeno.b-cdn.net/stores/8-2021/1629324281898.jpeg",
-                    alt: "image"
-                    },
-                    publisher: {
-                    role: {
-                        name: "admin",
-                        _id: "611d7030af093e19cef7d5c3"
-                    },
-                    _id: "5fdb82158095db00d7780886",
-                    firstname: "storeino",
-                    lastname: "developer"
-                    },
-                    status: "PUBLISH",
-                    type: "POST",
-                    tags: [],
-                    _id: "611d8414af093e19cef7e171",
-                    title: "See life in yellow with Anti-Blu-ray",
-                    slug: "see-life-in-yellow-with-anti-blu-ray",
-                    excerpt: "See life in yellow with Anti-Blu-ray",
-                    content: "<p>See life in yellow with Anti-Blu-ray</p>",
-                    categories: [],
-                    translates: [],
-                    storeId: "611d702e23de571fb9b97d94",
-                    createdAt: "2021-08-18T22:05:08.884Z",
-                    updatedAt: "2021-08-18T22:05:08.884Z",
-                    __v: 0
-                },
-                {
-                    image: {
-                    url: "https://storeno.b-cdn.net/stores/8-2021/1629324081847.jpeg",
-                    alt: "image"
-                    },
-                    publisher: {
-                    role: {
-                        name: "admin",
-                        _id: "611d7030af093e19cef7d5c3"
-                    },
-                    _id: "5fdb82158095db00d7780886",
-                    firstname: "storeino",
-                    lastname: "developer"
-                    },
-                    status: "PUBLISH",
-                    type: "POST",
-                    tags: [],
-                    _id: "611d8393af093e19cef7e13f",
-                    title: "Yellow clothes - All you need to know",
-                    slug: "yellow-clothes---all-you-need-to-know",
-                    excerpt: "Yellow clothes - All you need to know",
-                    content: "<p>Yellow clothes - All you need to know</p>",
-                    categories: [],
-                    translates: [],
-                    storeId: "611d702e23de571fb9b97d94",
-                    createdAt: "2021-08-18T22:02:59.518Z",
-                    updatedAt: "2021-08-18T22:03:03.893Z",
-                    __v: 0
-                }
-            ]
+            items: []
         }
     },
+    async fetch(){
+        try{
+            const { data } = await this.$storeino.pages.search( { type: 'POST' } )
+            this.items = data.results
+            this.loading = false;
+        }catch(e){
+          console.log({e});
+        }
+    }
 }
 </script>
