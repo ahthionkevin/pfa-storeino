@@ -4,7 +4,7 @@
       <div v-for="(item, i) in items" :key="i" class="p-2">
         <div class="flex flex-col">
             <nuxt-link :to="item.url" class="text-center">
-                <img class="w-20 p-2 h-20 object-cover m-auto opacity-70 " :src="item.image ? item.image.src : $store.state.defaults.image" :alt="item.title">
+                <si-image width="80" height="80" class="w-20 p-2 h-20 object-cover m-auto opacity-70 " :src="item.image ? item.image.src : null" :alt="item.text"/>
                 <b class="p-2">{{ item.text }}</b>
             </nuxt-link>
         </div>
