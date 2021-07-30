@@ -1,5 +1,5 @@
 <template>
-    <div class="flex w-full items-center justify-center">
+    <div class="flex items-center justify-center">
         <button @click="inc(-1)" class="bg-gray-50 border py-2 px-4" :class="value > quantity.min ? 'bg-primary text-white' : ''">-</button>
         <div class="flex">
             <label class="relative border py-2 h-full">
@@ -26,11 +26,12 @@ export default {
             if(val > this.quantity.instock) this.value = this.quantity.instock;
             if(val < this.quantity.min) this.value = this.quantity.default;
             if(isNaN(val)) this.value = this.quantity.default;
+            this.$emit('selected', this.value);
         }
     },
     methods: {
         inc(inc){
-            this.value += (this.quantity.increment * inc)
+            this.value += (Number(this.quantity.increment) * Number(inc))
         }
     },
 }

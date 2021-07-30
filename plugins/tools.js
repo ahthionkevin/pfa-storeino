@@ -7,6 +7,14 @@ export default function({}, inject){
                 g: parseInt(result[2], 16),
                 b: parseInt(result[3], 16)
             } : { r: 0, g: 0, b: 0 };
+        },
+        copy: (value)=> {
+            const type = typeof(value);
+            if(type == 'number') return value * 1;
+            if(type == 'string') return value + '';
+            if(value === null || value === undefined) return undefined;
+            if(type == 'object') return JSON.parse(JSON.stringify(value));
+            return value;
         }
     };
     inject('tools', tools);

@@ -1,0 +1,39 @@
+<template>
+    <img @click="$emit('click')" :id="id" :src="newSrc" :alt="alt" loading="lazy">
+</template>
+<script>
+export default {
+    props: {
+        alt: { type: String, default: 'No alt found' },
+        src: { type: String, default: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4' },
+    },
+    data() {
+        return {
+            id: '_'+(Math.random() * 10000).toFixed(0),
+            newSrc: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4'
+        }
+    },
+    watch: {
+        src(val){
+            this.init();
+        }
+    },
+    methods: {
+        init(){
+            if(this.src && this.src.indexOf('base64') > -1) {
+                this.newSrc = this.src
+            }else{
+                this.id = '_'+(Math.random() * 10000).toFixed(0);
+                this.$nextTick(()=>{
+                    const element = document.getElementById(this.id);
+                    const width = element ? parseInt(element.width*1.25) : '';
+                    this.newSrc = this.src ? `${this.src}?width=${width}` : this.$store.state.defaults.image;
+                })
+            }
+        }
+    },
+    mounted() {
+        this.init();
+    },
+}
+</script>

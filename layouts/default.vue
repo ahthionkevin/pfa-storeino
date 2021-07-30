@@ -1,7 +1,7 @@
 <template>
     <div class="bg-gray-50">
         <component :is="'style'">
-            :root{ --primary-rgb: 0, 140, 70; --primary-color: rgb(0, 140, 70); }
+            :root{ --primary-rgb: {{ rgb.r }}, {{rgb.g}}, {{ rgb.b }}; --primary-color: rgb(var(--primary-rgb)); }
             .bg-primary{ background-color: var(--primary-color); }
             .bg-primary:hover{ background-color: rgb(var(--primary-rgb),0.8); }
             .text-primary{ color: var(--primary-color); }
@@ -10,7 +10,6 @@
         <sections-header></sections-header>
         <sections-header-menu></sections-header-menu>
         <Nuxt/>
-        
         <sections-footer></sections-footer>
         <div class="bg-white flex">
 
@@ -20,3 +19,15 @@
         <sections-copyright></sections-copyright>
     </div>
 </template>
+<script>
+export default {
+    data() {
+        return {
+            rgb: { r: 0, g: 130, b: 70 },
+        }
+    },
+    async fetch(){
+        this.rgb = this.$tools.hexToRgb(this.$settings.style.primary_color);
+    }
+}
+</script>

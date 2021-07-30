@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="price flex justify-center my-2" v-if="type=='simple'">
+            <b class="text-primary">{{ price.salePrice }}{{ $store.state.currency.symbol }}</b>
+            <span class="flex w-2"></span>
             <span class="relative">
-                <b class="text-gray-400">{{ price.comparePrice }}{{ $store.state.currency.symbol }}</b>
+                <b class="text-gray-600">{{ price.comparePrice }}{{ $store.state.currency.symbol }}</b>
                 <span class="compare-price absolute top-3 block w-full bg-red-600"></span>
             </span>
-            <span class="flex w-2"></span>
-            <b class=" text-primary">{{ price.salePrice }}{{ $store.state.currency.symbol }}</b>
         </div>
         <div class="price flex justify-center my-2" v-else-if="minPrice != maxPrice">
             <b class=" text-primary">{{ minPrice }}{{ $store.state.currency.symbol }}</b>
@@ -14,12 +14,12 @@
             <b class=" text-primary">{{ maxPrice }}{{ $store.state.currency.symbol }}</b>
         </div>
         <div class="price flex justify-center my-2" v-else-if="variants.length > 0">
+            <b class=" text-primary">{{ variants[0].price.salePrice }}{{ $store.state.currency.symbol }}</b>
+            <span class="flex w-2"></span>
             <span class="relative">
-                <b class="text-gray-400">{{ variants[0].price.comparePrice }}{{ $store.state.currency.symbol }}</b>
+                <b class="text-gray-600">{{ variants[0].price.comparePrice }}{{ $store.state.currency.symbol }}</b>
                 <span class="compare-price absolute top-3 block w-full bg-red-600"></span>
             </span>
-            <span class="flex w-2"></span>
-            <b class=" text-primary">{{ variants[0].price.salePrice }}{{ $store.state.currency.symbol }}</b>
         </div>
     </div>
 </template>
@@ -40,7 +40,8 @@ export default {
 </script>
 <style>
 .compare-price{
-    height: 1px;
+    height: 0.2em;
     transform: rotate(-12deg);
+    opacity: .5;
 }
 </style>

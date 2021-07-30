@@ -3,7 +3,6 @@ export default async function ({ $axios, $http, store, app }, inject) {
         const req = app.context.req;
         // Set Currency and language
 
-        
         // Get Template settings
         const params = { lang: store.state.language.code, cur: store.state.currency.code }
         try {
@@ -16,7 +15,8 @@ export default async function ({ $axios, $http, store, app }, inject) {
             }
             store.state.settings = response.data;
         } catch (error) {
-            console.log({ error });
+            console.log({ error: error.response.data });
         }
     }
+    inject('settings', store.state.settings);
 }

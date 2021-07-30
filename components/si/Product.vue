@@ -2,8 +2,8 @@
 <div class="h-full flex relative overflow-hidden">
     <div class="w-full flex flex-col h-full bg-white shadow-md">
         <div class="w-100 pb-full relative">
-            <nuxt-link :to="`/products/${item.slug}`">
-                <img class="h-full w-full absolute inset-0  object-cover" :src="item.images.length > 0 ? item.images[0].src : $store.state.defaults.image" :alt="item.name">
+            <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
+                <si-image  width="400" height="400" class="h-full w-full absolute inset-0 object-cover" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>
             </nuxt-link>
         </div>
         <div class="text-center h-full">
@@ -29,17 +29,17 @@
         <button class="close-button" @click="filpped=false">
             <i class="close-icon"></i>
         </button>
-        <div class="h-full">
+        <div class="h-full overflow-auto">
             <nuxt-link class="text-center" :to="`/products/${item.slug}`">
                 <h3 class="p-2 text-xl">{{ item.name }}</h3>
             </nuxt-link>
-            <div class="flex items-center justify-center">
+            <div class="flex items-center justify-center" v-if="item.type == 'simple'">
                 <div class="mb-1">
                     <span v-for="(star,i) in 5" :class="star <= item.review.rating ? ' text-yellow-500 ': ''" :key="i" class="icon icon-star"></span>
                 </div>
                 <span class="text-sm text-gray-600" key="count">({{ item.review.reviews.length }})</span>
             </div>
-            <si-product-price :type="item.type" :price="item.price" :variants="item.variants"></si-product-price>
+            <si-product-price class="text-2xl" v-if="item.type == 'simple'" :type="item.type" :price="item.price" :variants="item.variants"></si-product-price>
             <hr class="my-2">
             <div class="w-full">
                 <si-product-variants v-if="item.type=='variable'" :options="item.options" :variants="item.variants" @selected="variantSelected"></si-product-variants>
