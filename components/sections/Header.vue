@@ -2,12 +2,10 @@
     <div class="flex p-2 justify-between items-center container">
         <div class="logo flex justify-center items-center">
             <router-link to="/">
-                <img class="h-12" height="40"
-                    src="https://findlogovector.com/wp-content/uploads/2019/06/baywa-ag-logo-vector.png"
-                    alt="Store logo" srcset="">
+                <si-image width="70" height="50" class="h-12 w-full object-contain" :src="section.logo ? section.logo.src : null" alt="Store logo"/>
             </router-link>
         </div>
-        <form class="flex bg-gray-100 p-2 mx-2 w-full border border-gray-200" action="/shop?">
+        <form class="flex bg-gray-100 p-2 rounded-md mx-2 w-full border border-gray-200" action="/shop?">
             <input class="bg-transparent outline-none w-full" :placeholder="'Search for products'" type="search" name="q">
             <button aria-label="Search button">
                 <i class="icon icon-search icon-green"></i>
@@ -34,3 +32,12 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+    data() {
+        return {
+            section: this.$store.state.settings.sections.header
+        }
+    },  
+}
+</script>

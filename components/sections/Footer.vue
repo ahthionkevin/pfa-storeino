@@ -16,14 +16,14 @@
                     <h3 class=" text-lg font-bold">Our payment methods</h3>
                     <div class="flex flex-wrap p-2">
                         <div v-for="item in methods" :key="item.name" class="w-20 h-12 mr-2 flex items-center justify-center border p-2">
-                            <img :src="item.image" :alt="item.name" class=" h-full">
+                            <si-image width="80" height="40" :src="item.image" :alt="item.name" class="h-full"/>
                         </div>
                     </div>
                     <h3 class=" text-lg font-bold">Social Media</h3>
                     <div class="flex flex-wrap p-2">
                         <div v-for="item in socialMedia" :key="item.name" class="h-12 mr-2 flex items-center justify-center p-2">
                             <a class="h-full flex" :href="item.url" target="_blank" rel="noopener noreferrer">
-                                <img :src="item.image" :alt="item.name" class="">
+                                <si-image class="h-12 w-12" width="40" height="40" :src="item.image" :alt="item.name"/>
                             </a>
                         </div>
                     </div>
