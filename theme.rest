@@ -1,0 +1,59 @@
+
+
+
+POST https://api-stores.storeino.com/api/themes/update?id=615345112d03a91d188a169c
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkNzAyZTIzZGU1NzFmYjliOTdkOTQiLCJuYW1lIjoidGVjaG5vIiwic3ViZG9tYWluIjoidGVjaG5vLnN0b3JlaW5vLmNvbSJ9LCJ1c2VyIjp7Il9pZCI6IjVmZGI4MjE1ODA5NWRiMDBkNzc4MDg4NiIsImZpcnN0bmFtZSI6InN0b3JlaW5vIiwibGFzdG5hbWUiOiJkZXZlbG9wZXIifSwiY29tcGFueSI6eyJfaWQiOiI1ZmRiODIxNTgwOTVkYjAwZDc3ODA4ODQiLCJuYW1lIjoiU1RPUkVJTk8gU1lTVEVNIiwic3RhdHVzIjoiYWN0aXZlIn0sImlhdCI6MTYzMjg0NjMwNywiZXhwIjoxNjY0MzgyMzA3fQ.Lvhle9Gu0P67npW5Fvnq_3YYT7dzDFaMbRPqi7HbeAE
+
+{
+    "team": {
+        "_id": "5f21374a175b5e8e309be827",
+        "name": "Storeino Team",
+        "url": "https://market.storeino.com/storeino/"
+    },
+    "config": {
+        "schema": {
+            "fields": {
+                "products": [],
+                "collections": [],
+                "images": [],
+                "menus": [],
+                "pages": [],
+                "brands": []
+            },
+            "ids": {
+                "collections": [],
+                "products": [],
+                "images": [],
+                "menus": [],
+                "pages": [],
+                "brands": []
+            }
+        },
+        "settings": {
+            "tabs": []
+        },
+        "current": {
+            "style": {
+                "primary_color": "#2196f3",
+                "logo": "892462983424"
+            },
+            "translates": []
+        }
+    },
+    "images": [
+        "https://cdn.dribbble.com/users/1983741/screenshots/10636148/media/c537c929947ebff9ad38dc6bc9ede9bb.jpg?compress=1&resize=400x300"
+    ],
+    "isActive": true,
+    "autoRenew": false,
+    "expiryDate": "2050-12-12T00:00:00.000Z",
+    "name": "default",
+    "url": "/themes/palest",
+    "route": "palest",
+    "defaults": [],
+    "paymentType": "yearly",
+    "payments": [],
+    "price": 22,
+    "description": "✔ Simple and easy theme to use ✔ Well presented and convertible store and product page ✔ SEO optimized ✔ Responsive to all devices",
+    "publicName": "Palest - Multipurpose Responsive E-commerce Template"
+}
