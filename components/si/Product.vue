@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <button @click="filpped=true" class="flex ai-c p-2 justify-center bg-primary text-white">
+            <button @click="addToCart" class="flex ai-c p-2 justify-center bg-primary text-white">
                 <svg class="h-5 w-5 pt-1" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                 <span class="w-full">{{ 'Confirm' }}</span>         
             </button>
@@ -97,15 +97,33 @@ export default {
         return {
             filpped: false,
             variant: this.item.type == 'variant' ? this.item.variants[0] : null,
-            quantity: this.item.quantity
+            quantity: this.item.quantity,
+            price: { salePrice: 0, comparePrice: 0 }
         }
     },
     methods: {
+        addToCart() {
+            // Call add to cart event
+            this.$tools.call('ADD_TO_CART', {
+                _id: this.item._id,
+                quantity: this.quantity.value ? this.quantity.value : this.item.quantity.default,
+                price: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
+                variant: this.variant ? { _id: this.variant._id } : null
+            })
+        },
         variantSelected(variant){
-            console.log({variant});
+            this.variant = variant;
+            this.quantitySelected(this.item.quantity.value);
         },
         quantitySelected(quantity){
-            console.log({quantity});
+            this.item.quantity.value = quantity;
+            if(this.variant){
+                this.price.salePrice = this.variant.price.salePrice * quantity;
+                this.price.comparePrice = this.variant.price.comparePrice * quantity;
+            }else{
+                this.price.salePrice = this.item.price.salePrice * quantity;
+                this.price.comparePrice = this.item.price.comparePrice * quantity;
+            }
         }
     },
 }
