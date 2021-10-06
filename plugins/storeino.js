@@ -36,7 +36,6 @@ export default async function ({ $http, store, app }, inject) {
             return $http.post(`/${module}/update`, params, { params: query });
         };
     }
-
     // Others
     storeino.products.filters = async function (params) {
         return $http.get('/products/filters', { params });

@@ -8,14 +8,15 @@
                 </div>
             </div>
         </div>
-        <si-product-price v-if="$route.name != 'products-slug'" class="flex px-1 text-2xl" :type="'simple'" :price="selected.price" :variants="[]"></si-product-price>
+        <si-product-price v-if="showPrice" class="flex px-1 text-2xl" :type="'simple'" :price="selected.price" :variants="[]"></si-product-price>
     </div>
 </template>
 <script>
 export default {
     props: {
         options: Array,
-        variants: Array
+        variants: Array,
+        showPrice: {type: Boolean, false: true},
     },
     data() {
         return {
@@ -47,7 +48,6 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 10px;
 }
 .options .options-list{
     display: flex;
@@ -68,8 +68,8 @@ export default {
 }
 .options .color .option button {
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     color: transparent;
     overflow: hidden;
     position: relative;

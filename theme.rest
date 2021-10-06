@@ -75,6 +75,20 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                 "posts": {},
                 "services": {},
                 "footer": {
+                    "about": "<h3>Experience Moroccofresh - for agriculture.</h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological - for agriculture. In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>",
+                    "methods": {
+                        "visa": true,
+                        "mastercard": true,
+                        "transfer": true,
+                        "cash": true
+                    },
+                    "socialMedia": {
+                        "facebook": "https://www.facebook.com/",
+                        "twitter": "https://twitter.com/",
+                        "instagram": "https://www.instagram.com/",
+                        "youtube": "https://www.youtube.com/",
+                        "linkedin": "https://www.linkedin.com/"
+                    },
                     "menu": "6152f5462d03a91d18898c6c"
                 }
             },

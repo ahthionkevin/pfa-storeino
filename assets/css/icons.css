@@ -247,7 +247,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: color 0.3s linear;
-    font-size: 14px;
+    font-size: 1em;
     text-align: center;
     text-decoration: none;
 }
@@ -255,19 +255,19 @@
 .icon::before {
     font-family: 'baywa-iconfont';
     display: block;
-    font-size: 24px;
+    font-size: 1em;
     padding-right: 0;
     transition: color 0.3s linear;
 }
 .icon:empty::before {
-    font-size: 24px;
+    font-size: 1em;
     padding-bottom: 0;
     vertical-align: unset;
 }
 
 .icon.icon-gray {
     color: #808080;
-    font-size: 16px;
+    font-size: 1em;
 }
 
 .icon.icon-gray::before {
@@ -275,7 +275,7 @@
     color: #808080;
     padding-right: 10px;
     padding-bottom: 0;
-    font-size: 20px;
+    font-size: 1em;
     vertical-align: bottom;
 }
 
@@ -288,14 +288,14 @@
 }
 
 .icon.icon-gray:empty::before {
-    font-size: 24px;
+    font-size: 1em;
     padding-right: 0;
     vertical-align: unset;
 }
 
 .icon.icon-green {
     color: #008c46;
-    font-size: 16px;
+    font-size: 1em;
 }
 
 .icon.icon-green::before {
@@ -303,7 +303,7 @@
     color: #008c46;
     padding-right: 10px;
     padding-bottom: 0;
-    font-size: 20px;
+    font-size: 1em;
     vertical-align: bottom;
 }
 
@@ -316,7 +316,7 @@
 }
 
 .icon.icon-green:empty::before {
-    font-size: 24px;
+    font-size: 1em;
     padding-right: 0;
     vertical-align: unset;
 }
@@ -335,7 +335,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    font-size: 14px;
+    font-size: 1em;
     transform: translate(-50%, -50%);
 }
 
@@ -344,11 +344,11 @@
 }
 
 .icon.icon-lg::before {
-    font-size: 28px;
+    font-size: 1em;
 }
 
 .icon.icon-sm::before {
-    font-size: 14px;
+    font-size: 1em;
 }
 
 .icon.update::before {
@@ -362,7 +362,7 @@
 .icon[data-badge]:not([data-badge=""])::after {
     font-family: 'Baywa-Font', Arial, sans-serif;
     content: attr(data-badge);
-    font-size: 10px;
+    font-size: 1em;
     color: #fff;
     background-image: radial-gradient(#d7373c 99%, #ffffff 100%);
     border: 2px solid #fff;
@@ -380,7 +380,7 @@
 
 @media(min-width:1024px) {
     .icon[data-badge]:not([data-badge=""])::after {
-        font-size: 12px;
+        font-size: 1em;
         height: 24px;
         min-width: 24px;
         line-height: 20px;

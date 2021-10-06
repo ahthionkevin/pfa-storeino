@@ -31,7 +31,7 @@ export default {
     },
     methods: {
         inc(inc){
-            this.value += (Number(this.quantity.increment) * Number(inc))
+            this.value = Number(this.value) + (Number(this.quantity.increment) * Number(inc))
         }
     },
 }

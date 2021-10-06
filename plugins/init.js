@@ -1,4 +1,4 @@
-export default async function ({ $axios, $http, store, app }, inject) {
+export default async function ({ $axios, $http, $tools, store, app }, inject) {
     if(process.server) {
         const req = app.context.req;
         // Set Currency and language
@@ -17,6 +17,16 @@ export default async function ({ $axios, $http, store, app }, inject) {
         } catch (error) {
             console.log({ error: error.response.data });
         }
+        // init Cart
+        let cookies = $tools.cookieToObject(req.headers.cookie);
+        const STOREINO_CART = cookies['STOREINO-CART'] ? cookies['STOREINO-CART'] : '[]';
+        store.state.cart = JSON.parse(STOREINO_CART);
+        // init Wishlist
+        const STOREINO_WISHLIST = cookies['STOREINO-WISHLIST'] ? cookies['STOREINO-WISHLIST'] : '[]';
+        store.state.wishlist = JSON.parse(STOREINO_WISHLIST);
+        // Sentry Log
+
+        // Events
     }
     inject('settings', store.state.settings);
 }

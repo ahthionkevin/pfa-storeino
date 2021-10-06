@@ -3,8 +3,10 @@ const createStore = () => {
     return new Vuex.Store({ 
       state: ()=>{
         return {
+          cart: [],
+          whishlist: [],
           settings: null,
-          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkNzAyZTIzZGU1NzFmYjliOTdkOTQiLCJuYW1lIjoidGVjaG5vIiwic3ViZG9tYWluIjoidGVjaG5vLnN0b3JlaW5vLmNvbSJ9LCJ1c2VyIjp7Il9pZCI6IjVmZGI4MjE1ODA5NWRiMDBkNzc4MDg4NiIsImZpcnN0bmFtZSI6InN0b3JlaW5vIiwibGFzdG5hbWUiOiJkZXZlbG9wZXIifSwiY29tcGFueSI6eyJfaWQiOiI1ZmRiODIxNTgwOTVkYjAwZDc3ODA4ODQiLCJuYW1lIjoiU1RPUkVJTk8gU1lTVEVNIiwic3RhdHVzIjoiYWN0aXZlIn0sImlhdCI6MTYzMjg0NjMwNywiZXhwIjoxNjY0MzgyMzA3fQ.Lvhle9Gu0P67npW5Fvnq_3YYT7dzDFaMbRPqi7HbeAE',
+          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkNzAyZTIzZGU1NzFmYjliOTdkOTQifSwiY3VzdG9tZXIiOnsiX2lkIjoiNjExZjBmMmJjYmI4MWUxOWY4ZjJiZDBjIiwiZmlyc3RuYW1lIjoiYW1hbCIsImxhc3RuYW1lIjoiZ3JpZmZpbiIsImVtYWlsIjoiamVsb2NhQG1haWxpbmF0b3IuY29tIn0sImlhdCI6MTYzMzUxODE5NiwiZXhwIjoxNjY1MDU0MTk2fQ.GVDXkbctvIshchvd1aac2em5gocj_JHjhXPMcEd2N9A',
           primary: {
             rgb: { r:0, g:0, b:0 },
             color: '#000000'
@@ -14,12 +16,14 @@ const createStore = () => {
           },
           currency: {
             symbol: "DH",
-            code: "MAD"
+            code: undefined
           },
           language: {
             name: "Unknown",
             code: undefined
           },
+          // 
+          fullImage: null,
         }
       },
       actions: ()=>{},

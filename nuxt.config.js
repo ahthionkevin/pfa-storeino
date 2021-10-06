@@ -25,6 +25,7 @@ export default {
     '~/plugins/http.js',
     '~/plugins/init.js',
     '~/plugins/storeino.js',
+    '~/plugins/events.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

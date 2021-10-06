@@ -1,15 +1,15 @@
 <template>
     <div class="container">
-        <div v-if="loading" class="w-full flex justify-center">
-            loading...
+        <div v-if="loading" class="flex justify-center items-center my-5">
+            <si-loader></si-loader>
         </div>
         <div class="flex flex-wrap" v-if="item">
             <div class="w-full md:w-1/2">
                 <div class="p-2 flex flex-col">                
-                    <si-image class="w-full bg-white rounded-md shadow" :src="image ? image.src : null " :alt="item.name"/>
+                    <si-image class="w-full cursor-pointer bg-white rounded-md shadow"  @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name"/>
                     <div class="overflow-auto w-full">
                         <div class="flex bg-gray-100">
-                            <si-image class="w-16 h-16 m-2 bg-white rounded-md shadow cursor-pointer" v-for="(image, index) in item.images" @click="setImage(index)" :key="index" :src="image.src" :alt="`${item.name} - ${image.title}`"/>
+                            <si-image class="w-16 h-16 m-1 bg-white rounded-md shadow cursor-pointer" v-for="(image, index) in item.images" @click="setImage(index)" :key="index" :src="image.src" :alt="`${item.name} - ${image.title}`"/>
                         </div>
                     </div>
                 </div>
@@ -48,20 +48,12 @@
             </div>
         </div>
         <div class="flex flex-col">
-            <div class="mx-2 p-1 bg-gray-100">
-                <button class="bg-white p-2" :class="tab == 'description' ? 'bg-primary text-white': 'bg-white'" @click="setTab('description')">{{ 'Description' }}</button>
-                <span class="mr-1"></span>
-                <button class="bg-white p-2" :class="tab == 'reviews' ? 'bg-primary text-white': 'bg-white'" @click="setTab('reviews')">{{ 'Reviews' }}</button>
+            <div v-if="item" class="upsells">
+                <sections-upsell :item="item.upsell"/>
             </div>
-            <div  v-if="item && tab == 'description'" class="bg-white rounded-md p-2 my-3 mx-2 description" v-html="item.html"></div>
-            <div v-if="item && tab == 'reviews'" class="bg-white rounded-md p-2 my-3 mx-2 reviews">
-                <div class="flex flex-wrap">
-                    <div v-for="(review,index) in reviews.results" :key="index" class="w-full md:w-1/2">
-                        <div class="bg-white">
-                            {{ review.content }}
-                        </div>
-                    </div>
-                </div>
+            <div  v-if="item" class="bg-white rounded-md p-2 my-3 mx-2 description" id="description" v-html="item.html"></div>
+            <div v-if="item" class="reviews">
+                <sections-reviews :item="item"></sections-reviews>
             </div>
             <div v-if="item" class="related">
                 <sections-related-products :item="item"/>
@@ -79,8 +71,7 @@ export default {
             tab: 'description',
             quantity: {},
             variant: null,
-            price: { salePrice: 0, comparePrice: 0 },
-            reviews: { paginate: { page: 0 }, results: [] }
+            price: { salePrice: 0, comparePrice: 0 }
         }
     },
     async fetch() {
@@ -94,13 +85,6 @@ export default {
             if(this.item.images.length > 0) this.setImage(0);
         }catch(e){
             this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
-        }
-        if(this.item.review.reviews.length > 0){
-            try {
-                await this.getReviews();
-            } catch (e) {
-                console.log({e});
-            }
         }
     },
     methods: {
@@ -123,13 +107,7 @@ export default {
         },
         setTab(tab){
             this.tab = tab;
-        },
-        async getReviews(){
-            const { data } = await this.$storeino.reviews.search({
-                "product._id": this.item._id,
-                page: this.reviews.paginate.page+1
-            })
-            this.reviews = data;
+            if(tab == 'reviews' && this.reviews.results.length == 0) this.getReviews();
         }
     },
 }

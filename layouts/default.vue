@@ -12,11 +12,11 @@
         <Nuxt/>
         <sections-footer></sections-footer>
         <div class="bg-white flex">
-
-    <hr class="my-2 w-full">
+            <hr class="my-2 w-full">
         </div>
         <sections-footer-menu></sections-footer-menu>
         <sections-copyright></sections-copyright>
+        <si-full-image></si-full-image>
     </div>
 </template>
 <script>

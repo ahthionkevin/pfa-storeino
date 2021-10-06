@@ -11,24 +11,17 @@
                 <i class="icon icon-search icon-green"></i>
             </button>
         </form>
-        <div class="icons flex">
-            <div class="item p-2">
-                <router-link to="/account" title="Standorte" class="icon icon-user">
-                    <span class="hidden sm:block">{{ 'Account' }}</span>
-                </router-link>
-            </div>
-
-            <div class="item p-2">
-                <router-link to="/wishlist" class="icon icon-heart" data-badge="" title="Merkliste">
-                    <span class="hidden sm:block">{{'Wishlist'}}</span>
-                </router-link>
-            </div>
-
-            <div class="item p-2">
-                <router-link to="/cart" class="icon icon-basket" data-badge="" title="Warenkorb">
-                    <span class="hidden sm:block">{{'Cart'}}</span>
-                </router-link>
-            </div>
+        <div class="icons flex items-center">
+            <router-link to="/account" title="Account" class="item p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
+                <span class="icon icon-user"></span>
+            </router-link>
+            <router-link to="/wishlist" title="Wishlist" class="item p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
+                <span class="icon icon-heart"></span>
+            </router-link>
+            <router-link to="/cart" title="Cart" class="item p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200 relative">
+                <span class="icon icon-basket"></span>
+                <small class="-top-2 -right-2 rounded-full absolute w-5 h-5 p-2 bg-red-700 text-white flex justify-center items-center">{{ $store.state.cart.length }}</small>
+            </router-link>
         </div>
     </div>
 </template>

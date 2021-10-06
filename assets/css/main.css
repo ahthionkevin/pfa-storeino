@@ -17,8 +17,28 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+/* Titles */
+h1{ font-size: 2em; }
+h2{ font-size: 1.5em; }
+h3{ font-size: 1.17em; }
+h4{ font-size: 1em; }
+h5{ font-size: .83em; }
+h6{ font-size: .67em; }
+h1, h2, h3, h4, h5, h6{
+  font-weight: bold;
+}
+.two-lines{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.8em;
+}
+body{
+  color: #333;
 }

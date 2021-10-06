@@ -4,7 +4,7 @@
             <div class="w-full md:w-3/4 relative overflow-hidden">
                 <div class="flex flex-wrap h-full mr-2 slider-item" :class="'last'" v-if="lastItem">
                     <div class="image w-full md:w-2/3 relative">
-                        <si-image width="600" height="300" class="h-48 bg-green-200 md:h-48 w-full object-cover" :src="lastItem.image ? lastItem.image.src: null" :alt="lastItem.title"/>
+                        <si-image width="600" height="300" class="h-48 bg-green-200 md:h-96 max-h-full object-cover" :src="lastItem.image ? lastItem.image.src: null" :alt="lastItem.title"/>
                         <div class="flex absolute bottom-0 p-2">
                             <span v-for="(x,y) in banner.items" :key="y" :class="y==activeIndex ?'bg-green-200': ''" class="w-4 h-4 rounded-full bg-white mr-1 flex cursor-pointer" @click="activeIndex=y"></span>
                         </div>
@@ -20,7 +20,7 @@
                 <template v-for="(item,i) in banner.items">
                     <div class="flex flex-wrap h-full mr-2 slider-item" :class="i==activeIndex ? 'active': ''" :key="i">
                         <div class="image w-full md:w-2/3 relative">
-                            <si-image width="100%" height="300" class="h-48 bg-green-200 md:h-full object-cover" :src="item.image ? item.image.src : null" :alt="item.title"/>
+                            <si-image width="100%" height="300" class="h-48 bg-green-200 md:h-96 max-h-full object-cover" :src="item.image ? item.image.src : null" :alt="item.title"/>
                             <div class="flex absolute bottom-0 p-2">
                                 <span v-for="(x,y) in banner.items" :key="y" :class="y==activeIndex ?'bg-green-200': ''" class="w-4 h-4 rounded-full bg-white mr-1 flex cursor-pointer" @click="animate(y)"></span>
                             </div>

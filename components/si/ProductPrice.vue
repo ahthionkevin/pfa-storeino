@@ -28,6 +28,7 @@ export default {
     props: {
         type: String,
         price: Object,
+        originalPrice: { type: Object, default: null },
         variants: { type: Array, default: [] }
     },
     data() {
