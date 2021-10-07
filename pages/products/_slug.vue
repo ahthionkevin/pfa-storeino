@@ -6,10 +6,10 @@
         <div class="flex flex-wrap" v-if="item">
             <div class="w-full md:w-1/2">
                 <div class="p-2 flex flex-col">                
-                    <si-image class="w-full cursor-pointer bg-white rounded-md shadow"  @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name"/>
+                    <si-image width="500" height="500" class="w-full cursor-pointer bg-white rounded-md shadow"  @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name"/>
                     <div class="overflow-auto w-full">
                         <div class="flex bg-gray-100">
-                            <si-image class="w-16 h-16 m-1 bg-white rounded-md shadow cursor-pointer" v-for="(image, index) in item.images" @click="setImage(index)" :key="index" :src="image.src" :alt="`${item.name} - ${image.title}`"/>
+                            <si-image width="100" height="100" class="w-16 h-16 m-1 bg-white rounded-md shadow cursor-pointer" v-for="(image, index) in item.images" @click="setImage(index)" :key="index" :src="image.src" :alt="`${item.name} - ${image.title}`"/>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                         </div>
                         <hr class="my-2">
                         <div class="flex flex-wrap md:flex-nowrap">
-                            <button class="w-full flex ai-c p-2 justify-center bg-primary text-white">
+                            <button @click="addToCart" class="w-full flex ai-c p-2 justify-center bg-primary text-white">
                                 <svg class="h-5 w-5 pt-1" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                                 <span class="w-full">{{ 'Add to cart' }}</span>         
                             </button>
@@ -81,13 +81,27 @@ export default {
             this.item = data
             this.loading = false;
             this.quantity = this.item.quantity;
+            // Set default variant if exists
+            if(this.item.type == 'variable' && this.item.variants.length > 0) this.variantSelected(this.item.variants[0]);
+            // Set default quantity
             this.quantitySelected(this.quantity.default);
+            // Set default image if exists
             if(this.item.images.length > 0) this.setImage(0);
         }catch(e){
+            // Redirect to error page if product not exists
             this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
         }
     },
     methods: {
+        addToCart() {
+            // Call add to cart event
+            this.$tools.call('ADD_TO_CART', {
+                _id: this.item._id,
+                quantity: this.quantity.value,
+                price: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
+                variant: this.variant ? { _id: this.variant._id } : null
+            })
+        },
         quantitySelected(quantity) {
             this.item.quantity.value = quantity;
             if(this.variant){

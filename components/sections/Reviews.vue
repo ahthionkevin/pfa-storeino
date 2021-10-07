@@ -27,7 +27,7 @@
                     </div>
                     <div class="overflow-auto w-full">
                         <div class="flex bg-gray-100">
-                            <si-image class="w-16 h-16 m-1 bg-white rounded-md shadow cursor-pointer" v-for="(image, index) in review.images" :key="index" :src="image" @click="$store.state.fullImage=image" :alt="`${review.rating} stars - ${review.content}`"/>
+                            <si-image width="100" height="100" class="w-16 h-16 m-1 bg-white rounded-md shadow cursor-pointer" v-for="(image, index) in review.images" :key="index" :src="image" @click="$store.state.fullImage=image" :alt="`${review.rating} stars - ${review.content}`"/>
                         </div>
                     </div>
                 </div>

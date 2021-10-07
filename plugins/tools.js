@@ -17,11 +17,13 @@ export default function({ store }, inject){
         return value;
     }
     tools.cookieToObject = (cookie)=> {
+        if(!cookie) return {};
+        console.log(cookie);
         const cookies = cookie.split(';');
         const result = {};
         for(let i = 0; i < cookies.length; i++){
             const key = cookies[i].split('=')[0].trim();
-            const value = cookies[i].split('=')[1].trim();
+            const value = cookies[i].split('=')[1]?cookies[i].split('=')[1].trim() : '';
             result[key] = value;
         }
         return result;
@@ -33,10 +35,12 @@ export default function({ store }, inject){
         window.dispatchEvent(window.events[name]);
     }
     tools.reformCartItem = (item) => {
+        console.log({item});
         const result = {};
         result._id = item._id;
         result.quantity = item.quantity;
         result.price = item.price;
+        if(item.variant){ result.variant = { _id: item.variant._id }; }
         if(item.upsell){
             result.parents = item.parents;
             result.upsell = {
@@ -45,7 +49,13 @@ export default function({ store }, inject){
                 value: item.upsell.value
             };
         }
+        console.log({result});
         return result;
+    }
+    tools.setCart = (cart) => {
+        const cartString = JSON.stringify(cart);
+        document.cookie = `STOREINO-CART=${cartString};`;
+        console.log(`STOREINO-CART=${cartString};`);
     }
     inject('tools', tools);
 }

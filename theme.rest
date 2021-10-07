@@ -87,7 +87,10 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                         "twitter": "https://twitter.com/",
                         "instagram": "https://www.instagram.com/",
                         "youtube": "https://www.youtube.com/",
-                        "linkedin": "https://www.linkedin.com/"
+                        "linkedin": "https://www.linkedin.com/",
+                        "whatsapp": "https://web.whatsapp.com/",
+                        "snapchat": "https://www.snapchat.com/",
+                        "tiktok": "https://www.tiktok.com/"
                     },
                     "menu": "6152f5462d03a91d18898c6c"
                 }

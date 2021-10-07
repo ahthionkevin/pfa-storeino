@@ -26,8 +26,10 @@ export default {
                 this.id = '_'+(Math.random() * 10000).toFixed(0);
                 this.$nextTick(()=>{
                     const element = document.getElementById(this.id);
-                    const width = element ? parseInt(element.width*1.25) : '';
-                    this.newSrc = this.src ? `${this.src}?width=${width}` : this.$store.state.defaults.image;
+                    let property = 'Width';
+                    if(element.clientHeight > element.clientWidth) property = 'Height';
+                    const value = element ? parseInt(element[`client${property}`]*1.25) : '';
+                    this.newSrc = this.src ? `${this.src}?${property.toLowerCase()}=${value}` : this.$store.state.defaults.image;
                 })
             }
         }
