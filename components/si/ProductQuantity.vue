@@ -18,7 +18,7 @@ export default {
     },
     data() {
         return {
-            value: this.quantity.default || 1
+            value: this.quantity.value || this.quantity.default || 1
         }
     },
     watch:{

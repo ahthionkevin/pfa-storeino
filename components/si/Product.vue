@@ -1,10 +1,10 @@
 <template>
 <div class="flex flex-col relative">
-    <div v-if="discount" class="p-2 h-10 rounded-full flex items-center justify-center bg-red-700 text-white absolute top-0 left-0 z-10">
+    <div v-if="discount" class="p-2 h-10 rounded-br-lg flex items-center justify-center bg-red-700 text-white absolute top-0 left-0 z-10">
         <b>-{{discount.value}} {{ discount.type == 'percentage' ? '%' : this.$store.state.currency.symbol }}</b>
     </div>
     <div class="h-full flex relative overflow-hidden">
-        <div class="w-full flex flex-col h-full bg-white shadow-md">
+        <div class="w-full flex flex-col h-full border bg-white shadow-md">
             <div class="w-100 pb-full relative">
                 <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
                     <si-image  width="400" height="400" class="h-full w-full absolute inset-0 object-cover" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>
@@ -34,7 +34,7 @@
                 <i class="close-icon"></i>
             </button>
             <div class="h-full overflow-auto">
-                <nuxt-link class="text-center" :to="`/products/${item.slug}`">
+                <nuxt-link v-if="item.options.length < 3" class="text-center" :to="`/products/${item.slug}`">
                     <h3 class="m-2 two-lines text-xl">{{ item.name }}</h3>
                 </nuxt-link>
                 <div class="flex items-center justify-center" v-if="item.type == 'simple'">
@@ -53,9 +53,10 @@
                     </div>
                 </div>
             </div>
-            <button @click="addToCart" class="flex ai-c p-2 justify-center bg-primary text-white">
+            <button @click="addToCart" class="flex ai-c p-2 justify-center bg-primary text-white click-effect">
                 <svg class="h-5 w-5 pt-1" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                <span class="w-full">{{ 'Confirm' }}</span>         
+                <span class="w-full" v-if="added">{{ 'Added' }}</span>
+                <span class="w-full" v-else>{{ 'Confirm' }}</span>
             </button>
         </div>
         </transition>
@@ -65,7 +66,7 @@
 <script>
 export default {
     props: {
-        discount: { type: Object, default: null },
+        upsell: { type: Object, default: null },
         item: Object
     },
     async fetch(){
@@ -96,20 +97,29 @@ export default {
     data() {
         return {
             filpped: false,
+            added: false,
             variant: this.item.type == 'variant' ? this.item.variants[0] : null,
             quantity: this.item.quantity,
-            price: { salePrice: 0, comparePrice: 0 }
+            price: { salePrice: 0, comparePrice: 0 },
+            discount: this.upsell ? this.upsell.discount : null
         }
     },
     methods: {
-        addToCart() {
+        addToCart(ev) {
             // Call add to cart event
-            this.$tools.call('ADD_TO_CART', {
+            let item = {
                 _id: this.item._id,
                 quantity: this.quantity.value ? this.quantity.value : this.item.quantity.default,
                 price: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
-                variant: this.variant ? { _id: this.variant._id } : null
-            })
+                variant: this.variant ? { _id: this.variant._id } : null,
+                upsell: this.upsell
+            };
+            this.$tools.call('ADD_TO_CART', item);
+            this.$tools.toast('Added To Cart');
+            this.added = true;
+            setTimeout(() => {
+                this.added = false;
+            }, 2000);
         },
         variantSelected(variant){
             this.variant = variant;

@@ -25,7 +25,8 @@ export default {
             }else{
                 this.id = '_'+(Math.random() * 10000).toFixed(0);
                 this.$nextTick(()=>{
-                    const element = document.getElementById(this.id);
+                    let element = document.getElementById(this.id);
+                    if(!element) element = { clientHeight: 300, clientWidth: 300 };
                     let property = 'Width';
                     if(element.clientHeight > element.clientWidth) property = 'Height';
                     const value = element ? parseInt(element[`client${property}`]*1.25) : '';

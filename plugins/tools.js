@@ -1,5 +1,6 @@
 export default function({ store }, inject){
     const tools = {};
+
     tools.hexToRgb = (hex) => {
         var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
         return result ? {
@@ -28,30 +29,68 @@ export default function({ store }, inject){
         return result;
     }
     tools.call = (name, data = {}) => {
-        if (!window.events) window.events = {}
-        if (!window.events[name]) window.events[name] = new CustomEvent(name);
-        window.events[name].data = data
-        window.dispatchEvent(window.events[name]);
+        if(!process.server){
+            if (!window.events) window.events = {}
+            if (!window.events[name]) window.events[name] = new CustomEvent(name);
+            window.events[name].data = data
+            window.dispatchEvent(window.events[name]);
+        }
     }
     tools.reformCartItem = (item) => {
         const result = {};
         result._id = item._id;
         result.quantity = item.quantity;
         result.price = item.price;
+        result.parents = [];
         if(item.variant){ result.variant = { _id: item.variant._id }; }
-        if(item.upsell){
-            result.parents = item.parents;
-            result.upsell = {
-                _id: item.upsell._id,
-                type: item.upsell.type,
-                value: item.upsell.value
-            };
+        if(item.upsell && item.upsell.product){
+            result.parents.push(item.upsell.product._id);
+            result.upsell = (({ _id, name }) => ({ _id, name }))(item.upsell);
+            const discount = (({ code, type, value }) => ({ code, type, value }))(item.upsell.discount || {});
+            result.upsell = { ...result.upsell, ...discount};
         }
         return result;
     }
     tools.setCart = (cart) => {
         const cartString = JSON.stringify(cart);
         document.cookie = `STOREINO-CART=${cartString};`;
+    }
+    tools.toast = (message, type = 'success') => {
+        if(!process.server){
+            const toast = document.createElement('div');
+            const svgIcon = document.createElement('div');
+            const toastMessage = document.createElement('div');
+            const toastProgress = document.createElement('div');
+            const toastClose = document.createElement('div');
+            toast.classList.add('toast');
+            toast.classList.add(type);
+            toast.classList.add('toast-fade-in');
+            toastMessage.className = 'toast-message';
+            toastProgress.className = 'toast-progress';
+            toastClose.className = 'toast-close';
+            toastMessage.innerHTML = message;
+            toastClose.innerHTML = '&times;';
+            svgIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.25 16.518l-4.5-4.319 1.396-1.435 3.078 2.937 6.105-6.218 1.421 1.409-7.5 7.626z"/></svg>';
+            toast.appendChild(svgIcon);
+            toast.appendChild(toastMessage);
+            toast.appendChild(toastProgress);
+            toast.appendChild(toastClose);
+            document.body.appendChild(toast);
+            toastClose.addEventListener('click', () => {
+                toast.classList.remove('toast-fade-in')
+                toast.classList.add('toast-fade-out');
+                setTimeout(() => {
+                    toast.style.display = 'none';
+                }, 450);
+            });
+            setTimeout(() => {
+                toast.classList.remove('toast-fade-in')
+                toast.classList.add('toast-fade-out');
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 450);
+            }, 3000);
+        }
     }
     inject('tools', tools);
 }
