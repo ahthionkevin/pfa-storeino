@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-50">
+    <div class="bg-gray-50 transition-all delay-300" :class="$store.state.showHeaderMenu ? 'to-right' : ''">
         <component :is="'style'">
             :root{ --primary-rgb: {{ rgb.r }}, {{rgb.g}}, {{ rgb.b }}; --primary-color: rgb(var(--primary-rgb)); }
             .bg-primary{ background-color: var(--primary-color); }
@@ -31,3 +31,8 @@ export default {
     }
 }
 </script>
+<style>
+    .to-right{
+        transform: translateX(20rem);
+    }
+</style>

@@ -1,37 +1,89 @@
 <template>
-    <div class="container">
-        <div class="flex mb-2">
-            <div class="w-1/4">
-                <div class="border-r bg-white h-full flex flex-col">
-                    <h2 class="px-2">{{ 'Collections' }}</h2>
-                    <div class=" flex flex-col">
-                        <div v-for="(item, i) in collections" :key="i" class="flex items-center px-2">
-                            <input class="w-4 h-4 mr-1" :id="item.slug" @change="setParams($event, 'collections.slug-in', item.slug)" type="checkbox"/>
-                            <label class="cursor-pointer" :for="item.slug">{{ item.name }}</label>
+    <div class="container border">
+        <div class="flex mb-2 relative">
+            <transition name="slideleft">
+                <div :class="showSideBar ? 'show':'hide'" class="w-80 md:w-1/4 fixed hidden md:block md:top-0 h-full top-0 bottom-0 bg-white md:relative z-10">
+                    <div class="bg-black bg-opacity-50 fixed block md:hidden inset-0" @click="showSideBar=false"></div>
+                    <div class="border-r bg-white h-full flex flex-col relative">
+                        <div class="w-full flex justify-end md:hidden">
+                            <button @click="showSideBar=false" aria-label="Search button" class="item p-1 bg-gray-100 rounded-md m-1 hover:bg-gray-200">
+                                <i class="icon icon-close"></i>
+                            </button>
+                        </div>
+                        <h2 class="px-2">{{ 'Collections' }}</h2>
+                        <div class="flex flex-col mb-2">
+                            <div v-if="loading.collections" class="flex justify-center items-center my-5">
+                                <si-loader></si-loader>
+                            </div>
+                            <div v-for="(item, i) in collections" :key="i" class="flex items-center px-2">
+                                <input class="w-4 h-4 mr-1" :id="item.slug" @change="setParams($event, 'collections.slug-in', item.slug)" type="checkbox"/>
+                                <label class="cursor-pointer capitalize" :for="item.slug">{{ item.name }}</label>
+                            </div>
+                        </div>
+                        <hr>
+                        <h2 class="px-2 mt-2">{{ 'Prices' }}</h2>
+                        <div v-if="loading.filters" class="flex justify-center items-center my-5">
+                            <si-loader></si-loader>
+                        </div>
+                        <div v-if="filters" class="flex flex-col mb-2">
+                            <si-price-range @change="setParams" :min="filters.prices.min" :max="filters.prices.max" />
+                        </div>
+                        <hr>
+                        <h2 class="px-2">{{ 'Sizes' }}</h2>
+                        <div v-if="loading.filters" class="flex justify-center items-center my-5">
+                            <si-loader></si-loader>
+                        </div>
+                        <div v-if="filters" class="flex flex-wrap mx-2 mb-2">
+                            <div v-for="(item, i) in filters.sizes" :key="i" class="flex items-center m-0.5 rounded-md" :class="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0 ? 'bg-primary text-white' : 'bg-gray-200' ">
+                                <input hidden :id="item.value1" @change="setParams($event, 'options.values.value1', item.value1)" type="checkbox"/>
+                                <label class="cursor-pointer px-2" :for="item.value1">{{ item.value1 }}</label>
+                            </div>
+                        </div>
+                        <hr>
+                        <h2 class="px-2">{{ 'Colors' }}</h2>
+                        <div v-if="loading.filters" class="flex justify-center items-center my-5">
+                            <si-loader></si-loader>
+                        </div>
+                        <div v-if="filters" class="flex flex-wrap mx-2 mb-2">
+                            <div v-for="(item, i) in filters.colors" :key="i" class="flex items-center my-0.5 color-option" :class="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0 ? 'active' : '' ">
+                                <input hidden :id="item.value1" @change="setParams($event, 'options.values.value1', item.value1)" type="checkbox"/>
+                                <label class="cursor-pointer rounded-full" :style="`background-color:${item.value2}`" :for="item.value1" :aria-label="item.value1"></label>
+                            </div>
+                        </div>
+                        <hr>
+                        <h2 class="px-2">{{ 'Tags' }}</h2>
+                        <div v-if="loading.filters" class="flex justify-center items-center my-5">
+                            <si-loader></si-loader>
+                        </div>
+                        <div v-if="filters" class="flex flex-col mb-2">
+                            <div v-for="(tag, i) in filters.tags" :key="i" class="flex items-center px-2">
+                                <input class="w-4 h-4 mr-1" :id="`tag_${tag}`" @change="setParams($event, 'tags-in', tag)" type="checkbox"/>
+                                <label class="cursor-pointer capitalize" :for="`tag_${tag}`">{{ tag }}</label>
+                            </div>
+                        </div>
+                        <hr>
+                        <h2 class="px-2">{{ 'Brands' }}</h2>
+                        <div class="flex flex-col mb-2">
+                            <div v-if="loading.brands" class="flex justify-center items-center my-5">
+                                <si-loader></si-loader>
+                            </div>
+                            <div v-for="(item, i) in brands" :key="i" class="flex items-center px-2">
+                                <input class="w-4 h-4 mr-1" :id="item.slug" @change="setParams($event, 'brand.slug-in', item.slug)" type="checkbox"/>
+                                <label class="cursor-pointer capitalize" :for="item.slug">{{ item.name }}</label>
+                            </div>
                         </div>
                     </div>
-                    <hr>
-                    <h2 class="px-2">{{ 'Prices' }}</h2>
-                    <div v-if="filters" class=" flex flex-col">
-                        <div class="flex items-center px-2 relative">
-                            <input class="absolute left-0 top-0" :min="filters.prices.min" :max="filters.prices.max" :id="'min-price'" @change="setParams($event, 'price.salePrice-from')" type="range"/>
-                            <input :min="filters.prices.min" :max="filters.prices.max" :id="'max-price'" @change="setParams($event, 'price.salePrice-to')" type="range"/>
-                        </div>
-                    </div>
-                    <hr>
-                    <h2 class="px-2">{{ 'Sizes' }}</h2>
-                    <hr>
-                    <h2 class="px-2">{{ 'Colors' }}</h2>
-                    <hr>
-                    <h2 class="px-2">{{ 'Tags' }}</h2>
-                    <hr>
-                    <h2 class="px-2">{{ 'Brands' }}</h2>
                 </div>
-            </div>
-            <div class="w-3/4">
+            </transition>
+            <div class="w-full md:w-3/4">
                 <div class="bg-white">
                     <div class=" border-b">
                         <div class="flex justify-between items-center p-2">
+                            <button @click="showSideBar = true" aria-label="Search button" class="flex block md:hidden items-center flex-col p-2">
+                                <span class="w-7 my-0.5 h-1 bg-gray-800"></span>
+                                <span class="w-4 my-0.5 h-1 bg-gray-800"></span>
+                                <span class="w-2 my-0.5 h-1 bg-gray-800"></span>
+                            </button>
                             <select class="bg-white p-2 rounded shadow outline-none" v-model="params.sort">
                                 <option v-for="(sort,i) in sorts" :key="i" :value="sort.field">{{ sort.name }}</option>
                             </select>
@@ -45,11 +97,15 @@
                     <div v-if="loading.products" class="flex justify-center items-center my-5">
                         <si-loader></si-loader>
                     </div>
+                    <div v-if="!loading.products && items.length == 0" class="flex justify-center items-center my-5">
+                        <h1 class="py-3">{{ 'No items found' }}</h1>
+                    </div>
                     <div class="flex flex-wrap">
                         <div v-for="(item, i) in items" :key="i" class="p-2" :class="gridClass">
                             <si-product :item="item"></si-product>
                         </div>
                     </div>
+                    
                     <div>
                         <!-- Pagination -->
                     </div>
@@ -65,12 +121,17 @@ export default {
             loading: {
                 products: true,
                 filters: true,
-                collections: false
+                collections: true,
+                brands: true,
             },
+            query: {},
+            param: [],
             filters: null,
+            showSideBar: false,
             gridClass: 'w-full md:w-1/2 lg:w-1/3',
             items: [],
             collections:[],
+            brands: [],
             paginate: { page: 1, limit: 12, total: 12 },
             params: { 'collections.slug-in': [], sort: { createdAt: -1 } },
             lastParams: { 'collections.slug-in': [], sort: { createdAt: -1 } },
@@ -102,21 +163,31 @@ export default {
         }
     },
     async fetch(){
+        await this.getFilters();
         await this.getItems();
         await this.getCollections();
-        await this.getFilters();
+        await this.getBrands();
+        /* if(process.client){
+            if(window.innerWidth <= 766) this.showSideBar=false;
+        } */
     },
     methods: {
         setParams(e, key, value){
             if(key.indexOf('price') >= 0){
-                this.params[key] = e.target.value;
+                this.$set(this.params,key, e.target.value);
             }else{
                 if(e.target.checked) {
-                    this.params[key] = this.params[key] || [];
+                    if(!this.params[key]) this.params[key] = this.$set(this.params, key, []);
                     this.params[key].push(value);
                 } else {
                     this.params[key] = this.params[key].filter(item => item !== value);
                 }
+            }
+            switch(key){
+                case 'collections.slug-in': this.param = [...new Set(...this.param, value)];break;
+                case 'price.salePrice-from': this.query['price-from'] = value;
+                case 'price.salePrice-to': this.query['price-to'] = value;
+                case 'options.values.value1': this.query['colors'] = value 
             }
         },
         async getFilters(){
@@ -141,7 +212,19 @@ export default {
             }
             this.loading.collections = false;
         },
+        async getBrands(){
+            this.brands = [];
+            this.loading.brands = true;
+            try{
+                const { data } = await this.$storeino.brands.search({});
+                this.brands = data.results;
+            }catch(e){
+                console.log({e});
+            }
+            this.loading.brands = false;
+        },
         async getItems(){
+            console.log("Get items");
             this.items = [];
             this.loading.products = true;
             try{
@@ -156,3 +239,45 @@ export default {
     },
 }
 </script>
+<style>
+.color-option label{
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+    margin-right: 4px;
+    box-shadow: 0 0 0px 2px rgb(230, 230, 230);
+}
+.color-option.active label{
+    color: transparent;
+    box-shadow: 0 0 0px 2px white, 0 0 0px 4px var(--primary-color);
+    margin-left: 6px;
+    margin-right: 6px;
+    width: 20px;
+    height: 20px;
+}
+
+.slideleft-enter-active {
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in;
+}
+
+.slideleft-leave-active {
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slideleft-enter-to, .slideleft-leave {
+    width: 100%;
+}
+
+.slideleft-enter, .slideleft-leave-to {
+    width: 0%;
+}
+/* Media screen mobile */
+@media (max-width: 768px){
+    .show {
+        display: block !important;
+    }
+}
+
+</style>

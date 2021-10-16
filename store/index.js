@@ -24,6 +24,7 @@ const createStore = () => {
           },
           // 
           fullImage: null,
+          showHeaderMenu: false
         }
       },
       actions: ()=>{},

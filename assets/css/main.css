@@ -1,6 +1,7 @@
 .container{
     max-width: 1200px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 .pb-full{
     padding-bottom: 100%;
@@ -29,9 +30,7 @@ h3{ font-size: 1.17em; }
 h4{ font-size: 1em; }
 h5{ font-size: .83em; }
 h6{ font-size: .67em; }
-h1, h2, h3, h4, h5, h6{
-  font-weight: bold;
-}
+
 .two-lines{
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -164,4 +163,24 @@ body{
   opacity: 1;
   transform: translate(-50%, -50%) scale(0);
   transition: 0s;
+}
+
+.slide-enter-active {
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in;
+}
+
+.slide-leave-active {
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slide-enter-to, .slide-leave {
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.slide-enter, .slide-leave-to {
+  overflow: hidden;
+  max-height: 0;
 }
