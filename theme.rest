@@ -31,7 +31,9 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
             }
         },
         "settings": {
-            "tabs": []
+            "tabs": [
+                
+            ]
         },
         "current": {
             "style": {

@@ -79,10 +79,11 @@
                 <div class="bg-white">
                     <div class=" border-b">
                         <div class="flex justify-between items-center p-2">
-                            <button @click="showSideBar = true" aria-label="Search button" class="flex block md:hidden items-center flex-col p-2">
-                                <span class="w-7 my-0.5 h-1 bg-gray-800"></span>
-                                <span class="w-4 my-0.5 h-1 bg-gray-800"></span>
-                                <span class="w-2 my-0.5 h-1 bg-gray-800"></span>
+                            <button @click="showSideBar = true" aria-label="Search button" class="flex block md:hidden items-center flex-col p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
+                                <span class="w-6 my-0.5 h-0.5 bg-gray-800"></span>
+                                <span class="w-4 my-0.5 h-0.5 bg-gray-800"></span>
+                                <span class="w-2 my-0.5 h-0.5 bg-gray-800"></span>
+                                <span class="w-1 my-0.5 h-0.5 bg-gray-800"></span>
                             </button>
                             <select class="bg-white p-2 rounded shadow outline-none" v-model="params.sort">
                                 <option v-for="(sort,i) in sorts" :key="i" :value="sort.field">{{ sort.name }}</option>

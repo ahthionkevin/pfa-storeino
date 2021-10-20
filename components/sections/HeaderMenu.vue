@@ -1,10 +1,10 @@
 <template>
-<div class="flex fixed inset-0 z-20" v-if="$store.state.showHeaderMenu">
-    <div class="flex fixed inset-0 bg-black bg-opacity-50" @click="show=false"></div>
-     <transition name="slideleft">
-        <div :class="show ? 'menu-container-in': 'menu-container'" class="transition-all delay-500 max-w-full relative flex flex-col bg-gray-100 w-80">
+<div class="flex fixed inset-0 z-20" v-if="show">
+    <div v-if="$store.state.showHeaderMenu" :class="$store.state.showHeaderMenu? 'opacity-50' : 'opacity-0'" class="flex transition-all delay-500 fixed inset-0 bg-black" @click="$store.state.showHeaderMenu=false"></div>
+    <transition name="slideleft">
+        <div :class="$store.state.showHeaderMenu ? 'move-in' : 'move-out'" class="transition-all delay-500 max-w-full relative flex flex-col bg-gray-100 w-80">
             <div class="w-full flex justify-end">
-                <button @click="show=false" aria-label="Search button" class="item p-1 bg-gray-100 rounded-md m-1 hover:bg-gray-200">
+                <button @click="$store.state.showHeaderMenu=false" aria-label="Search button" class="item p-1 bg-gray-100 rounded-md m-1 hover:bg-gray-200">
                     <i class="icon icon-close"></i>
                 </button>
             </div>
@@ -35,35 +35,6 @@
         </div>
      </transition>
 </div>
-    <!-- <div class="mb-2 relative" @mouseleave="activeItem=null">
-        <div class="overflow-auto w-full bg-gray-100">
-            <div class="container">
-                <ul class="flex">
-                    <li v-for="(item, i) in menu.items" :key="i" @mouseenter="activeItem=item">
-                        <router-link class="p-2 m-1 rounded-md bg-gray-50 hover:bg-white hover:text-green-700 flex" :to="item.url">{{ item.text }}</router-link>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="absolute w-full z-10" v-if="activeItem">
-            <div class="container flex flex-wrap bg-white shadow p-4">
-                <div v-for="(item,i) in activeItem.childrens" :key="i">
-                    <div class="p-2">
-                        <h4 class="font-bold px-2">
-                            <router-link :to="item.url">{{item.text}}</router-link>
-                        </h4>
-                        <ul class="p-2" v-if="item.childrens && item.childrens.length > 0">
-                            <li v-for="(child,ii) in item.childrens" :key="ii">
-                                <nuxt-link :to="child.url">
-                                    {{ child.text }}
-                                </nuxt-link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 </template>
 <script>
 export default {
@@ -76,23 +47,18 @@ export default {
     },
     watch: {
         "$store.state.showHeaderMenu"(val){
-            this.$nextTick(() => {
+            if(val){
                 this.show = val;
-            });
-        },
-        show(val){
-            setTimeout(() => {
-                this.$store.state.showHeaderMenu = val;
-            }, 1000);
+            }else{
+                setTimeout(() => {
+                    this.show = val;
+                },500);
+            }
         }
     }
 }
 </script>
 <style>
-.menu-container{
-    transform: translateX(-40rem);
-}
-.menu-container-in{
-    transform: translateX(-20rem);
-}
+.move-out{ transform: translateX(-40em); }
+.move-in{ transform: translateX(-20em); }
 </style>

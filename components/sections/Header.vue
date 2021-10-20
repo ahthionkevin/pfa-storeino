@@ -1,26 +1,27 @@
 <template>
-<div class="bg-white mb-2">
-    <div class="flex p-2 justify-between items-center container relative">
-        <div class="flex h-full items-center">
-            <button @click="$store.state.showHeaderMenu = !$store.state.showHeaderMenu" aria-label="Search button" class="flex flex-col p-2">
-                <span class="w-5 my-0.5 h-1 bg-gray-800"></span>
-                <span class="w-4 my-0.5 h-1 bg-gray-800"></span>
-                <span class="w-7 my-0.5 h-1 bg-gray-800"></span>
+<div class="bg-white mb-2 relative">
+    <div class="flex p-2 justify-between items-center container">
+        <div class="flex h-full justify-start items-center w-1/3">
+            <button @click="$store.state.showHeaderMenu = !$store.state.showHeaderMenu" aria-label="Search button" class="flex flex-col p-2 bg-gray-100 rounded-md hover:bg-gray-200">
+                <span class="w-4 my-0.5 h-0.5 bg-gray-800"></span>
+                <span class="w-3 my-0.5 h-0.5 bg-gray-800"></span>
+                <span class="w-6 my-0.5 h-0.5 bg-gray-800"></span>
+                <span class="w-4 my-0.5 h-0.5 bg-gray-800"></span>
             </button>
         </div>
-        <div class="logo flex justify-center items-center">
+        <div class="logo flex justify-center items-center w-1/3">
             <router-link to="/">
                 <si-image width="70" height="50" class="h-12 w-full object-contain" :src="section.logo ? section.logo.src : null" alt="Store logo"/>
             </router-link>
         </div>
-        <div class="icons flex items-center">
+        <div class="icons flex items-center justify-end w-1/3">
             <button @click="showSearch=true" aria-label="Search button" class="item p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
                 <i class="icon icon-search"></i>
             </button>
-            <router-link to="/account" title="Account" class="item p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
+            <router-link to="/account" title="Account" class="item hidden md:block p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
                 <span class="icon icon-user"></span>
             </router-link>
-            <router-link to="/wishlist" title="Wishlist" class="item p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
+            <router-link to="/wishlist" title="Wishlist" class="item hidden md:block p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
                 <span class="icon icon-heart"></span>
             </router-link>
             <router-link to="/cart" title="Cart" id="cart-icon" class="item p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200 relative">
@@ -28,9 +29,11 @@
                 <small class="-top-2 -right-2 rounded-full absolute w-5 h-5 p-2 bg-red-700 text-white flex justify-center items-center">{{ $store.state.cart.length }}</small>
             </router-link>
         </div>
-        <div v-if="showSearch" class="flex items-center justify-center p-2 fixed inset-0 z-20">
-            <div @click="showSearch=false" class="bg-black bg-opacity-50 flex fixed inset-0"></div>
-            <form class="search flex container bg-gray-50 p-2 absolute rounded-md w-full border border-gray-200" action="/shop?">
+    </div>
+    <div v-if="showSearch" class="flex items-center justify-center absolute inset-0 z-20">
+        <!-- <div @click="showSearch=false" class="bg-black bg-opacity-50 flex fixed inset-0"></div> -->
+        <div class="bg-white absolute w-full p-2">
+            <form class="search flex container bg-gray-50 p-2 rounded-md border border-gray-200" action="/shop?">
                 <button type="button" @click="showSearch=false" aria-label="Search button">
                     <i class="icon icon-close"></i>
                 </button>
