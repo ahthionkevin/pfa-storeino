@@ -6,7 +6,7 @@ const createStore = () => {
           cart: [],
           whishlist: [],
           settings: null,
-          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkNzAyZTIzZGU1NzFmYjliOTdkOTQifSwiY3VzdG9tZXIiOnsiX2lkIjoiNjExZjBmMmJjYmI4MWUxOWY4ZjJiZDBjIiwiZmlyc3RuYW1lIjoiYW1hbCIsImxhc3RuYW1lIjoiZ3JpZmZpbiIsImVtYWlsIjoiamVsb2NhQG1haWxpbmF0b3IuY29tIn0sImlhdCI6MTYzMzUxODE5NiwiZXhwIjoxNjY1MDU0MTk2fQ.GVDXkbctvIshchvd1aac2em5gocj_JHjhXPMcEd2N9A',
+          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0NDkxNzllNmFkNjA0YTYyODc2ZTAiLCJuYW1lIjoidGVjaG5vIiwic3ViZG9tYWluIjoidGVjaG5vLnN0b3JlaW5vLndvcmxkIn0sInVzZXIiOnsiX2lkIjoiNjA0MGU0OGYyMzY0NzYwYTMyZWUyNTFiIiwiZmlyc3RuYW1lIjoiYWJkZXJyYWhpbSIsImxhc3RuYW1lIjoib3VraHJpYiJ9LCJjb21wYW55Ijp7Il9pZCI6IjYwNDBlNDhmMjM2NDc2MGEzMmVlMjUxOSIsIm5hbWUiOiJva2F5c3MiLCJzdGF0dXMiOiJVTkNPTVBMRVRFRCJ9LCJpYXQiOjE2MzQ3MjUyOTYsImV4cCI6MTYzNTU4OTI5Nn0.0Xl56D1Vk2j89kOB2DO64DT99BSTDysGtSuQkhxXROo',
           primary: {
             rgb: { r:0, g:0, b:0 },
             color: '#000000'

@@ -1,8 +1,8 @@
-export default async function ({ $axios, $http, $tools, store, app }, inject) {
+export default async function ({ $axios, $http, $tools, store, app, redirect }, inject) {
     if(process.server) {
         const req = app.context.req;
         // Set Currency and language
-
+        
         // Get Template settings
         const params = { lang: store.state.language.code, cur: store.state.currency.code }
         try {
@@ -15,7 +15,9 @@ export default async function ({ $axios, $http, $tools, store, app }, inject) {
             }
             store.state.settings = response.data;
         } catch (error) {
-            console.log({ error: error.response.data });
+            if(error.response) throw "ERROR :: " + error.response.data;
+            throw "ERROR :: INVALID TOKEN";
+            //console.log({ error: error.response.data });
         }
         // init Cart
         let cookies = $tools.cookieToObject(req.headers.cookie);
