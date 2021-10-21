@@ -16,7 +16,7 @@ export default async function ({ $axios, $http, $tools, store, app, redirect }, 
             store.state.settings = response.data;
         } catch (error) {
             if(error.response) throw "ERROR :: " + error.response.data;
-            throw "ERROR :: INVALID TOKEN";
+            throw "ERROR :: INVALID TOKEN" + error;
             //console.log({ error: error.response.data });
         }
         // init Cart
