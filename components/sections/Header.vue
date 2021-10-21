@@ -11,7 +11,7 @@
         </div>
         <div class="logo flex justify-center items-center w-1/3">
             <router-link to="/">
-                <si-image width="70" height="50" class="h-12 w-full object-contain" :src="section.logo ? section.logo.src : null" alt="Store logo"/>
+                <si-image width="70" height="50" property="height" class="h-12 w-full w-full object-contain" :src="section.logo ? section.logo.src : null" alt="Store logo"/>
             </router-link>
         </div>
         <div class="icons flex items-center justify-end w-1/3">

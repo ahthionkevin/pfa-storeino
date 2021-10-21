@@ -6,6 +6,7 @@ export default {
     props: {
         alt: { type: String, default: 'No alt found' },
         src: { type: String, default: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4' },
+        property: { type: String, default: null }
     },
     data() {
         return {
@@ -29,6 +30,7 @@ export default {
                     if(!element) element = { clientHeight: 300, clientWidth: 300 };
                     let property = 'Width';
                     if(element.clientHeight > element.clientWidth) property = 'Height';
+                    if(this.property) property = this.property;
                     const value = element ? parseInt(element[`client${property}`]*1.25) : '';
                     this.newSrc = this.src ? `${this.src}?${property.toLowerCase()}=${value}` : this.$store.state.defaults.image;
                 })

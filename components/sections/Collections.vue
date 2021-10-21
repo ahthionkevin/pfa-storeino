@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     move(n){
-      var get = 'pop', set = 'unshift', width = document.querySelector('.carousel-item').offsetWidth;
+      var get = 'pop', set = 'unshift', width = document.querySelector('.carousel-item') ? document.querySelector('.carousel-item').offsetWidth : 360;
       if(n==1){ get='shift', set='push', width =`-${width}` };
       document.querySelector('.carousel').style.transform = `translateX(${width}px)`;
       document.querySelector('.carousel').style.transition = `500ms`;
