@@ -145,7 +145,18 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                 },
                 "collections": {},
                 "products": {},
+                "product": {
+
+                },
                 "posts": {},
+                "post": {
+                    "share_buttons": {
+                        "whatsapp": true,
+                        "facebook": true,
+                        "twitter": true,
+                        "linkedin": true
+                    }
+                },
                 "services": {},
                 "footer": {
                     "about": "<h3>Experience Moroccofresh - for agriculture.</h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological - for agriculture. In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>",

@@ -3,10 +3,9 @@ export default async function ({ $http, store, app }, inject) {
     // Gets
     const gets = ['products', 'collections' ,'pages'];
     // Searches
-    const searches = ['products', 'collections', 'upsells' ,'pages', 'brands', 'reviews'];
+    const searches = ['products', 'collections', 'categories', 'upsells' ,'pages', 'brands', 'reviews'];
     // Creates and updates
-    const creates = ['customers', 'orders'];
-    const updates = ['customers', 'orders'];
+    const creates = []; const updates = [];
     
     // Functions
     for (const module of gets) {

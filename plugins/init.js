@@ -4,6 +4,9 @@ export default async function ({ $axios, $http, $tools, store, app, redirect }, 
         // Set Currency and language
         
         // Get Template settings
+        
+        // Set current domain
+        store.state.domain = req.headers.host;
         const params = { lang: store.state.language.code, cur: store.state.currency.code }
         try {
             let response = null
