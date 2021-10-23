@@ -16,7 +16,7 @@
                 <div class=" flex w-full border-b border-gray-200"></div>
             </div>
             <div class=" flex justify-center">
-                <div v-for="item in socialMedia.filter(s=>$settings.sections.footer.socialMedia[s.name])" :key="item.name" class="h-12 m-2 flex items-center justify-center">
+                <div v-for="item in socialMedia.filter(s=>$settings.sections.post.share_buttons[s.name])" :key="item.name" class="h-12 m-2 flex items-center justify-center">
                     <a class="h-full flex" :href="item.url" target="_blank" rel="noopener noreferrer">
                         <si-image class="h-10 w-10" width="40" height="40" :src="item.image" :alt="item.name"/>
                     </a>

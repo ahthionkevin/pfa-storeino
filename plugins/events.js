@@ -14,7 +14,6 @@ export default function({ app, store, $tools }, inject){
             $tools.setCart(store.state.cart);
         });
         window.addEventListener('REMOVE_FROM_CART', (e)=>{
-            console.log('REMOVE_FROM_CART', e);
             const item = $tools.reformCartItem(e.data);
             let index = -1;
             if(item.variant) index = store.state.cart.findIndex(i => i._id === item._id && i.variant && i.variant._id === item.variant._id);
@@ -28,6 +27,19 @@ export default function({ app, store, $tools }, inject){
                 if(child.parents.length == 0) store.state.cart.splice(childIndex, 1);
             }
             $tools.setCart(store.state.cart);
+        });
+        window.addEventListener('ADD_TO_WISHLIST', (e) => {
+            const item = $tools.reformWishlistItem(e.data);
+            let exists = store.state.wishlist.find(i => i._id === item._id);
+            if(!exists) store.state.wishlist.push(item);
+            $tools.setWishlist(store.state.wishlist);
+        });
+        window.addEventListener('REMOVE_FROM_WISHLIST', (e)=>{
+            const item = $tools.reformWishlistItem(e.data);
+            let index = store.state.wishlist.findIndex(i => i._id === item._id);
+            if(index == -1) return;
+            store.state.wishlist.splice(index, 1);
+            $tools.setWishlist(store.state.wishlist);
         });
     }
 }

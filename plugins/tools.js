@@ -51,9 +51,16 @@ export default function({ store }, inject){
         }
         return result;
     }
+    tools.reformWishlistItem = (item) =>{
+        return { _id: item._id };
+    }
     tools.setCart = (cart) => {
         const cartString = JSON.stringify(cart);
         document.cookie = `STOREINO-CART=${cartString};`;
+    }
+    tools.setWishlist = (wishlist) => {
+        const wishString = JSON.stringify(wishlist);
+        document.cookie = `STOREINO-WISHLIST=${wishString};`;
     }
     tools.toast = (message, type = 'success') => {
         if(!process.server){

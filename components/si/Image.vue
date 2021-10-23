@@ -6,12 +6,14 @@ export default {
     props: {
         alt: { type: String, default: 'No alt found' },
         src: { type: String, default: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4' },
-        property: { type: String, default: null }
+        property: { type: String, default: null },
+        default: { type: String, default: null }
     },
     data() {
         return {
             id: '_'+(Math.random() * 10000).toFixed(0),
-            newSrc: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4'
+            newSrc: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4',
+            empty : this.default || this.$store.state.defaults.image
         }
     },
     watch: {
@@ -32,7 +34,7 @@ export default {
                     if(element.clientHeight > element.clientWidth) property = 'Height';
                     if(this.property) property = this.property;
                     const value = element ? parseInt(element[`client${property}`]*1.25) : '';
-                    this.newSrc = this.src ? `${this.src}?${property.toLowerCase()}=${value}` : this.$store.state.defaults.image;
+                    this.newSrc = this.src ? `${this.src}?${property.toLowerCase()}=${value}` : this.empty;
                 })
             }
         }

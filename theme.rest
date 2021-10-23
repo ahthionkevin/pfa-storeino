@@ -98,9 +98,48 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                             "name": "banner",
                             "icon": "select_all",
                             "pushable": true,
-                            "blocks":[
-                                
-                            ]
+                            "default": {
+                                "name": "items[9]",
+                                "values": [
+                                    {
+                                        "name": "banner_image",
+                                        "path": "sections.banner.items.item_9.image",
+                                        "type": "tc_image",
+                                        "value": null
+                                    },
+                                    {
+                                        "name": "banner_title",
+                                        "path": "sections.banner.items.item_9.title",
+                                        "type": "tc_input",
+                                        "value": "Default title"
+                                    },
+                                    {
+                                        "name": "banner_description",
+                                        "path": "sections.banner.items.item_9.description",
+                                        "type": "tc_input",
+                                        "value": "Default description"
+                                    },
+                                    {
+                                        "name": "banner_show_button",
+                                        "path": "sections.banner.items.item_9.button.active",
+                                        "type": "tc_checkbox",
+                                        "value": false
+                                    },
+                                    {
+                                        "name": "banner_button_text",
+                                        "path": "sections.banner.items.item_9.button.text",
+                                        "type": "tc_input",
+                                        "value": "Shop now"
+                                    },
+                                    {
+                                        "name": "banner_button_url",
+                                        "path": "sections.banner.items.item_9.button.url",
+                                        "type": "tc_input",
+                                        "value": "/shop"
+                                    }
+                                ]
+                            },
+                            "blocks":[]
                         }
                     ]
                 }
@@ -116,9 +155,10 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                     "menu": null
                 },
                 "banner": {
-                    "items": [
+                    "items": {
+                        "item_0": 
                         { 
-                            "image": "615b20f62d03a91d18935093",
+                            "image": null,
                             "title": "Renal & Urology Nutrition News, Diet Tips",
                             "description": "Greater consumption of healthful plant-based foods is associated with significantly reduced risks for advanced, lethal, and fatal prostate cancer, especially among men younger than 65 years",
                             "button": {
@@ -127,8 +167,8 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                                 "text": "Order now"
                             }
                         },
-                        { 
-                            "image": "615b20f42d03a91d18935092",
+                        "item_1": { 
+                            "image": null,
                             "title": "Renal & Urology Nutrition News, Diet Tips",
                             "description": "Greater consumption of healthful plant-based foods is associated with significantly reduced risks for advanced, lethal, and fatal prostate cancer, especially among men younger than 65 years",
                             "button": {
@@ -137,16 +177,21 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                                 "text": "Order now"
                             }
                         }
-                    ],
+                    },
                     "right": {
-                        "image": "611d7a4eaf093e19cef7dbce",
+                        "image": null,
                         "url": "/shop"
                     }
                 },
                 "collections": {},
                 "products": {},
                 "product": {
-
+                    "share_buttons": {
+                        "whatsapp": true,
+                        "facebook": true,
+                        "twitter": true,
+                        "linkedin": true
+                    }
                 },
                 "posts": {},
                 "post": {
@@ -166,7 +211,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                         "transfer": true,
                         "cash": true
                     },
-                    "socialMedia": {
+                    "social_media": {
                         "facebook": "https://www.facebook.com/",
                         "twitter": "https://twitter.com/",
                         "instagram": "https://www.instagram.com/",
@@ -176,7 +221,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                         "snapchat": "https://www.snapchat.com/",
                         "tiktok": "https://www.tiktok.com/"
                     },
-                    "menu": "6152f5462d03a91d18898c6c"
+                    "menu": null
                 }
             },
             "translates": []

@@ -15,8 +15,8 @@
                     </div>
                     <h3 class=" text-lg">{{ 'Social Media' }}</h3>
                     <div class="flex flex-wrap">
-                        <div v-for="item in socialMedia.filter(s=>$settings.sections.footer.socialMedia[s.name])" :key="item.name" class="h-12 m-2 flex items-center justify-center">
-                            <a class="h-full flex" :href="$settings.sections.footer.socialMedia[item.name]" target="_blank" rel="noopener noreferrer">
+                        <div v-for="item in socialMedia.filter(s=>$settings.sections.footer.social_media[s.name])" :key="item.name" class="h-12 m-2 flex items-center justify-center">
+                            <a class="h-full flex" :href="$settings.sections.footer.social_media[item.name]" target="_blank" rel="noopener noreferrer">
                                 <si-image class="h-12 w-12" width="40" height="40" :src="item.image" :alt="item.name"/>
                             </a>
                         </div>

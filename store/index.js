@@ -13,7 +13,8 @@ const createStore = () => {
             color: '#000000'
           },
           defaults: {
-              image: "https://athearoman.com/wp-content/uploads/2016/10/dummy-image.jpg"
+              image: "https://storeno.b-cdn.net/themes/palest/default-shop.jpg",
+              logo: ""
           },
           currency: {
             symbol: "DH",

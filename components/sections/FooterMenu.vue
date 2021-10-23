@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white">
-      <div class="flex flex-wrap justify-start container">
+      <div class="flex flex-wrap justify-start container" v-if="menu">
         <div v-for="(item,i) in menu.items" :key="i" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
             <div class="p-2 h-full border-l border-r">
                 <h4 class="text-xl menu-title px-2">

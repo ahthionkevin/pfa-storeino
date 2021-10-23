@@ -2,11 +2,11 @@
     <div class="container">
         <div class="flex flex-wrap p-2">
             <div class="w-full md:w-3/4 relative overflow-hidden">
-                <div class="flex flex-wrap h-full mr-2 slider-item" :class="'last'" v-if="lastItem">
+                <div class="flex flex-wrap h-full mr-2 slider-item inset-0" :class="'last'" v-if="lastItem">
                     <div class="image w-full md:w-2/3 relative">
                         <si-image width="600" height="300" class="h-48 bg-green-200 md:h-96 max-h-full object-cover" :src="lastItem.image ? lastItem.image.src: null" :alt="lastItem.title"/>
                         <div class="flex absolute bottom-0 p-2">
-                            <span v-for="(x,y) in banner.items" :key="y" :class="y==activeIndex ?'bg-green-200': ''" class="w-4 h-4 rounded-full bg-white mr-1 flex cursor-pointer" @click="activeIndex=y"></span>
+                            <span v-for="(x,y) in Object.keys(banner.items)" :key="y" :class="y==activeIndex ?'bg-green-200': ''" class="w-4 h-4 rounded-full bg-white mr-1 flex cursor-pointer" @click="activeIndex=y"></span>
                         </div>
                     </div>
                     <div class="text w-full md:w-1/3 bg-primary text-white">
@@ -17,19 +17,19 @@
                         </div>
                     </div>
                 </div>
-                <template v-for="(item,i) in banner.items">
-                    <div class="flex flex-wrap h-full mr-2 slider-item" :class="i==activeIndex ? 'active': ''" :key="i">
+                <template v-for="(key,i) in Object.keys(banner.items)">
+                    <div class="flex flex-wrap h-full mr-2 slider-item relative" :class="i==activeIndex ? 'active': ''" :key="i">
                         <div class="image w-full md:w-2/3 relative">
-                            <si-image width="100%" height="300" class="h-48 bg-green-200 md:h-96 max-h-full object-cover" :src="item.image ? item.image.src : null" :alt="item.title"/>
+                            <si-image width="100%" height="300" class="h-48 bg-green-200 md:h-96 max-h-full object-cover" :src="banner.items[key].image ? banner.items[key].image.src : null" :alt="banner.items[key].title"/>
                             <div class="flex absolute bottom-0 p-2">
-                                <span v-for="(x,y) in banner.items" :key="y" :class="y==activeIndex ?'bg-green-200': ''" class="w-4 h-4 rounded-full bg-white mr-1 flex cursor-pointer" @click="animate(y)"></span>
+                                <span v-for="(x,y) in Object.keys(banner.items)" :key="y" :class="y==activeIndex ?'bg-green-200': ''" class="w-4 h-4 rounded-full bg-white mr-1 flex cursor-pointer" @click="animate(y)"></span>
                             </div>
                         </div>
                         <div class="text w-full md:w-1/3 bg-primary text-white">
                             <div class="p-2 flex flex-col justify-between h-full">
-                                <h2 class="text-2xl mb-2">{{ item.title }}</h2>
-                                <p class="mb-2">{{ item.description }}</p>
-                                <router-link class="w-full bg-white text-primary flex p-2 justify-center" v-if="item.button.active" :to="item.button.url">{{ item.button.text }}</router-link>
+                                <h2 class="text-2xl mb-2">{{ banner.items[key].title }}</h2>
+                                <p class="mb-2">{{ banner.items[key].description }}</p>
+                                <router-link class="w-full bg-white text-primary flex p-2 justify-center" v-if="banner.items[key].button.active" :to="banner.items[key].button.url">{{ banner.items[key].button.text }}</router-link>
                             </div>
                         </div>
                     </div>
@@ -61,12 +61,12 @@ export default {
     methods: {
         animate(index=null){
             if(index != null){
-                this.lastItem = this.banner.items[this.activeIndex];
+                this.lastItem = this.banner.items[`item_${[this.activeIndex]}`];
                 this.activeIndex = index;
                 clearTimeout(this.timeout);
             }else{
-                this.lastItem = this.banner.items[this.activeIndex];
-                if(this.activeIndex >= this.banner.items.length-1) this.activeIndex = -1;
+                this.lastItem = this.banner.items[`item_${[this.activeIndex]}`];
+                if(this.activeIndex >= Object.keys(this.banner.items).length-1) this.activeIndex = -1;
                 this.activeIndex++;
                 this.timeout = setTimeout(() => {
                     this.animate();
