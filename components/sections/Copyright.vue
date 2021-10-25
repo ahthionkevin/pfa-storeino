@@ -16,8 +16,8 @@ export default {
     data() {
         return {
             year: new Date().getFullYear(),
-            title: 'Online Store',
-            description: 'Copyright © __YEAR__. All rights reserved. <a href="//storeino.com">storeino.com</a>'
+            title: this.$settings.sections.footer.copyright.store_name,
+            description: this.$settings.sections.footer.copyright.text
         }
     },
 }

@@ -10,8 +10,8 @@
                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-5 h-5"><path fill="currentColor" d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z" class=""></path></svg>
                             </button>
                         </div>
-                        <h2 class="px-2">{{ 'Collections' }}</h2>
-                        <div class="flex flex-col mb-2">
+                        <h2 v-if="$settings.sections.shop.sidebar.collections.active" class="px-2">{{ $settings.sections.shop.sidebar.collections.title }}</h2>
+                        <div v-if="$settings.sections.shop.sidebar.collections.active" class="flex flex-col mb-2">
                             <div v-if="loading.collections" class="flex justify-center items-center my-5">
                                 <si-loader></si-loader>
                             </div>
@@ -20,56 +20,58 @@
                                 <label class="cursor-pointer capitalize" :for="item.slug">{{ item.name }}</label>
                             </div>
                         </div>
-                        <hr>
-                        <h2 class="px-2 mt-2">{{ 'Prices' }}</h2>
+                        <hr v-if="$settings.sections.shop.sidebar.collections.active">
+                        <h2 v-if="$settings.sections.shop.sidebar.prices.active" class="px-2 mt-2">{{ $settings.sections.shop.sidebar.prices.title }}</h2>
                         <div v-if="loading.filters" class="flex justify-center items-center my-5">
                             <si-loader></si-loader>
                         </div>
-                        <div v-if="filters" class="flex flex-col mb-2">
+                        <div v-if="$settings.sections.shop.sidebar.prices.active && filters" class="flex flex-col mb-2">
                             <si-price-range @change="setParams" :min="filters.prices.min" :max="filters.prices.max" />
                         </div>
-                        <hr>
-                        <h2 class="px-2">{{ 'Sizes' }}</h2>
-                        <div v-if="loading.filters" class="flex justify-center items-center my-5">
+                        <hr v-if="$settings.sections.shop.sidebar.prices.active">
+                        <h2 class="px-2" v-if="$settings.sections.shop.sidebar.sizes.active">{{ $settings.sections.shop.sidebar.sizes.title }}</h2>
+                        <div v-if="$settings.sections.shop.sidebar.sizes.active && loading.filters" class="flex justify-center items-center my-5">
                             <si-loader></si-loader>
                         </div>
-                        <div v-if="filters" class="flex flex-wrap mx-2 mb-2">
+                        <div v-if="$settings.sections.shop.sidebar.sizes.active && filters" class="flex flex-wrap mx-2 mb-2">
                             <div v-for="(item, i) in filters.sizes" :key="i" class="flex items-center m-0.5 rounded-md" :class="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0 ? 'bg-primary text-white' : 'bg-gray-200' ">
                                 <input hidden :id="item.value1" @change="setParams($event, 'options.values.value1', item.value1)" type="checkbox"/>
                                 <label class="cursor-pointer px-2" :for="item.value1">{{ item.value1 }}</label>
                             </div>
                         </div>
-                        <hr>
-                        <h2 class="px-2">{{ 'Colors' }}</h2>
-                        <div v-if="loading.filters" class="flex justify-center items-center my-5">
+                        <hr v-if="$settings.sections.shop.sidebar.sizes.active">
+                        <h2 class="px-2" v-if="$settings.sections.shop.sidebar.colors.active">{{ $settings.sections.shop.sidebar.colors.title }}</h2>
+                        <div v-if="$settings.sections.shop.sidebar.colors.active && loading.filters" class="flex justify-center items-center my-5">
                             <si-loader></si-loader>
                         </div>
-                        <div v-if="filters" class="flex flex-wrap mx-2 mb-2">
+                        <div v-if="$settings.sections.shop.sidebar.colors.active && filters" class="flex flex-wrap mx-2 mb-2">
                             <div v-for="(item, i) in filters.colors" :key="i" class="flex items-center my-0.5 color-option" :class="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0 ? 'active' : '' ">
                                 <input hidden :id="item.value1" @change="setParams($event, 'options.values.value1', item.value1)" type="checkbox"/>
                                 <label class="cursor-pointer rounded-full" :style="`background-color:${item.value2}`" :for="item.value1" :aria-label="item.value1"></label>
                             </div>
                         </div>
-                        <hr>
-                        <h2 class="px-2">{{ 'Tags' }}</h2>
-                        <div v-if="loading.filters" class="flex justify-center items-center my-5">
+                        <hr v-if="$settings.sections.shop.sidebar.colors.active">
+                        <h2 class="px-2" v-if="$settings.sections.shop.sidebar.tags.active">{{ $settings.sections.shop.sidebar.tags.title }}</h2>
+                        <div v-if="$settings.sections.shop.sidebar.tags.active && loading.filters" class="flex justify-center items-center my-5">
                             <si-loader></si-loader>
                         </div>
-                        <div v-if="filters" class="flex flex-col mb-2">
+                        <div v-if="$settings.sections.shop.sidebar.tags.active && filters" class="flex flex-col mb-2">
                             <div v-for="(tag, i) in filters.tags" :key="i" class="flex items-center px-2">
                                 <input class="w-4 h-4 mr-1" :id="`tag_${tag}`" @change="setParams($event, 'tags-in', tag)" type="checkbox"/>
                                 <label class="cursor-pointer capitalize" :for="`tag_${tag}`">{{ tag }}</label>
                             </div>
                         </div>
-                        <hr>
-                        <h2 class="px-2">{{ 'Brands' }}</h2>
+                        <hr v-if="$settings.sections.shop.sidebar.tags.active">
+                        <h2 class="px-2" v-if="$settings.sections.shop.sidebar.brands.active">{{ $settings.sections.shop.sidebar.brands.title }}</h2>
                         <div class="flex flex-col mb-2">
-                            <div v-if="loading.brands" class="flex justify-center items-center my-5">
+                            <div v-if="$settings.sections.shop.sidebar.brands.active && loading.brands" class="flex justify-center items-center my-5">
                                 <si-loader></si-loader>
                             </div>
-                            <div v-for="(item, i) in brands" :key="i" class="flex items-center px-2">
-                                <input class="w-4 h-4 mr-1" :id="item.slug" @change="setParams($event, 'brand.slug-in', item.slug)" type="checkbox"/>
-                                <label class="cursor-pointer capitalize" :for="item.slug">{{ item.name }}</label>
+                            <div v-if="$settings.sections.shop.sidebar.brands.active">
+                                <div v-for="(item, i) in brands" :key="i" class="flex items-center px-2">
+                                    <input class="w-4 h-4 mr-1" :id="item.slug" @change="setParams($event, 'brand.slug-in', item.slug)" type="checkbox"/>
+                                    <label class="cursor-pointer capitalize" :for="item.slug">{{ item.name }}</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,7 +101,7 @@
                         <si-loader></si-loader>
                     </div>
                     <div v-if="!loading.products && items.length == 0" class="flex justify-center items-center my-5">
-                        <h1 class="py-3">{{ 'No items found' }}</h1>
+                        <h1 class="py-3">{{ $settings.sections.shop.empty_text }}</h1>
                     </div>
                     <div class="flex flex-wrap">
                         <div v-for="(item, i) in items" :key="i" class="p-2" :class="gridClass">

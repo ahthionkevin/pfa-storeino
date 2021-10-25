@@ -1,7 +1,7 @@
 <template>
     <div class="container border">
         <div class="flex mb-2 relative">
-            <transition name="slideleft">
+            <transition name="slideleft" v-if="$settings.sections.blog.sidebar.active">
                 <div :class="showSideBar ? 'show':'hide'" class="w-80 md:w-1/4 fixed hidden md:block md:top-0 h-full top-0 bottom-0 bg-white md:relative z-10">
                     <div class="bg-black bg-opacity-50 fixed block md:hidden inset-0" @click="showSideBar=false"></div>
                     <div class="border-r bg-white h-full flex flex-col relative">
@@ -10,8 +10,8 @@
                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-5 h-5"><path fill="currentColor" d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z" class=""></path></svg>
                             </button>
                         </div>
-                        <h2 class="px-2">{{ 'Categories' }}</h2>
-                        <div class="flex flex-col mb-2">
+                        <h2 v-if="$settings.sections.blog.sidebar.categories.active" class="px-2">{{ $settings.sections.blog.sidebar.categories.title }}</h2>
+                        <div v-if="$settings.sections.blog.sidebar.categories.active" class="flex flex-col mb-2">
                             <div v-if="loading.categories" class="flex justify-center items-center my-5">
                                 <si-loader></si-loader>
                             </div>
@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <hr>
-                        <si-carousel :size="100" component="si-product" title="From Shop" :list="products" itemClass="w-full"></si-carousel>
+                        <si-carousel v-if="$settings.sections.blog.sidebar.products.active" :size="100" component="si-product" :title="$settings.sections.blog.sidebar.products.title" :list="products" itemClass="w-full"></si-carousel>
                     </div>
                 </div>
             </transition>
@@ -49,7 +49,7 @@
                         <si-loader></si-loader>
                     </div>
                     <div v-if="!loading.pages && items.length == 0" class="flex justify-center items-center my-5">
-                        <h1 class="py-3">{{ 'No items found' }}</h1>
+                        <h1 class="py-3">{{ $settings.sections.blog.empty_text }}</h1>
                     </div>
                     <div class="flex flex-wrap">
                         <div v-for="(item, i) in items" :key="i" class="p-2" :class="gridClass">

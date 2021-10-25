@@ -12,7 +12,7 @@
             <div  v-if="item" class="bg-white rounded-md p-2 my-3 mx-2 description" id="description" v-html="item.content"></div>
             <div class="flex items-center">
                 <div class=" flex w-full border-b border-gray-200"></div>
-                <h3 class=" whitespace-nowrap p-2">{{ 'Share this blog post' }}</h3>
+                <h3 class=" whitespace-nowrap p-2">{{ $settings.sections.post.share_buttons.title }}</h3>
                 <div class=" flex w-full border-b border-gray-200"></div>
             </div>
             <div class=" flex justify-center">

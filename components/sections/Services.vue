@@ -19,18 +19,18 @@ export default {
             items: [
                 {
                     image: { src: 'https://cdn-icons-png.flaticon.com/128/3179/3179078.png' },
-                    text: 'Fast delevery',
-                    url: '#'
+                    text: this.$settings.sections.services.items.delivery.text,
+                    url: this.$settings.sections.services.items.delivery.url,
                 },
                 {
                     image: { src: 'https://cdn-icons-png.flaticon.com/128/3410/3410508.png' },
-                    text: 'Satisfaction',
-                    url: '#'
+                    text: this.$settings.sections.services.items.satisfaction.text,
+                    url: this.$settings.sections.services.items.satisfaction.url,
                 },
                 {
                     image: { src: 'https://cdn-icons-png.flaticon.com/128/3190/3190370.png' },
-                    text: 'High Quality',
-                    url: '#'
+                    text: this.$settings.sections.services.items.quality.text,
+                    url: this.$settings.sections.services.items.quality.url,
                 }
             ]
         }
