@@ -208,6 +208,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                 "collections": {
                     "active": true,
                     "title": "Top collections",
+                    "items": []
                 },
                 "products_1": {
                     "active": true,
