@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="m-2">
-      <h2 class="text-2xl">{{ "Featured products" }}</h2>
+      <h2 class="text-2xl">{{ title }}</h2>
     </div>
     <div v-if="loading" class="flex justify-center items-center my-5">
       <si-loader></si-loader>
@@ -21,9 +21,9 @@
         <a href="https://palest.storeino.com" target="_blank" class="text-blue-600 border p-2 rounded-md inline-block mt-1">{{'View theme demo'}}</a>
       </div>
     </div>
-    <div class="flex justify-center">
-      <nuxt-link class="py-2 px-4 w-full mx-2 bg-white shadow rounded hover:bg-gray-50 text-primary flex items-center" to="/shop">
-        <span class="w-full">{{ 'Show more products' }}</span>
+    <div class="flex justify-center" v-if="section.show_more_text">
+      <nuxt-link class="py-2 px-4 w-full mx-2 bg-white shadow rounded hover:bg-gray-50 text-primary flex items-center" :to="section.show_more_url">
+        <span class="w-full">{{ section.show_more_text }}</span>
         <svg class="h-4 text-primary" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" x="0" y="0" viewBox="0 0 492.004 492.004" style="enable-background:new 0 0 512 512" xml:space="preserve"><g> <g xmlns="http://www.w3.org/2000/svg"> <g> <path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12    c-10.492,10.504-10.492,27.576,0,38.064L293.398,245.9l-184.06,184.06c-5.064,5.068-7.86,11.824-7.86,19.028    c0,7.212,2.796,13.968,7.86,19.04l16.124,16.116c5.068,5.068,11.824,7.86,19.032,7.86s13.968-2.792,19.032-7.86L382.678,265    c5.076-5.084,7.864-11.872,7.848-19.088C390.542,238.668,387.754,231.884,382.678,226.804z" fill="currentColor" data-original="currentColor" style="" class=""></path> </g> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> </g></svg>
       </nuxt-link>
     </div>
@@ -32,23 +32,34 @@
 <script>
 export default {
   props: {
-    type: { type: String, default: 'last' },
-    collection: { type: Object, default: null }
+    section: { type: Object, required: true }
   },
   data() {
     return {
+      title: this.section.title,
+      tags: this.section.tags,
+      collections: this.section.collections,
       items: [],
       loading: true
     };
   },
   async fetch(){
+    let filter = { status: 'PUBLISH' };
+    if(this.collections.length > 0) filter['collections._id-in'] = this.collections.map(c=>c._id);
+    if(this.tags.length > 0) filter['tags._id-in'] = this.tags.split(',');
+    await this.getProducts(filter);
+  },
+  methods: {
+    async getProducts(filter){
+      this.loading = true;
       try{
-          const { data } = await this.$storeino.products.search({status: 'PUBLISH'})
-          this.items = data.results
+        const { data } = await this.$storeino.products.search(filter)
+        this.items = data.results
       }catch(e){
         console.log({e});
       }
       this.loading = false;
-  }
+    },
+  },
 };
 </script>

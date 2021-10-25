@@ -140,6 +140,28 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                                 ]
                             },
                             "blocks":[]
+                        },{
+                            "name": "right_banner",
+                            "icon": "select_all",
+                            "blocks": [
+                                {
+                                    "name": "right_banner",
+                                    "values": [
+                                        {
+                                            "name": "right_banner_image",
+                                            "path": "sections.banner.right.image",
+                                            "type": "tc_image",
+                                            "value": null
+                                        },
+                                        {
+                                            "name": "right_banner_url",
+                                            "path": "sections.banner.right.url",
+                                            "type": "tc_input",
+                                            "value": "/shop"
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 }
@@ -183,8 +205,48 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                         "url": "/shop"
                     }
                 },
-                "collections": {},
-                "products": {},
+                "collections": {
+                    "active": true,
+                    "title": "Top collections",
+                },
+                "products_1": {
+                    "active": true,
+                    "title": "Featured Products",
+                    "collections": [],
+                    "tags": "",
+                    "show_more_text": "Discover more",
+                    "show_more_url": "/shop"
+                },
+                "products_2": {
+                    "active": true,
+                    "title": "Clothes only",
+                    "collections": [],
+                    "tags": "",
+                    "show_more_text": "Show more clothes",
+                    "show_more_url": "/shop"
+                },
+                "products_3": {
+                    "active": false,
+                    "title": "Toys",
+                    "collections": [],
+                    "tags": ""
+                },
+                "products_4": {
+                    "active": false,
+                    "title": "Phone & Computers",
+                    "collections": [],
+                    "tags": "",
+                    "show_more_text": "Show more products",
+                    "show_more_url": "/shop"
+                },
+                "products_5": {
+                    "active": false,
+                    "title": "Last Products",
+                    "collections": [],
+                    "tags": "",
+                    "show_more_text": "Show more products",
+                    "show_more_url": "/shop"
+                },
                 "product": {
                     "share_buttons": {
                         "whatsapp": true,
