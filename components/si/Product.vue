@@ -127,7 +127,7 @@ export default {
                 upsell: this.upsell
             };
             this.$tools.call('ADD_TO_CART', item);
-            this.$tools.toast('Added To Cart');
+            this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
             this.added = true;
             setTimeout(() => {
                 this.added = false;
@@ -149,11 +149,11 @@ export default {
         },
         addToWishlist(){
             this.$tools.call('ADD_TO_WISHLIST', this.item);
-            this.$tools.toast('Added To Wishlist');
+            this.$tools.toast(this.$settings.sections.alerts.added_to_wishlist);
         },
         removeFromWishlist(){
             this.$tools.call('REMOVE_FROM_WISHLIST', this.item);
-            this.$tools.toast('Removed From Wishlist');
+            this.$tools.toast(this.$settings.sections.alerts.removed_from_wishlist);
         }
     },
 }

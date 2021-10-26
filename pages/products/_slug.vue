@@ -152,15 +152,15 @@ export default {
                 price: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
                 variant: this.variant ? { _id: this.variant._id } : null
             });
-            this.$tools.toast('Added To Cart');
+            this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
         },
         addToWishlist(){
             this.$tools.call('ADD_TO_WISHLIST', this.item);
-            this.$tools.toast('Added To Wishlist');
+            this.$tools.toast(this.$settings.sections.alerts.added_to_wishlist);
         },
         removeFromWishlist(){
             this.$tools.call('REMOVE_FROM_WISHLIST', this.item);
-            this.$tools.toast('Removed From Wishlist');
+            this.$tools.toast(this.$settings.sections.alerts.removed_from_wishlist);
         },
         buyNow() {
             // Add to cart and redirect to checkout
