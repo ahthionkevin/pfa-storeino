@@ -38,7 +38,7 @@
         </div>
         <div class="flex flex-col bg-white mb-2" v-if="!loading.cart && items.length > 0">
             <div class="m-2" v-if="upsells.length > 0">
-                <h2 class="text-2xl">{{ "Special Offer For You" }}</h2>
+                <h2 class="text-2xl">{{ $settings.sections.cart.upsell.title }}</h2>
             </div>
             <div v-if="loading.upsells" class="flex justify-center items-center my-5">
                 <si-loader></si-loader>

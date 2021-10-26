@@ -844,6 +844,40 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                                     ]
                                 },
                                 {
+                                    "name": "upsell",
+                                    "values": [
+                                        {
+                                            "name": "show_upsell_products",
+                                            "path": "sections.product.upsell.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "upsell_products_title",
+                                            "path": "sections.product.upsell.title",
+                                            "type": "tc_input",
+                                            "value": "Special offer for you"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "reviews",
+                                    "values": [
+                                        {
+                                            "name": "show_reviews",
+                                            "path": "sections.product.reviews.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "reviews_title",
+                                            "path": "sections.product.reviews.title",
+                                            "type": "tc_input",
+                                            "value": "Our customers reviews"
+                                        }
+                                    ]
+                                },
+                                {
                                     "name": "share_buttons",
                                     "values": [
                                         {
@@ -1330,6 +1364,23 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                                             "value": "Total"
                                         }
                                     ]
+                                },
+                                {
+                                    "name": "upsell",
+                                    "values": [
+                                        {
+                                            "name": "show_upsell_products",
+                                            "path": "sections.cart.upsell.active",
+                                            "type": "tc_input",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "upsell_products_title",
+                                            "path": "sections.cart.upsell.title",
+                                            "type": "tc_input",
+                                            "value": "Special offer for you"
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -1505,6 +1556,10 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                         "facebook": true,
                         "twitter": true,
                         "linkedin": true
+                    },
+                    "reviews": {
+                        "active": true,
+                        "title": "Our customers reviews"
                     }
                 },
                 "posts": {

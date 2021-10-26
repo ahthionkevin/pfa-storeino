@@ -1,7 +1,7 @@
 <template>
   <div class="container" v-if="items.length > 0">
     <div class="m-2">
-      <h2 class="text-2xl">{{ "Related posts" }}</h2>
+      <h2 class="text-2xl">{{ $settings.sections.post.related.title }}</h2>
     </div>
     <div v-if="loading" class="flex justify-center items-center my-5">
       <si-loader></si-loader>
