@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class=" bg-white my-2 p-3">
-            <h2 class="text-2xl mb-2">{{'Shopping cart'}}</h2>
+            <h2 class="text-2xl mb-2">{{$settings.sections.cart.title}}</h2>
             <hr>
             <div v-if="loading.cart" class="flex justify-center items-center my-5">
                 <si-loader></si-loader>

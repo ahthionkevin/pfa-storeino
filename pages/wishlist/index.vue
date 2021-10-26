@@ -2,7 +2,7 @@
     <div class="container">
 
         <div class=" bg-white my-2 p-3">
-        <h2 class="text-2xl mb-2">{{ "Wishlist products" }}</h2>
+        <h2 class="text-2xl mb-2">{{ $settings.sections.wishlist.title }}</h2>
         <hr>
         <div v-if="loading.wishlist" class="flex justify-center items-center my-5">
             <si-loader></si-loader>

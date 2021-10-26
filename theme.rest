@@ -50,6 +50,41 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                                             "value": "#00825a"
                                         }
                                     ]
+                                },
+                                {
+                                    "name": "add_to_cart_button",
+                                    "values": [
+                                        {
+                                            "name": "show_add_to_cart",
+                                            "path": "sections.products.add_to_cart.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "add_to_cart_to_checkout",
+                                            "path": "sections.products.add_to_cart_to_checkout",
+                                            "type": "tc_checkbox",
+                                            "value": false
+                                        },
+                                        {
+                                            "name": "add_to_cart_text",
+                                            "path": "sections.products.add_to_cart.text",
+                                            "type": "tc_input",
+                                            "value": "Add to cart"
+                                        },
+                                        {
+                                            "name": "added_text",
+                                            "path": "sections.products.added_text",
+                                            "type": "tc_input",
+                                            "value": "Added"
+                                        },
+                                        {
+                                            "name": "confirm_text",
+                                            "path": "sections.products.confirm_text",
+                                            "type": "tc_input",
+                                            "value": "Confirm"
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -230,7 +265,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                     ]
                 },
                 {
-                    "name": "home_sections",
+                    "name": "home_page",
                     "sections": [
                         {
                             "name": "banner",
@@ -749,6 +784,619 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                             ]
                         }
                     ]
+                },
+                {
+                    "name": "product_page",
+                    "sections": [
+                        {
+                            "name": "product_details",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "add_to_cart",
+                                    "values": [
+                                        {
+                                            "name": "show_add_to_cart",
+                                            "path": "sections.product.add_to_cart.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "add_to_cart_text",
+                                            "path": "sections.product.add_to_cart.text",
+                                            "type": "tc_input",
+                                            "value": "Add to cart"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "buy_now",
+                                    "values": [
+                                        {
+                                            "name": "show_buy_now",
+                                            "path": "sections.product.buy_now.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "buy_now_text",
+                                            "path": "sections.product.buy_now.text",
+                                            "type": "tc_input",
+                                            "value": "Buy now"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "related",
+                                    "values": [
+                                        {
+                                            "name": "show_related_products",
+                                            "path": "sections.product.related.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "related_products_title",
+                                            "path": "sections.product.related.title",
+                                            "type": "tc_input",
+                                            "value": "Related products"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "share_buttons",
+                                    "values": [
+                                        {
+                                            "name": "show_share_buttons",
+                                            "path": "sections.product.share_buttons.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "share_buttons_title",
+                                            "path": "sections.product.share_buttons.title",
+                                            "type": "tc_input",
+                                            "value": "Share"
+                                        },
+                                        {
+                                            "name": "show_whatsapp",
+                                            "path": "sections.product.share_buttons.whatsapp",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "show_facebook",
+                                            "path": "sections.product.share_buttons.facebook",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "show_twitter",
+                                            "path": "sections.product.share_buttons.twitter",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "show_linkedin",
+                                            "path": "sections.product.share_buttons.linkedin",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "post_page",
+                    "sections": [
+                        {
+                            "name": "post_details",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "share_buttons",
+                                    "values": [
+                                        {
+                                            "name": "show_share_buttons",
+                                            "path": "sections.post.share_buttons.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "share_buttons_title",
+                                            "path": "sections.post.share_buttons.title",
+                                            "type": "tc_input",
+                                            "value": "Share"
+                                        },
+                                        {
+                                            "name": "show_whatsapp",
+                                            "path": "sections.post.share_buttons.whatsapp",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "show_facebook",
+                                            "path": "sections.post.share_buttons.facebook",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "show_twitter",
+                                            "path": "sections.post.share_buttons.twitter",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "show_linkedin",
+                                            "path": "sections.post.share_buttons.linkedin",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "related_posts",
+                                    "values": [
+                                        {
+                                            "name": "show_related_posts",
+                                            "path": "sections.post.related.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "related_posts_title",
+                                            "path": "sections.post.related.title",
+                                            "type": "tc_input",
+                                            "value": "Related posts"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "shop_page",
+                    "sections": [
+                        {
+                            "name": "sidebar",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "display",
+                                    "values": [
+                                        {
+                                            "name": "show_sidebar",
+                                            "path": "sections.shop.sidebar.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "collections",
+                                    "values": [
+                                        {
+                                            "name": "show_collections",
+                                            "path": "sections.shop.sidebar.collections.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "collections_title",
+                                            "path": "sections.shop.sidebar.collections.title",
+                                            "type": "tc_input",
+                                            "value": "Collections"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "prices",
+                                    "values": [
+                                        {
+                                            "name": "show_prices",
+                                            "path": "sections.shop.sidebar.prices.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "prices_title",
+                                            "path": "sections.shop.sidebar.prices.title",
+                                            "type": "tc_input",
+                                            "value": "Prices"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "sizes",
+                                    "values": [
+                                        {
+                                            "name": "show_sizes",
+                                            "path": "sections.shop.sidebar.sizes.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "sizes_title",
+                                            "path": "sections.shop.sidebar.sizes.title",
+                                            "type": "tc_input",
+                                            "value": "Sizes"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "colors",
+                                    "values": [
+                                        {
+                                            "name": "show_colors",
+                                            "path": "sections.shop.sidebar.colors.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "colors_title",
+                                            "path": "sections.shop.sidebar.colors.title",
+                                            "type": "tc_input",
+                                            "value": "Colors"
+                                        }
+                                    ]
+                                },{
+                                    "name": "tags",
+                                    "values": [
+                                        {
+                                            "name": "show_tags",
+                                            "path": "sections.shop.sidebar.tags.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "tags_title",
+                                            "path": "sections.shop.sidebar.tags.title",
+                                            "type": "tc_input",
+                                            "value": "Tags"
+                                        }
+                                    ]
+                                },{
+                                    "name": "brands",
+                                    "values": [
+                                        {
+                                            "name": "show_brands",
+                                            "path": "sections.shop.sidebar.brands.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "brands_title",
+                                            "path": "sections.shop.sidebar.brands.title",
+                                            "type": "tc_input",
+                                            "value": "Brands"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "shop_conetnt",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "sorts",
+                                    "values": [
+                                        {
+                                            "name": "newest",
+                                            "path": "sections.shop.sorts.newest",
+                                            "type": "tc_input",
+                                            "value": "Newest"
+                                        },
+                                        {
+                                            "name": "oldest",
+                                            "path": "sections.shop.sorts.oldest",
+                                            "type": "tc_input",
+                                            "value": "Oldest"
+                                        },
+                                        {
+                                            "name": "name_asc",
+                                            "path": "sections.shop.sorts.name_asc",
+                                            "type": "tc_input",
+                                            "value": "Name (A-Z)"
+                                        },
+                                        {
+                                            "name": "name_desc",
+                                            "path": "sections.shop.sorts.name_desc",
+                                            "type": "tc_input",
+                                            "value": "Name (Z-A)"
+                                        },
+                                        {
+                                            "name": "price_asc",
+                                            "path": "sections.shop.sorts.price_asc",
+                                            "type": "tc_input",
+                                            "value": "Price (low to high)"
+                                        },
+                                        {
+                                            "name": "price_desc",
+                                            "path": "sections.shop.sorts.price_desc",
+                                            "type": "tc_input",
+                                            "value": "Price (high to low)"
+                                        },
+                                        {
+                                            "name": "rating_asc",
+                                            "path": "sections.shop.sorts.rating_asc",
+                                            "type": "tc_input",
+                                            "value": "Rating (low to high)"
+                                        },
+                                        {
+                                            "name": "rating_desc",
+                                            "path": "sections.shop.sorts.rating_desc",
+                                            "type": "tc_input",
+                                            "value": "Rating (high to low)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "pagination",
+                                    "values": [
+                                        {
+                                            "name": "limit",
+                                            "path": "sections.shop.pagination.limit",
+                                            "type": "tc_input",
+                                            "inputType": "number",
+                                            "value": 12
+                                        },
+                                        {
+                                            "name": "next_text",
+                                            "path": "sections.shop.pagination.next_text",
+                                            "type": "tc_input",
+                                            "value": "Next"
+                                        },
+                                        {
+                                            "name": "prev_text",
+                                            "path": "sections.shop.pagination.prev_text",
+                                            "type": "tc_input",
+                                            "value": "Prev"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "blog_page",
+                    "sections": [
+                        {
+                            "name": "sidebar",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "display",
+                                    "values": [
+                                        {
+                                            "name": "show_sidebar",
+                                            "path": "sections.blog.sidebar.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "categories",
+                                    "values": [
+                                        {
+                                            "name": "show_categories",
+                                            "path": "sections.shop.sidebar.categories.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "categories_title",
+                                            "path": "sections.shop.sidebar.categories.title",
+                                            "type": "tc_input",
+                                            "value": "Categories"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "products",
+                                    "values": [
+                                        {
+                                            "name": "show_products",
+                                            "path": "sections.shop.sidebar.products.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "products_title",
+                                            "path": "sections.shop.sidebar.products.title",
+                                            "type": "tc_input",
+                                            "value": "From shop"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "blog_conetnt",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "sorts",
+                                    "values": [
+                                        {
+                                            "name": "newest",
+                                            "path": "sections.blog.sorts.newest",
+                                            "type": "tc_input",
+                                            "value": "Newest"
+                                        },
+                                        {
+                                            "name": "oldest",
+                                            "path": "sections.blog.sorts.oldest",
+                                            "type": "tc_input",
+                                            "value": "Oldest"
+                                        },
+                                        {
+                                            "name": "name_asc",
+                                            "path": "sections.blog.sorts.name_asc",
+                                            "type": "tc_input",
+                                            "value": "Name (A-Z)"
+                                        },
+                                        {
+                                            "name": "name_desc",
+                                            "path": "sections.blog.sorts.name_desc",
+                                            "type": "tc_input",
+                                            "value": "Name (Z-A)"
+                                        },
+                                        {
+                                            "name": "price_asc",
+                                            "path": "sections.blog.sorts.price_asc",
+                                            "type": "tc_input",
+                                            "value": "Price (low to high)"
+                                        },
+                                        {
+                                            "name": "price_desc",
+                                            "path": "sections.blog.sorts.price_desc",
+                                            "type": "tc_input",
+                                            "value": "Price (high to low)"
+                                        },
+                                        {
+                                            "name": "rating_asc",
+                                            "path": "sections.blog.sorts.rating_asc",
+                                            "type": "tc_input",
+                                            "value": "Rating (low to high)"
+                                        },
+                                        {
+                                            "name": "rating_desc",
+                                            "path": "sections.blog.sorts.rating_desc",
+                                            "type": "tc_input",
+                                            "value": "Rating (high to low)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "pagination",
+                                    "values": [
+                                        {
+                                            "name": "limit",
+                                            "path": "sections.blog.pagination.limit",
+                                            "type": "tc_input",
+                                            "inputType": "number",
+                                            "value": 12
+                                        },
+                                        {
+                                            "name": "next_text",
+                                            "path": "sections.blog.pagination.next_text",
+                                            "type": "tc_input",
+                                            "value": "Next"
+                                        },
+                                        {
+                                            "name": "prev_text",
+                                            "path": "sections.blog.pagination.prev_text",
+                                            "type": "tc_input",
+                                            "value": "Prev"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "cart_page",
+                    "sections": [
+                        {
+                            "name": "cart_texts",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "cart_texts",
+                                    "values": [
+                                        {
+                                            "name": "title",
+                                            "path": "sections.cart.title",
+                                            "type": "tc_input",
+                                            "value": "Shopping cart"
+                                        },
+                                        {
+                                            "name": "empty_text",
+                                            "path": "sections.cart.empty_text",
+                                            "type": "tc_input",
+                                            "value": "Your cart is empty"
+                                        },
+                                        {
+                                            "name": "total_text",
+                                            "path": "sections.cart.total_text",
+                                            "type": "tc_input",
+                                            "value": "Total"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "buttons",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "buttons",
+                                    "values": [
+                                        {
+                                            "name": "place_order_text",
+                                            "path": "sections.cart.buttons.checkout_text",
+                                            "type": "tc_input",
+                                            "value": "Place Order"
+                                        },
+                                        {
+                                            "name": "back_to_shop_text",
+                                            "path": "sections.cart.buttons.back_to_shop_text",
+                                            "type": "tc_input",
+                                            "value": "Back to shop"
+                                        },
+                                        {
+                                            "name": "show_back_to_shop",
+                                            "path": "sections.cart.buttons.show_back_to_shop",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "wishlist_page",
+                    "sections": [
+                        {
+                            "name": "wishlist_texts",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "wishlist_texts",
+                                    "values": [
+                                        {
+                                            "name": "title",
+                                            "path": "sections.wishlist.title",
+                                            "type": "tc_input",
+                                            "value": "Your wishlist"
+                                        },
+                                        {
+                                            "name": "empty_text",
+                                            "path": "sections.wishlist.empty_text",
+                                            "type": "tc_input",
+                                            "value": "Your wishlist is empty"
+                                        },
+                                        {
+                                            "name": "back_to_shop_text",
+                                            "path": "sections.cart.buttons.back_to_shop_text",
+                                            "type": "tc_input",
+                                            "value": "Back to shop"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -796,7 +1444,8 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                         "active": true
                     },
                     "added_text": "Added",
-                    "confirm_text": "Confirm"
+                    "confirm_text": "Confirm",
+                    "add_to_cart_to_checkout": false
                 },
                 "products_1": {
                     "active": true,
@@ -850,6 +1499,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                         "title": "Related products"
                     },
                     "share_buttons": {
+                        "active": true,
                         "title": "Share this product",
                         "whatsapp": true,
                         "facebook": true,
@@ -873,6 +1523,10 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                         "facebook": true,
                         "twitter": true,
                         "linkedin": true
+                    },
+                    "related": {
+                        "active": true,
+                        "title": "Related posts"
                     }
                 },
                 "services": {
@@ -906,6 +1560,21 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                             "title": "From shop"
                         }
                     },
+                    "sorts": {
+                        "newest": "Newest",
+                        "oldest": "Oldest",
+                        "name_asc": "Name (A-Z)",
+                        "name_desc": "Name (Z-A)",
+                        "price_asc": "Price (lowest first)",
+                        "price_desc": "Price (highest first)",
+                        "rating_desc": "Rating (highest first)",
+                        "rating_asc": "Rating (lowest first)"
+                    },
+                    "pagination": {
+                        "limit": 12,
+                        "next_text": "Next",
+                        "prev_text": "Prev"
+                    },
                     "empty_text": "No posts found"
                 },
                 "shop": {
@@ -936,17 +1605,35 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0N
                             "title": "Brands"
                         }
                     },
-                    "empty_text": "No products found"
+                    "empty_text": "No products found",
+                    "sorts": {
+                        "newest": "Newest",
+                        "oldest": "Oldest",
+                        "name_asc": "Name (A-Z)",
+                        "name_desc": "Name (Z-A)",
+                        "price_asc": "Price (lowest first)",
+                        "price_desc": "Price (highest first)",
+                        "rating_desc": "Rating (highest first)",
+                        "rating_asc": "Rating (lowest first)"
+                    },
+                    "pagination": {
+                        "limit": 12,
+                        "next_text": "Next",
+                        "prev_text": "Prev"
+                    }
                 },
                 "cart": {
+                    "title": "Shopping cart",
                     "empty_text": "Your cart is empty",
                     "total_text": "Total",
                     "buttons": {
                         "checkout_text": "Place Order",
+                        "show_back_to_shop": true,
                         "back_to_shop_text": "Back to shop"
                     }
                 },
                 "wishlist": {
+                    "title": "Your wishlist",
                     "empty_text": "Your wishlist is empty",
                     "buttons": {
                         "back_to_shop_text": "Back to shop"

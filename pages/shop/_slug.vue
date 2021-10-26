@@ -139,14 +139,14 @@ export default {
             params: { 'collections.slug-in': [], sort: { createdAt: -1 } },
             lastParams: { 'collections.slug-in': [], sort: { createdAt: -1 } },
             sorts: [
-                { field: { 'price.salePrice': 1 }, name: 'Price: Low to High' },
-                { field: { 'price.salePrice': -1 }, name: 'Price: High to Low' },
-                { field: { 'review.rating': -1 }, name: 'Reviews: High to Low' },
-                { field: { 'review.rating': 1 }, name: 'Reviews: Low to High' },
-                { field: { 'name': 1 }, name: 'Name: A to Z' },
-                { field: { 'name': -1 }, name: 'Name: Z to A' },
-                { field: { createdAt: -1 }, name: 'Newest' },
-                { field: { createdAt: 1 }, name: 'Oldest' }
+                { field: { 'price.salePrice': 1 }, name: this.$settings.sections.shop.sorts.price_asc },
+                { field: { 'price.salePrice': -1 }, name: this.$settings.sections.shop.sorts.price_desc },
+                { field: { 'review.rating': -1 }, name: this.$settings.sections.shop.sorts.rating_desc },
+                { field: { 'review.rating': 1 }, name: this.$settings.sections.shop.sorts.rating_asc },
+                { field: { 'name': 1 }, name: this.$settings.sections.shop.sorts.name_asc },
+                { field: { 'name': -1 }, name: this.$settings.sections.shop.sorts.name_desc },
+                { field: { createdAt: -1 }, name: this.$settings.sections.shop.sorts.newest },
+                { field: { createdAt: 1 }, name: this.$settings.sections.shop.sorts.oldest }
             ],
             girds: [
                 { number: 6, width: 16, class: 'w-full md:w-1/2 lg:w-1/2' },
