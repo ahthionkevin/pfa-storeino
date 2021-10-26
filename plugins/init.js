@@ -18,9 +18,9 @@ export default async function ({ $axios, $http, $tools, store, app, redirect }, 
             }
             store.state.settings = response.data;
         } catch (error) {
+            console.log({ error });
             if(error.response) throw "ERROR :: " + error.response.data;
             throw "ERROR :: INVALID TOKEN" + error;
-            //console.log({ error: error.response.data });
         }
         // init Cart
         let cookies = $tools.cookieToObject(req.headers.cookie);
