@@ -563,7 +563,7 @@
                                             "name": "show_section_3",
                                             "path": "sections.products_3.active",
                                             "type": "tc_checkbox",
-                                            "value": true
+                                            "value": false
                                         },
                                         {
                                             "name": "section_3_title",
@@ -611,7 +611,7 @@
                                             "name": "show_section_4",
                                             "path": "sections.products_4.active",
                                             "type": "tc_checkbox",
-                                            "value": true
+                                            "value": false
                                         },
                                         {
                                             "name": "section_4_title",
@@ -659,7 +659,7 @@
                                             "name": "show_section_5",
                                             "path": "sections.products_5.active",
                                             "type": "tc_checkbox",
-                                            "value": true
+                                            "value": false
                                         },
                                         {
                                             "name": "section_5_title",
@@ -1469,6 +1469,40 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "name": "thanks_page",
+                    "sections": [
+                        {
+                            "name": "thanks_texts",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "thanks_texts",
+                                    "values": [
+                                        {
+                                            "name": "title",
+                                            "path": "sections.thanks.title",
+                                            "type": "tc_input",
+                                            "value": "Thanks"
+                                        },
+                                        {
+                                            "name": "description",
+                                            "path": "sections.thanks.description",
+                                            "type": "tc_input",
+                                            "value": "Thank you for your order"
+                                        },
+                                        {
+                                            "name": "back_to_shop_text",
+                                            "path": "sections.cart.buttons.back_to_shop_text",
+                                            "type": "tc_input",
+                                            "value": "Back to shop"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -1717,6 +1751,13 @@
                 "wishlist": {
                     "title": "Your wishlist",
                     "empty_text": "Your wishlist is empty",
+                    "buttons": {
+                        "back_to_shop_text": "Back to shop"
+                    }
+                },
+                "thanks": {
+                    "title": "Thanks",
+                    "description": "Thank you for your order",
                     "buttons": {
                         "back_to_shop_text": "Back to shop"
                     }

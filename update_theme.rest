@@ -1,0 +1,22 @@
+
+#eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJERVZFTE9QUEVSIiwiaWF0IjoxNjI4ODUzODc4LCJleHAiOjE2NjAzODk4Nzh9.qYtcj8ujprxF5NasVT9djQJVnYIhG8b1o_H1Yd-7DL8
+POST https://api-stores.storeino.world/api/themes/updateAll?name=palest
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJERVZFTE9QUEVSIiwiaWF0IjoxNjI4ODUzODc4LCJleHAiOjE2NjAzODk4Nzh9.qYtcj8ujprxF5NasVT9djQJVnYIhG8b1o_H1Yd-7DL8
+
+
+[
+{
+              "current": {
+                "path": "sections.thanks",
+                "action": "ADD",
+                "data": {
+                    "title": "Thanks",
+                    "description": "Thank you for your order",
+                    "buttons": {
+                        "back_to_shop_text": "Back to shop"
+                    }
+                }
+         }
+}
+]
