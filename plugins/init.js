@@ -1,4 +1,5 @@
-export default async function ({ $axios, $http, $tools, store, app, redirect }, inject) {
+import StoreinoApp from 'vue/dist/vue.common.prod';
+export default async function ({ $axios, $http, $tools, $storeino, store, app, redirect }, inject) {
     if(process.server) {
         const req = app.context.req;
         // Set Currency and language
@@ -32,6 +33,42 @@ export default async function ({ $axios, $http, $tools, store, app, redirect }, 
         // Sentry Log
 
         // Events
+
+
+        // Default apps
+        try {
+            store.state.apps = [];
+            const response =  await $storeino.apps.search({only: ['name', 'route', 'placement', 'config']});
+            const names = response.data.results.map(app => app.route);
+            const { data: objects } = await $http.get('https://appstatic.storeino.com/all/store', { params: { names } });
+            for (const app of response.data.results) {
+                const loaded = objects.find(object => object.name === app.route);
+                app.loaded = loaded;
+                store.state.apps.push(app);
+            }
+        } catch (error) {
+            console.log("Apps not loaded");
+        }
+    }else{
+        StoreinoApp.$store = {
+            search: async function (module, params) {
+              let response = await $http.get(`/${module}/search`, { params });
+              return response.data;
+            },
+            get: async function (module, params) {
+              let response = await $http.get(`/${module}/get`, { params });
+              return response.data;
+            },
+            create: async function (module, params, data) {
+              let response = await $http.post(`/${module}/create`, data, { params });
+              return response.data;
+            },
+            update: async function (module, params, data) {
+              let response = await $http.post(`/${module}/update`, data, { params });
+              return response.data;
+            }
+          };
+          window.StoreinoApp = StoreinoApp;
     }
     inject('settings', store.state.settings);
 }

@@ -23,8 +23,8 @@ export default {
   plugins: [
     '~/plugins/tools.js',
     '~/plugins/http.js',
-    '~/plugins/init.js',
     '~/plugins/storeino.js',
+    '~/plugins/init.js',
     '~/plugins/events.js',
   ],
 

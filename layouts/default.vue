@@ -21,6 +21,11 @@
 </template>
 <script>
 export default {
+    head(){
+        return {
+            title: this.$settings.store_name
+        }
+    },
     data() {
         return {
             rgb: { r: 0, g: 130, b: 70 },

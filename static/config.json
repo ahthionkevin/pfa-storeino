@@ -405,58 +405,6 @@
                             ]
                         },
                         {
-                            "name": "products",
-                            "icon": "select_all",
-                            "blocks": [
-                                {
-                                    "name": "cart",
-                                    "values": [
-                                        {
-                                            "name": "show_add_to_cart",
-                                            "path": "sections.products.add_to_cart.active",
-                                            "type": "tc_checkbox",
-                                            "value": true
-                                        },
-                                        {
-                                            "name": "add_to_cart_text",
-                                            "path": "sections.products.add_to_cart.text",
-                                            "type": "tc_input",
-                                            "value": "Add to Cart"
-                                        },
-                                        {
-                                            "name": "added_text",
-                                            "path": "sections.products.added_text",
-                                            "type": "tc_input",
-                                            "value": "Added"
-                                        },
-                                        {
-                                            "name": "confirm_text",
-                                            "path": "sections.products.confirm_text",
-                                            "type": "tc_input",
-                                            "value": "Confirm"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "name": "wishlist",
-                                    "values": [
-                                        {
-                                            "name": "show_add_to_wishlist",
-                                            "path": "sections.products.add_to_wishlist.active",
-                                            "type": "tc_checkbox",
-                                            "value": true
-                                        },
-                                        {
-                                            "name": "add_to_wishlist_text",
-                                            "path": "sections.products.add_to_wishlist.text",
-                                            "type": "tc_input",
-                                            "value": "Add to Cart"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
                             "name": "products_section_1",
                             "icon": "select_all",
                             "blocks": [

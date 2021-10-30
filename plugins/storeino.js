@@ -3,7 +3,7 @@ export default async function ({ $http, store, app }, inject) {
     // Gets
     const gets = ['products', 'collections' ,'pages'];
     // Searches
-    const searches = ['products', 'collections', 'categories', 'upsells' ,'pages', 'brands', 'reviews'];
+    const searches = ['products', 'collections', 'categories', 'upsells' ,'pages', 'brands', 'reviews', 'apps'];
     // Creates and updates
     const creates = []; const updates = [];
     

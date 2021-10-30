@@ -1,5 +1,7 @@
 <template>
-<div class="flex bg-white">
+<div class="bg-white">
+
+    <si-app-loader placement="BEFORE_FOOTER"/>
     <div class="container py-2">
         <div class="flex flex-wrap">
             <div class="w-full md:w-1/2">
@@ -25,6 +27,7 @@
             </div>
         </div>
     </div>
+    <si-app-loader placement="AFTER_FOOTER"/>
 </div>
 </template>
 <script>

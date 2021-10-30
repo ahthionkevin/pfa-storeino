@@ -7,7 +7,8 @@ const createStore = () => {
           whishlist: [],
           settings: null,
           domain: 'www.storeino.com',
-          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTQ0NDkxNzllNmFkNjA0YTYyODc2ZTAiLCJuYW1lIjoidGVjaG5vIiwic3ViZG9tYWluIjoidGVjaG5vLnN0b3JlaW5vLndvcmxkIn0sInVzZXIiOnsiX2lkIjoiNjA0MGU0OGYyMzY0NzYwYTMyZWUyNTFiIiwiZmlyc3RuYW1lIjoiYWJkZXJyYWhpbSIsImxhc3RuYW1lIjoib3VraHJpYiJ9LCJjb21wYW55Ijp7Il9pZCI6IjYwNDBlNDhmMjM2NDc2MGEzMmVlMjUxOSIsIm5hbWUiOiJva2F5c3MiLCJzdGF0dXMiOiJVTkNPTVBMRVRFRCJ9LCJpYXQiOjE2MzQ3MjUyOTYsImV4cCI6MTYzNTU4OTI5Nn0.0Xl56D1Vk2j89kOB2DO64DT99BSTDysGtSuQkhxXROo',
+          apps: [],
+          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZTJmM2EwZDQ3YzQ1OGUyODMyNDMifSwiaWF0IjoxNjM1NDI4NjQ4LCJleHAiOjE2NjY5NjQ2NDh9.3QZXQIYOHZ_39MYRRw1HfXKztu5QBScmNzIzyel50yk',
           primary: {
             rgb: { r:0, g:0, b:0 },
             color: '#000000'

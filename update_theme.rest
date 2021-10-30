@@ -1,6 +1,59 @@
 
 #eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJERVZFTE9QUEVSIiwiaWF0IjoxNjI4ODUzODc4LCJleHAiOjE2NjAzODk4Nzh9.qYtcj8ujprxF5NasVT9djQJVnYIhG8b1o_H1Yd-7DL8
-POST https://api-stores.storeino.world/api/themes/updateAll?name=palest
+POST https://api-stores.storeino.com/api/themes/updateAll?name=palest
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJERVZFTE9QUEVSIiwiaWF0IjoxNjI4ODUzODc4LCJleHAiOjE2NjAzODk4Nzh9.qYtcj8ujprxF5NasVT9djQJVnYIhG8b1o_H1Yd-7DL8
+
+
+[
+{
+              "settings": {
+                "path": "tabs",
+                "action": "ADD",
+                "data": [
+                     {
+                    "name": "thanks_page",
+                    "sections": [
+                        {
+                            "name": "thanks_texts",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "thanks_texts",
+                                    "values": [
+                                        {
+                                            "name": "title",
+                                            "path": "sections.thanks.title",
+                                            "type": "tc_input",
+                                            "value": "Thanks"
+                                        },
+                                        {
+                                            "name": "description",
+                                            "path": "sections.thanks.description",
+                                            "type": "tc_input",
+                                            "value": "Thank you for your order"
+                                        },
+                                        {
+                                            "name": "back_to_shop_text",
+                                            "path": "sections.cart.buttons.back_to_shop_text",
+                                            "type": "tc_input",
+                                            "value": "Back to shop"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+                ]
+         }
+}
+]
+
+#####
+
+
+POST https://api-stores.storeino.com/api/themes/updateAll?name=palest
 Content-Type: application/json
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJERVZFTE9QUEVSIiwiaWF0IjoxNjI4ODUzODc4LCJleHAiOjE2NjAzODk4Nzh9.qYtcj8ujprxF5NasVT9djQJVnYIhG8b1o_H1Yd-7DL8
 
@@ -18,5 +71,74 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJERVZFTE9QUEVSI
                     }
                 }
          }
+}
+]
+
+
+###
+POST https://api-stores.storeino.com/api/themes/updateAll?name=palest
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJERVZFTE9QUEVSIiwiaWF0IjoxNjI4ODUzODc4LCJleHAiOjE2NjAzODk4Nzh9.qYtcj8ujprxF5NasVT9djQJVnYIhG8b1o_H1Yd-7DL8
+
+[
+{
+              "settings": {
+                "path": "tabs.1.sections",
+                "action": "DELETE",
+                "data": [
+                    {
+                            "name": "products",
+                            "icon": "select_all",
+                            "blocks": [
+                                {
+                                    "name": "cart",
+                                    "values": [
+                                        {
+                                            "name": "show_add_to_cart",
+                                            "path": "sections.products.add_to_cart.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "add_to_cart_text",
+                                            "path": "sections.products.add_to_cart.text",
+                                            "type": "tc_input",
+                                            "value": "Add to Cart"
+                                        },
+                                        {
+                                            "name": "added_text",
+                                            "path": "sections.products.added_text",
+                                            "type": "tc_input",
+                                            "value": "Added"
+                                        },
+                                        {
+                                            "name": "confirm_text",
+                                            "path": "sections.products.confirm_text",
+                                            "type": "tc_input",
+                                            "value": "Confirm"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "wishlist",
+                                    "values": [
+                                        {
+                                            "name": "show_add_to_wishlist",
+                                            "path": "sections.products.add_to_wishlist.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "add_to_wishlist_text",
+                                            "path": "sections.products.add_to_wishlist.text",
+                                            "type": "tc_input",
+                                            "value": "Add to Cart"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                ]
+              }
 }
 ]
