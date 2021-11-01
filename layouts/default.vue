@@ -23,12 +23,31 @@
 export default {
     head(){
         return {
-            title: this.$settings.store_name
+            title: this.$store.state.seo.title,
+            meta: [
+                { hid: 'description', name: 'description', content: this.$store.state.seo.description },
+                { hid: 'keywords', name: 'keywords', content: this.$store.state.seo.keywords },
+                { hid: 'og:title', property: 'og:title', content: this.$store.state.seo.title },
+                { hid: 'og:description', property: 'og:description', content: this.$store.state.seo.description },
+                { hid: 'og:image', property: 'og:image', content: this.$store.state.seo.image },
+                { hid: 'og:url', property: 'og:url', content: this.$store.state.seo.url },
+                { hid: 'og:type', property: 'og:type', content: 'website' },
+                { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+                { hid: 'twitter:title', name: 'twitter:title', content: this.$store.state.seo.title },
+                { hid: 'twitter:description', name: 'twitter:description', content: this.$store.state.seo.description },
+                { hid: 'twitter:image', name: 'twitter:image', content: this.$store.state.seo.logo },
+                { hid: 'twitter:url', name: 'twitter:url', content: this.$store.state.seo.url },
+                { hid: "currency", name: "currency", content: this.$store.state.currency.code },
+                ...this.$store.state.seo.metaTags
+            ],
+            link: [
+                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            ]
         }
     },
     data() {
         return {
-            rgb: { r: 0, g: 130, b: 70 },
+            rgb: { r: 0, g: 130, b: 70 }
         }
     },
     async fetch(){

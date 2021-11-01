@@ -142,3 +142,23 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJERVZFTE9QUEVSI
               }
 }
 ]
+
+### Fix collections
+
+
+POST https://api-stores.storeino.com/api/themes/updateAll?name=palest
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJERVZFTE9QUEVSIiwiaWF0IjoxNjI4ODUzODc4LCJleHAiOjE2NjAzODk4Nzh9.qYtcj8ujprxF5NasVT9djQJVnYIhG8b1o_H1Yd-7DL8
+
+[
+{
+        "settings": {
+                "path": "tabs.1.sections.3.blocks.0.values.2",
+                "action": "DELETE",
+                "data": {
+                    "path": "sections.collections_1.items",
+                    "value": {}
+                }
+         }
+}
+]

@@ -425,7 +425,7 @@
                                         },
                                         {
                                             "name": "section_1_collections",
-                                            "path": "sections.collections_1.items",
+                                            "path": "sections.products_1.collections",
                                             "type": "tc_collection",
                                             "value": []
                                         },
@@ -473,7 +473,7 @@
                                         },
                                         {
                                             "name": "section_2_collections",
-                                            "path": "sections.collections_2.items",
+                                            "path": "sections.products_2.collections",
                                             "type": "tc_collection",
                                             "value": []
                                         },
@@ -521,7 +521,7 @@
                                         },
                                         {
                                             "name": "section_3_collections",
-                                            "path": "sections.collections_3.items",
+                                            "path": "sections.products_3.collections",
                                             "type": "tc_collection",
                                             "value": []
                                         },
@@ -569,7 +569,7 @@
                                         },
                                         {
                                             "name": "section_4_collections",
-                                            "path": "sections.collections_4.items",
+                                            "path": "sections.products_4.collections",
                                             "type": "tc_collection",
                                             "value": []
                                         },
@@ -617,7 +617,7 @@
                                         },
                                         {
                                             "name": "section_5_collections",
-                                            "path": "sections.collections_5.items",
+                                            "path": "sections.products_5.collections",
                                             "type": "tc_collection",
                                             "value": []
                                         },

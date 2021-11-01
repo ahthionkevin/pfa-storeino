@@ -1,5 +1,5 @@
 <template>
-    <div class="container border">
+    <div class="container">
         <div class="flex mb-2 relative">
             <transition name="slideleft">
                 <div :class="showSideBar ? 'show':'hide'" class="w-80 md:w-1/4 fixed hidden md:block md:top-0 h-full top-0 bottom-0 bg-white md:relative z-10">
@@ -16,7 +16,7 @@
                                 <si-loader></si-loader>
                             </div>
                             <div v-for="(item, i) in collections" :key="i" class="flex items-center px-2">
-                                <input class="w-4 h-4 mr-1" :id="item.slug" @change="setParams($event, 'collections.slug-in', item.slug)" type="checkbox"/>
+                                <input class="w-4 h-4 mr-1" :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(item.slug) >= 0" :id="item.slug" @change="setParams($event, 'collections.slug-in', item.slug)" type="checkbox"/>
                                 <label class="cursor-pointer capitalize" :for="item.slug">{{ item.name }}</label>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                         </div>
                         <div v-if="$settings.sections.shop.sidebar.sizes.active && filters" class="flex flex-wrap mx-2 mb-2">
                             <div v-for="(item, i) in filters.sizes" :key="i" class="flex items-center m-0.5 rounded-md" :class="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0 ? 'bg-primary text-white' : 'bg-gray-200' ">
-                                <input hidden :id="item.value1" @change="setParams($event, 'options.values.value1', item.value1)" type="checkbox"/>
+                                <input hidden :id="item.value1" :checked="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0" @change="setParams($event, 'options.values.value1', item.value1)" type="checkbox"/>
                                 <label class="cursor-pointer px-2" :for="item.value1">{{ item.value1 }}</label>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                         </div>
                         <div v-if="$settings.sections.shop.sidebar.colors.active && filters" class="flex flex-wrap mx-2 mb-2">
                             <div v-for="(item, i) in filters.colors" :key="i" class="flex items-center my-0.5 color-option" :class="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0 ? 'active' : '' ">
-                                <input hidden :id="item.value1" @change="setParams($event, 'options.values.value1', item.value1)" type="checkbox"/>
+                                <input hidden :id="item.value1" :checked="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0" @change="setParams($event, 'options.values.value1', item.value1)" type="checkbox"/>
                                 <label class="cursor-pointer rounded-full" :style="`background-color:${item.value2}`" :for="item.value1" :aria-label="item.value1"></label>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                         </div>
                         <div v-if="$settings.sections.shop.sidebar.tags.active && filters" class="flex flex-col mb-2">
                             <div v-for="(tag, i) in filters.tags" :key="i" class="flex items-center px-2">
-                                <input class="w-4 h-4 mr-1" :id="`tag_${tag}`" @change="setParams($event, 'tags-in', tag)" type="checkbox"/>
+                                <input class="w-4 h-4 mr-1" :checked="params['tags-in'] && params['tags-in'].indexOf(tag) >= 0" :id="`tag_${tag}`" @change="setParams($event, 'tags-in', tag)" type="checkbox"/>
                                 <label class="cursor-pointer capitalize" :for="`tag_${tag}`">{{ tag }}</label>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                             </div>
                             <div v-if="$settings.sections.shop.sidebar.brands.active">
                                 <div v-for="(item, i) in brands" :key="i" class="flex items-center px-2">
-                                    <input class="w-4 h-4 mr-1" :id="item.slug" @change="setParams($event, 'brand.slug-in', item.slug)" type="checkbox"/>
+                                    <input class="w-4 h-4 mr-1" :id="item.slug" :checked="params['brand.slug-in'] && params['brand.slug-in'].indexOf(item.slug) >= 0" @change="setParams($event, 'brand.slug-in', item.slug)" type="checkbox"/>
                                     <label class="cursor-pointer capitalize" :for="item.slug">{{ item.name }}</label>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
             </transition>
             <div class="w-full md:w-3/4">
                 <div class="bg-white">
-                    <div class=" border-b">
+                    <div class="border-b">
                         <div class="flex justify-between items-center p-2">
                             <button @click="showSideBar = true" aria-label="Search button" class="flex block md:hidden items-center flex-col p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
                                 <span class="w-6 my-0.5 h-0.5 bg-gray-800"></span>
@@ -108,9 +108,20 @@
                             <si-product :item="item"></si-product>
                         </div>
                     </div>
-                    
-                    <div>
-                        <!-- Pagination -->
+                    <div v-if="items.length>0" class="p-2 bg-white border-t items-center flex justify-end w-full">
+                        <button class=" bg-primary p-2 flex items-center text-white" @click="getItems(paginate.current_page-1)">
+                            <svg class="h-4" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"></path></svg>
+                            <span>&ensp;</span>
+                            <span>{{ $settings.sections.shop.pagination.prev_text }}</span>
+                        </button>
+                        <span>&ensp;</span>
+                        <span>{{paginate.current_page}}/{{paginate.last_page}}</span>
+                        <span>&ensp;</span>
+                        <button class=" bg-primary p-2 flex items-center text-white" @click="getItems(paginate.current_page+1)">
+                            <span>{{ $settings.sections.shop.pagination.next_text }}</span>
+                            <span>&ensp;</span>
+                            <svg class="h-4" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -135,9 +146,9 @@ export default {
             items: [],
             collections:[],
             brands: [],
-            paginate: { page: 1, limit: 12, total: 12 },
-            params: { 'collections.slug-in': [], sort: { createdAt: -1 } },
-            lastParams: { 'collections.slug-in': [], sort: { createdAt: -1 } },
+            paginate: { page: 1, limit: this.$settings.sections.shop.pagination.limit, total: 12 },
+            params: { page: 1, search: this.$route.query.search, limit: this.$settings.sections.shop.pagination.limit, 'collections.slug-in': [], sort: { createdAt: -1 } },
+            lastParams: { page: 1, search: this.$route.query.search, limit: this.$settings.sections.shop.pagination.limit, 'collections.slug-in': [], sort: { createdAt: -1 } },
             sorts: [
                 { field: { 'price.salePrice': 1 }, name: this.$settings.sections.shop.sorts.price_asc },
                 { field: { 'price.salePrice': -1 }, name: this.$settings.sections.shop.sorts.price_desc },
@@ -163,20 +174,38 @@ export default {
                 }
             },
             deep: true
+        },
+        "$route.query.search"(val){
+            this.$set(this.params, 'search', val);
         }
     },
     async fetch(){
+        if(this.$route.params.slug){
+            this.param = this.$route.params.slug.split(',');
+            this.$route.params.slug.split(',').forEach(item => {
+                this.params['collections.slug-in'].push(item);
+            });
+        }
+        for (const key in this.$route.query) {
+            if(!this.$route.query[key]) continue;
+            switch (key) {
+                case 'price-from': this.$set(this.params, 'price.salePrice-from', this.$route.query[key]);break;
+                case 'price-to': this.$set(this.params, 'price.salePrice-to', this.$route.query[key]);break;
+                case 'colors-size': this.$set(this.params, 'options.values.value1', this.$route.query[key].split(','));break;
+                case 'tags': this.$set(this.params, 'tags-in', this.$route.query[key].split(','));break;
+                case 'brands': this.$set(this.params, 'brand.slug-in', this.$route.query[key].split(','));break;
+                case 'page': this.$set(this.params, 'page', this.$route.query[key]);break;
+            }
+        }
+        this.lastParams = this.params;
         await this.getFilters();
         await this.getItems();
         await this.getCollections();
         await this.getBrands();
-        /* if(process.client){
-            if(window.innerWidth <= 766) this.showSideBar=false;
-        } */
     },
     methods: {
         setParams(e, key, value){
-            if(key.indexOf('price') >= 0){
+            if(key.indexOf('price') >= 0 || key.indexOf('page') >= 0){
                 this.$set(this.params,key, e.target.value);
             }else{
                 if(e.target.checked) {
@@ -186,12 +215,24 @@ export default {
                     this.params[key] = this.params[key].filter(item => item !== value);
                 }
             }
-            switch(key){
-                case 'collections.slug-in': this.param = [...new Set(...this.param, value)];break;
-                case 'price.salePrice-from': this.query['price-from'] = value;
-                case 'price.salePrice-to': this.query['price-to'] = value;
-                case 'options.values.value1': this.query['colors'] = value 
+            for (const key in this.params) {
+                switch(key){
+                    case 'collections.slug-in': this.param = this.params[key];break;
+                    case 'price.salePrice-from': this.query['price-from'] = this.params[key];break;
+                    case 'price.salePrice-to': this.query['price-to'] = this.params[key];break;
+                    case 'options.values.value1': this.query['colors-size'] = this.params[key];break;
+                    case 'tags-in': this.query['tags'] = this.params[key];break;
+                    case 'brand.slug-in': this.query['brands'] = this.params[key];break;
+                    case 'page': this.query['page'] = [this.params[key]];break;
+                }
             }
+            let url = `/shop/`;
+            url += this.param.length > 0 ? [...new Set(this.param)].join(',') : '';
+            for (const key in this.query) {
+                url += url.indexOf('?') == -1 ? '?' : '&';
+                url += `${key}=${this.query[key].join(',')}`;
+            }
+            window.history.pushState({}, '', url);
         },
         async getFilters(){
             this.filters = null;
@@ -226,14 +267,19 @@ export default {
             }
             this.loading.brands = false;
         },
-        async getItems(){
-            console.log("Get items");
+        async getItems(page=null){
+            console.log("Getting items");
+            if(page != null) this.setParams({target:{value: page}}, 'page', page);
             this.items = [];
             this.loading.products = true;
             try{
+                this.params.search = this.$route.query.search;
+                this.params.page = page || this.paginate.current_page;
+                this.params.limit = this.$settings.sections.shop.pagination.limit;
                 this.lastParams = this.$tools.copy(this.params);
-                const { data } = await this.$storeino.products.search(this.params);
-                this.items = data.results
+                const {data} = await this.$storeino.products.search(this.params);
+                this.items = data.results;
+                this.paginate = data.paginate;
             }catch(e){
                 console.log({e});
             }

@@ -1,9 +1,9 @@
 
 
 
-POST https://api-stores.storeino.com/api/themes/create?id=61781fc092004f1f963216d2
+POST https://api-stores.storeino.com/api/themes/update?id=61795d684606901fca7971a8
 Content-Type: application/json
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZTJmM2EwZDQ3YzQ1OGUyODMyNDMiLCJuYW1lIjoicGFsZXN0Iiwic3ViZG9tYWluIjoicGFsZXN0LnN0b3JlaW5vLmNvbSJ9LCJ1c2VyIjp7Il9pZCI6IjVmZGI4MjE1ODA5NWRiMDBkNzc4MDg4NiIsImZpcnN0bmFtZSI6InN0b3JlaW5vIiwibGFzdG5hbWUiOiJkZXZlbG9wZXIifSwiY29tcGFueSI6eyJfaWQiOiI1ZmRiODIxNTgwOTVkYjAwZDc3ODA4ODQiLCJuYW1lIjoiU1RPUkVJTk8gU1lTVEVNIiwic3RhdHVzIjoiYWN0aXZlIn0sImlhdCI6MTYzNTI2MTU3MCwiZXhwIjoxNjY2Nzk3NTcwfQ.Mc5N4fWFz3qyKdfGEcW-eRxSdEoQcW14qmQWMYiY0Eg
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkNzAyZTIzZGU1NzFmYjliOTdkOTQiLCJuYW1lIjoidGVjaG5vIiwic3ViZG9tYWluIjoidGVjaG5vLnN0b3JlaW5vLmNvbSJ9LCJ1c2VyIjp7Il9pZCI6IjVmZGI4MjE1ODA5NWRiMDBkNzc4MDg4NiIsImZpcnN0bmFtZSI6InN0b3JlaW5vIiwibGFzdG5hbWUiOiJkZXZlbG9wZXIifSwiY29tcGFueSI6eyJfaWQiOiI1ZmRiODIxNTgwOTVkYjAwZDc3ODA4ODQiLCJuYW1lIjoiU1RPUkVJTk8gU1lTVEVNIiwic3RhdHVzIjoiYWN0aXZlIn0sImlhdCI6MTYzNTYyMjM0MywiZXhwIjoxNjY3MTU4MzQzfQ.iaKT1xaAVxY_JeGUZOSR-3PJkAob8iInuk1Ql0yxpcY
 
 {
     "team": {
@@ -412,58 +412,6 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
                             ]
                         },
                         {
-                            "name": "products",
-                            "icon": "select_all",
-                            "blocks": [
-                                {
-                                    "name": "cart",
-                                    "values": [
-                                        {
-                                            "name": "show_add_to_cart",
-                                            "path": "sections.products.add_to_cart.active",
-                                            "type": "tc_checkbox",
-                                            "value": true
-                                        },
-                                        {
-                                            "name": "add_to_cart_text",
-                                            "path": "sections.products.add_to_cart.text",
-                                            "type": "tc_input",
-                                            "value": "Add to Cart"
-                                        },
-                                        {
-                                            "name": "added_text",
-                                            "path": "sections.products.added_text",
-                                            "type": "tc_input",
-                                            "value": "Added"
-                                        },
-                                        {
-                                            "name": "confirm_text",
-                                            "path": "sections.products.confirm_text",
-                                            "type": "tc_input",
-                                            "value": "Confirm"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "name": "wishlist",
-                                    "values": [
-                                        {
-                                            "name": "show_add_to_wishlist",
-                                            "path": "sections.products.add_to_wishlist.active",
-                                            "type": "tc_checkbox",
-                                            "value": true
-                                        },
-                                        {
-                                            "name": "add_to_wishlist_text",
-                                            "path": "sections.products.add_to_wishlist.text",
-                                            "type": "tc_input",
-                                            "value": "Add to Cart"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
                             "name": "products_section_1",
                             "icon": "select_all",
                             "blocks": [
@@ -484,7 +432,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
                                         },
                                         {
                                             "name": "section_1_collections",
-                                            "path": "sections.collections_1.items",
+                                            "path": "sections.products_1.collections",
                                             "type": "tc_collection",
                                             "value": []
                                         },
@@ -532,7 +480,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
                                         },
                                         {
                                             "name": "section_2_collections",
-                                            "path": "sections.collections_2.items",
+                                            "path": "sections.products_2.collections",
                                             "type": "tc_collection",
                                             "value": []
                                         },
@@ -570,7 +518,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
                                             "name": "show_section_3",
                                             "path": "sections.products_3.active",
                                             "type": "tc_checkbox",
-                                            "value": true
+                                            "value": false
                                         },
                                         {
                                             "name": "section_3_title",
@@ -580,7 +528,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
                                         },
                                         {
                                             "name": "section_3_collections",
-                                            "path": "sections.collections_3.items",
+                                            "path": "sections.products_3.collections",
                                             "type": "tc_collection",
                                             "value": []
                                         },
@@ -618,7 +566,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
                                             "name": "show_section_4",
                                             "path": "sections.products_4.active",
                                             "type": "tc_checkbox",
-                                            "value": true
+                                            "value": false
                                         },
                                         {
                                             "name": "section_4_title",
@@ -628,7 +576,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
                                         },
                                         {
                                             "name": "section_4_collections",
-                                            "path": "sections.collections_4.items",
+                                            "path": "sections.products_4.collections",
                                             "type": "tc_collection",
                                             "value": []
                                         },
@@ -666,7 +614,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
                                             "name": "show_section_5",
                                             "path": "sections.products_5.active",
                                             "type": "tc_checkbox",
-                                            "value": true
+                                            "value": false
                                         },
                                         {
                                             "name": "section_5_title",
@@ -676,7 +624,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
                                         },
                                         {
                                             "name": "section_5_collections",
-                                            "path": "sections.collections_5.items",
+                                            "path": "sections.products_5.collections",
                                             "type": "tc_collection",
                                             "value": []
                                         },
@@ -1476,6 +1424,40 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
                             ]
                         }
                     ]
+                },
+                {
+                    "name": "thanks_page",
+                    "sections": [
+                        {
+                            "name": "thanks_texts",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "thanks_texts",
+                                    "values": [
+                                        {
+                                            "name": "title",
+                                            "path": "sections.thanks.title",
+                                            "type": "tc_input",
+                                            "value": "Thanks"
+                                        },
+                                        {
+                                            "name": "description",
+                                            "path": "sections.thanks.description",
+                                            "type": "tc_input",
+                                            "value": "Thank you for your order"
+                                        },
+                                        {
+                                            "name": "back_to_shop_text",
+                                            "path": "sections.cart.buttons.back_to_shop_text",
+                                            "type": "tc_input",
+                                            "value": "Back to shop"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -1594,6 +1576,10 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
                     "reviews": {
                         "active": true,
                         "title": "Our customers reviews"
+                    },
+                    "upsell": {
+                        "active": true,
+                        "title": "Special offer for you"
                     }
                 },
                 "posts": {
@@ -1728,6 +1714,13 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
                         "back_to_shop_text": "Back to shop"
                     }
                 },
+                "thanks": {
+                    "title": "Thanks",
+                    "description": "Thank you for your order",
+                    "buttons": {
+                        "back_to_shop_text": "Back to shop"
+                    }
+                },
                 "footer": {
                     "about": "<h3>Experience Moroccofresh - for agriculture.</h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological - for agriculture. In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>",
                     "methods": {
@@ -1761,7 +1754,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTczZ
     "images": [
         "https://cdn.dribbble.com/users/1983741/screenshots/10636148/media/c537c929947ebff9ad38dc6bc9ede9bb.jpg?compress=1&resize=400x300"
     ],
-    "isActive": false,
+    "isActive": true,
     "autoRenew": false,
     "expiryDate": "2050-12-12T00:00:00.000Z",
     "name": "palest",

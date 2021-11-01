@@ -1,5 +1,39 @@
 export default function({ app, store, $tools }, inject){
     if(!process.server){
+        // Page view 
+        window.addEventListener('PAGE_VIEW', (e)=> {
+            // Analytics ready
+            if(store.state.settings && store.state.settings.google_analytics_id){
+                console.log("%cGoogle Analytics Page View", 'color: #bada55');
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);};
+                gtag('js', new Date());
+                gtag('config',window.escape(`${store.state.settings.google_analytics_id}`));
+            }
+            // Google ads ready
+            if (store.state.settings && store.state.settings.google_ads && store.state.settings.google_ads.id) {
+                console.log("%cGoogle Ads Page View", 'color: #bada55');
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', `${store.state.settings.google_ads.id}`);
+            }
+            // Facebook Snap Tiktok Linkedin
+            fbPageView();
+            snapPageView();
+            if(e.data && e.data._id){
+                fbViewContent({
+                    content_name: e.data.name,
+                    content_ids: [e.data._id],
+                    content_type: "product",
+                    value: e.data.price.salePrice,
+                    currency: store.state.currency.code
+                });
+                snapViewContent({ item_ids: [e.data._id] });
+            }
+            //tiktokPageView();
+            //linkedinPageView();
+        });
         window.addEventListener('ADD_TO_CART', (e) => {
             const item = $tools.reformCartItem(e.data);
             let exists = null;
@@ -13,6 +47,19 @@ export default function({ app, store, $tools }, inject){
                 store.state.cart.push(item);
             }
             $tools.setCart(store.state.cart);
+            fbAddToCart({
+                id: item._id,
+                content_name: item.name,
+                content_ids: [item._id],
+                content_type: 'product',
+                value: item.price,
+                currency: store.state.currency.code || "USD"
+            });
+            snapAddToCart({
+                item_ids: [item._id],
+                price: item.price,
+                currency: store.state.code || "USD"
+            });
         });
         window.addEventListener('REMOVE_FROM_CART', (e)=>{
             const item = $tools.reformCartItem(e.data);
@@ -34,6 +81,8 @@ export default function({ app, store, $tools }, inject){
             let exists = store.state.wishlist.find(i => i._id === item._id);
             if(!exists) store.state.wishlist.push(item);
             $tools.setWishlist(store.state.wishlist);
+            fbAddToWishlist({ id: item._id, content_name: item.name, content_ids: [item._id], content_type: 'product' });
+            snapAddToWishlist({ item_ids: [item._id] });
         });
         window.addEventListener('REMOVE_FROM_WISHLIST', (e)=>{
             const item = $tools.reformWishlistItem(e.data);

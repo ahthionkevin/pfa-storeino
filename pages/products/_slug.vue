@@ -57,7 +57,7 @@
                         <si-app-loader placement="REPLACE_BUYNOW"/>
                         <si-app-loader placement="AFTER_ADD_TO_CART"/>
                     </div>
-                    <div class=" my-2 bg-white">
+                    <div class=" my-2 bg-white" v-if="$settings.sections.product.share_buttons">
                         <div class="flex items-center">
                             <div class=" flex w-full border-b border-gray-200"></div>
                             <h3 class=" whitespace-nowrap p-2">{{ $settings.sections.product.share_buttons.title }}</h3>
@@ -75,14 +75,14 @@
             </div>
         </div>
         <div class="flex flex-col">
-            <div v-if="item" class="upsells">
+            <div v-if="item && $settings.sections.product.upsell.active" class="upsells">
                 <sections-upsell :item="item.upsell"/>
             </div>
             <div  v-if="item" class="bg-white rounded-md p-2 my-3 mx-2 description" id="description" v-html="item.html"></div>
-            <div v-if="item" class="reviews">
+            <div v-if="item && $settings.sections.product.reviews.active" class="reviews">
                 <sections-reviews :item="item"></sections-reviews>
             </div>
-            <div v-if="item" class="related">
+            <div v-if="item && $settings.sections.product.related.active" class="related">
                 <sections-related-products :item="item"/>
             </div>
         </div>
@@ -130,21 +130,25 @@ export default {
             this.item = data
             this.loading = false;
             this.quantity = this.item.quantity;
+            // Set default image if exists
+            if(this.item.images.length > 0) this.setImage(0);
             // Set default variant if exists
             if(this.item.type == 'variable' && this.item.variants.length > 0) this.variantSelected(this.item.variants[0]);
             // Set default quantity
             this.quantitySelected(this.quantity.default);
-            // Set default image if exists
-            if(this.item.images.length > 0) this.setImage(0);
             // Generate share urls
             let url = `https://${this.$store.state.domain}/posts/${slug}`;
             for (const button of this.socialMedia) {
                 button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
             }
+            if(!process.server) this.$tools.call('PAGE_VIEW', this.item);
         }catch(e){
             // Redirect to error page if product not exists
             this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
         }
+    },
+    mounted() {
+        if(this.item) this.$tools.call('PAGE_VIEW', this.item);
     },
     methods: {
         addToCart() {
@@ -182,6 +186,13 @@ export default {
         },
         variantSelected(variant) {
             this.variant = variant;
+            if(variant.imageId && this.item.images.length > 0){
+                let index = this.item.images.findIndex(i=>i._id == variant.imageId);
+                if(index == -1) index = 0; 
+                this.image = this.item.images[index];
+            }else if(this.item.images.length > 0){
+                this.image = this.item.images[0];
+            }
             this.quantitySelected(this.item.quantity.value);
         },
         setImage(index){

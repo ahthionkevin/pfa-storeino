@@ -17,8 +17,9 @@
                 </router-link>
             </div>
             <div class="icons flex items-center justify-end w-1/3">
-                <button @click="showSearch=true" aria-label="Search button" class="item p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
+                <button @click="showSearch=true" aria-label="Search button" class="item p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200 relative">
                     <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5"><path fill="currentColor" d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z" class=""></path></svg>
+                    <small v-if="$route.query.search" class="-top-1 -right-1 rounded-full absolute w-1 h-1 p-1 bg-green-700 text-white flex justify-center items-center"></small>
                 </button>
                 <router-link to="/account" title="Account" class="item hidden md:block p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
                     <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-5 h-5"><path fill="currentColor" d="M313.6 304c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 304 0 364.2 0 438.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-25.6c0-74.2-60.2-134.4-134.4-134.4zM400 464H48v-25.6c0-47.6 38.8-86.4 86.4-86.4 14.6 0 38.3 16 89.6 16 51.7 0 74.9-16 89.6-16 47.6 0 86.4 38.8 86.4 86.4V464zM224 288c79.5 0 144-64.5 144-144S303.5 0 224 0 80 64.5 80 144s64.5 144 144 144zm0-240c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z" class=""></path></svg>
@@ -36,11 +37,11 @@
         <div v-if="showSearch" class="flex items-center justify-center absolute inset-0 z-20">
             <!-- <div @click="showSearch=false" class="bg-black bg-opacity-50 flex fixed inset-0"></div> -->
             <div class="bg-white absolute w-full p-2">
-                <form class="search flex container bg-gray-50 p-2 rounded-md border border-gray-200" action="/shop?">
+                <form @submit.prevent="search" class="search flex container bg-gray-50 p-2 rounded-md border border-gray-200" action="/shop?">
                     <button type="button" @click="showSearch=false" aria-label="Search button">
                         <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-5 h-5"><path fill="currentColor" d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z" class=""></path></svg>
                     </button>
-                    <input autofocus class="bg-transparent outline-none w-full px-2" :placeholder="'Search for products'" type="search" name="q">
+                    <input autofocus v-model="q" class="bg-transparent outline-none w-full px-2" :placeholder="'Search for products'" type="search" name="q">
                     <button aria-label="Search button">
                         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5"><path fill="currentColor" d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z" class=""></path></svg>
                     </button>
@@ -56,6 +57,7 @@ export default {
     data() {
         return {
             showSearch: false,
+            q: this.$route.query.search,
             section: this.$store.state.settings.sections.header
         }
     },
@@ -67,6 +69,13 @@ export default {
                 })
             }
         }
-    }
+    },
+    methods: {
+        search(){
+            this.$store.state.search = this.q;
+            this.$router.push({ path: '/shop', query: { search: this.q }});
+            this.showSearch = false;
+        }
+    },
 }
 </script>
