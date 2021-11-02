@@ -127,7 +127,13 @@ export default {
         const { slug } = this.$route.params;
         try{
             const { data } = await this.$storeino.products.get({ slug })
-            this.item = data
+            this.item = data;
+            
+            this.$store.state.seo.title = (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name;
+            this.$store.state.seo.description = this.item.seo.description || this.item.description || this.$settings.store_description;
+            this.$store.state.seo.keywords = this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || [];
+            if(this.item.images.length > 0){ this.$store.state.seo.image = this.item.images[0].src; }
+        
             this.loading = false;
             this.quantity = this.item.quantity;
             // Set default image if exists

@@ -26,7 +26,7 @@ export default {
             title: this.$store.state.seo.title,
             meta: [
                 { hid: 'description', name: 'description', content: this.$store.state.seo.description },
-                { hid: 'keywords', name: 'keywords', content: this.$store.state.seo.keywords },
+                { hid: 'keywords', name: 'keywords', content: this.$store.state.seo.keywords.join(',') },
                 { hid: 'og:title', property: 'og:title', content: this.$store.state.seo.title },
                 { hid: 'og:description', property: 'og:description', content: this.$store.state.seo.description },
                 { hid: 'og:image', property: 'og:image', content: this.$store.state.seo.image },
@@ -41,7 +41,7 @@ export default {
                 ...this.$store.state.seo.metaTags
             ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+                { rel: 'icon', type: 'image/x-icon', href: this.$store.state.seo.favicon || '/favicon.ico' },
             ]
         }
     },
@@ -51,6 +51,11 @@ export default {
         }
     },
     async fetch(){
+        this.$store.state.seo.title = this.$settings.store_name;
+        this.$store.state.seo.description = this.$settings.store_description;
+        this.$store.state.seo.keywords = this.$settings.store_keywords || [];
+        if(this.$settings.store_og_image){ this.$store.state.seo.image = this.$settings.store_og_image.src; }
+        if(this.$settings.favicon){ this.$store.state.seo.favicon = this.$settings.favicon.src; }
         this.rgb = this.$tools.hexToRgb(this.$settings.style.primary_color);
     }
 }

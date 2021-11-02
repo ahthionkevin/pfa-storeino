@@ -13,3 +13,10 @@
 		</div>
 	</div>
 </template>
+<script>
+export default {
+	mounted() {
+		this.$tools.call('PAGE_VIEW');
+	}
+}
+</script>

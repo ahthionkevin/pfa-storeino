@@ -8,7 +8,7 @@ const createStore = () => {
           seo: {
             title: '',
             description: '',
-            keywords: '',
+            keywords: [],
             url: '',
             image: '',
             metaTags: [],

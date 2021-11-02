@@ -5,17 +5,12 @@ export default function({ app, store, $tools }, inject){
             // Analytics ready
             if(store.state.settings && store.state.settings.google_analytics_id){
                 console.log("%cGoogle Analytics Page View", 'color: #bada55');
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);};
                 gtag('js', new Date());
                 gtag('config',window.escape(`${store.state.settings.google_analytics_id}`));
             }
             // Google ads ready
             if (store.state.settings && store.state.settings.google_ads && store.state.settings.google_ads.id) {
                 console.log("%cGoogle Ads Page View", 'color: #bada55');
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
                 gtag('config', `${store.state.settings.google_ads.id}`);
             }
             // Facebook Snap Tiktok Linkedin

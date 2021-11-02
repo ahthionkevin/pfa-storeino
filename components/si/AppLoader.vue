@@ -28,13 +28,9 @@ export default {
   methods: {
     async loadApp(app, element) {
       const uid = `${app.route}_${this.placement}`;
-      console.log({uid});
       if (!app[`loaded_${uid}`]) {
         try {
-          // console.log(`Start Loading ${app.route} :: ${Date.now()}`);
           const stateApp = this.$store.state.apps.find(a => a.route === app.route);
-          console.log({stateApp});
-          // console.log(`APPS_LOADED ${app.route}:: ` + (Date.now() - this.$store.state.times[app.route]) + 'ms');
           let { manifest, html, css, js } = this.$tools.copy(stateApp.loaded);
           js = js.replace("__DATA__", JSON.stringify(app.config).replace(/\"/g, '"'));
           html = html.replace(new RegExp(`app_${app.route}`, "g"),`app_${app.route}_${uid}`);

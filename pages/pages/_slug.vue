@@ -62,15 +62,14 @@ export default {
     async fetch(){
         try{
             const { slug } = this.$route.params;
-            const { data } = await this.$storeino.pages.get({ slug, type: 'POST' })
+            const { data } = await this.$storeino.pages.get({ slug, type: 'PAGE' })
             this.item = data;
 
             this.$store.state.seo.title = this.item.title + ' - ' + this.$settings.store_name;
             this.$store.state.seo.description = this.item.excerpt || this.$settings.store_description;
             if(this.item.image){ this.$store.state.seo.image = this.item.image.url; }
-        
 
-            let url = `https://${this.$store.state.domain}/posts/${slug}`;
+            let url = `https://${this.$store.state.domain}/pages/${slug}`;
             for (const button of this.socialMedia) {
                 button.url = button.url.replace(/\{title\}/gi, this.item.title).replace(/\{url\}/gi, url);
             }

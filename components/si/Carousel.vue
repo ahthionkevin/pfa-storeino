@@ -23,7 +23,8 @@ export default {
         list: { type: Array, default: [] },
         size: { type: Number, default: 100 },
         component: { type: String, default: null },
-        itemClass: { type: String, default: "w-full sm:w-1/2 md:w-1/3 lg:w-1/4" }
+        itemClass: { type: String, default: "w-full sm:w-1/2 md:w-1/3 lg:w-1/4" },
+        defaultWidth: { type: Number, default: 200 }
     },
   data() {
     return {
@@ -35,6 +36,7 @@ export default {
   },
   watch: {
     parentWidth(val){
+      console.log({val});
       if(val<640) this.width = 100;
       if(val>=640&&val<768) this.width = 50;
       if(val>=768&&val<1024) this.width = 33.33;

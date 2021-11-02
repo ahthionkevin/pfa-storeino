@@ -1,5 +1,5 @@
 import StoreinoApp from 'vue/dist/vue.common.prod';
-export default async function ({ $axios, $http, $tools, $storeino, store, app, redirect }, inject) {
+export default async function ({ $axios, $http, route, $tools, $storeino, store, app, redirect }, inject) {
     if(process.server) {
         const req = app.context.req;
         // Set Currency and language
@@ -44,7 +44,6 @@ export default async function ({ $axios, $http, $tools, $storeino, store, app, r
                 store.state.seo.metaTags.push(meta);
             }
         }
-
         // Default apps
         try {
             store.state.apps = [];
@@ -79,26 +78,7 @@ export default async function ({ $axios, $http, $tools, $storeino, store, app, r
         }
       };
       window.StoreinoApp = StoreinoApp;
-
       const settings = store.state.settings;
-      // google analytics
-      if(settings && settings.google_analytics_id){
-        store.state.seo.scripts.push({ 
-          hid: 'google-analytics',
-          type: "text/javascript",
-          src: `https://www.googletagmanager.com/gtag/js?id=${settings.google_analytics_id}`,
-          defer: true
-        });
-      }
-      // google ads
-      if(settings && settings.google_ads && settings.google_ads.id){
-        store.state.seo.scripts.push({
-          hid: 'google-ads',
-          type: "text/javascript",
-          src: `https://www.googletagmanager.com/gtag/js?id=${settings.google_ads.id}`,
-          defer: true
-        });
-      }
       // Facebook pixel
       !function (s, t, o, r, e, i, n, o_) {
           if(!(settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0)){ r = 'data:application/javascript;utf-8,console.log("Fb%20Pixel%20not%20found%20")'; }
@@ -141,6 +121,11 @@ export default async function ({ $axios, $http, $tools, $storeino, store, app, r
                 }
             }
         }
+        if(route.query.pixel){
+          const pixel = JSON.parse(route.query.pixel);
+          console.log(pixel);
+          window.fbPurchase(pixel);
+        }
       }
       // Snapchat Pixel
       (function (e, t, n, tr) {
@@ -162,6 +147,56 @@ export default async function ({ $axios, $http, $tools, $storeino, store, app, r
             console.log("%cSimple Snapchat pixel is ready", 'color: #bada55');
             snapPixel(pixel.id, pixel.email);
           }
+        }
+        if(route.name == 'thanks' && route.query.pixel){
+          window.snapPurchase({});
+        }
+      }
+      // google analytics
+      if(settings && settings.google_analytics_id){
+        store.state.seo.scripts.push({ 
+          hid: 'google-analytics',
+          type: "text/javascript",
+          src: `https://www.googletagmanager.com/gtag/js?id=${settings.google_analytics_id}`,
+          defer: true
+        });
+      }
+
+
+
+      // google ads
+
+      (function (w, d, t) {
+        if(settings && settings.google_ads && settings.google_ads.id){
+          var s = d.createElement(t); s.async = !0;
+          s.src = `https://www.googletagmanager.com/gtag/js?id=${settings.google_analytics_id}`;
+          var h = d.getElementsByTagName('head')[0];
+          h.appendChild(s);
+          w.dataLayer = w.dataLayer || [];
+          w.gtag = function gtag(){dataLayer.push(arguments);};
+          w.gtag('js', new Date());
+          w.gtag('config', settings.google_ads.id);
+        }else w.gtag = function gtag(a,b,c,d){};
+      })(window, document, 'script');
+      window.googleAdsEvent = (eventName)=>{
+        if(settings.google_ads && settings.google_ads.id && settings.google_ads.events){
+          console.log(`%cGoogle Ads ${eventName}`, 'color: #bada55');
+          const eventsGroup = settings.google_ads.events.filter((e)=>e.name==eventName)
+          if (eventsGroup.length > 0){
+            for (const event of eventsGroup) {
+              const object = {
+                'send_to':`${settings.google_ads.id}/${event.value}`,
+                'event_callback': ()=>{}
+              };
+              console.log("Google Ads Event");
+              gtag('event', 'conversion', object);
+            }
+          }
+        }
+      }
+      if(settings.google_ads && settings.google_ads.id && settings.google_ads.events){
+        if(route.name == 'thanks' && route.query.pixel){
+          window.googleAdsEvent('purchase');
         }
       }
     }

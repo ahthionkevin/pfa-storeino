@@ -104,7 +104,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                             "name": "removed_from_cart",
                                             "path": "sections.alerts.removed_from_cart",
                                             "type": "tc_input",
-                                            "value": "Added from cart"
+                                            "value": "Removed from cart"
                                         },
                                         {
                                             "name": "removed_from_wishlist",
@@ -1092,6 +1092,23 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                             "icon": "select_all",
                             "blocks":[
                                 {
+                                    "name": "seo",
+                                    "values": [
+                                        {
+                                            "name": "page_title",
+                                            "path": "sections.shop.title",
+                                            "type": "tc_input",
+                                            "value": "Shop"
+                                        },
+                                        {
+                                            "name": "page_description",
+                                            "path": "sections.shop.description",
+                                            "type": "tc_input",
+                                            "value": "Find best selling products"
+                                        }
+                                    ]
+                                },
+                                {
                                     "name": "sorts",
                                     "values": [
                                         {
@@ -1231,6 +1248,23 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                             "icon": "select_all",
                             "blocks":[
                                 {
+                                    "name": "seo",
+                                    "values": [
+                                        {
+                                            "name": "page_title",
+                                            "path": "sections.blog.title",
+                                            "type": "tc_input",
+                                            "value": "Blog"
+                                        },
+                                        {
+                                            "name": "page_description",
+                                            "path": "sections.blog.description",
+                                            "type": "tc_input",
+                                            "value": "Our latest "
+                                        }
+                                    ]
+                                },
+                                {
                                     "name": "sorts",
                                     "values": [
                                         {
@@ -1315,6 +1349,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                     "name": "cart_page",
                     "sections": [
                         {
+                            
                             "name": "cart_texts",
                             "icon": "select_all",
                             "blocks":[
@@ -1415,7 +1450,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                         },
                                         {
                                             "name": "back_to_shop_text",
-                                            "path": "sections.cart.buttons.back_to_shop_text",
+                                            "path": "sections.cart.wishlist.back_to_shop_text",
                                             "type": "tc_input",
                                             "value": "Back to shop"
                                         }
@@ -1449,7 +1484,41 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                         },
                                         {
                                             "name": "back_to_shop_text",
-                                            "path": "sections.cart.buttons.back_to_shop_text",
+                                            "path": "sections.thanks.buttons.back_to_shop_text",
+                                            "type": "tc_input",
+                                            "value": "Back to shop"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "error_page",
+                    "sections": [
+                        {
+                            "name": "404_texts",
+                            "icon": "select_all",
+                            "blocks":[
+                                {
+                                    "name": "_404_texts",
+                                    "values": [
+                                        {
+                                            "name": "title",
+                                            "path": "sections._404.title",
+                                            "type": "tc_input",
+                                            "value": "Thanks"
+                                        },
+                                        {
+                                            "name": "description",
+                                            "path": "sections._404.description",
+                                            "type": "tc_input",
+                                            "value": "Thank you for your order"
+                                        },
+                                        {
+                                            "name": "back_to_shop_text",
+                                            "path": "sections._404.buttons.back_to_shop_text",
                                             "type": "tc_input",
                                             "value": "Back to shop"
                                         }
@@ -1623,6 +1692,8 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                     }
                 },
                 "blog": {
+                    "title": "Blog",
+                    "description": "Our blog posts",
                     "active": true,
                     "sidebar": {
                         "active": true,
@@ -1653,6 +1724,8 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                     "empty_text": "No posts found"
                 },
                 "shop": {
+                    "title": "Shop",
+                    "description": "Find best selling products",
                     "sidebar": {
                         "active": true,
                         "collections": {
@@ -1717,6 +1790,13 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                 "thanks": {
                     "title": "Thanks",
                     "description": "Thank you for your order",
+                    "buttons": {
+                        "back_to_shop_text": "Back to shop"
+                    }
+                },
+                "_404": {
+                    "title": "Page not found",
+                    "description": "We are sorry, but the page you requested was not found",
                     "buttons": {
                         "back_to_shop_text": "Back to shop"
                     }
