@@ -37,12 +37,19 @@ export default {
                 { hid: 'twitter:description', name: 'twitter:description', content: this.$store.state.seo.description },
                 { hid: 'twitter:image', name: 'twitter:image', content: this.$store.state.seo.logo },
                 { hid: 'twitter:url', name: 'twitter:url', content: this.$store.state.seo.url },
+                { hid: "theme-color", property: "theme-color", content: this.$store.state.settings.style.primary_color },
                 { hid: "currency", name: "currency", content: this.$store.state.currency.code },
+                { hid: "product:price:currency", property: "product:price:currency", content: this.$store.state.currency.code },
+                { hid: "priceCurrency", itemprop: "priceCurrency", content: this.$store.state.currency.code },
                 ...this.$store.state.seo.metaTags
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: this.$store.state.seo.favicon || '/favicon.ico' },
-            ]
+            ],
+            htmlAttrs: {
+                lang: this.$store.state.language.code,
+                dir: this.$store.state.language.code == 'AR' ? 'rtl' : 'ltr'
+            }
         }
     },
     data() {
@@ -63,5 +70,8 @@ export default {
 <style>
     .to-right{
         transform: translateX(20rem);
+    }
+    [dir='rtl'] .to-right{
+        transform: translateX(-20rem);
     }
 </style>

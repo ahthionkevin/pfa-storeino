@@ -2,21 +2,18 @@ import StoreinoApp from 'vue/dist/vue.common.prod';
 export default async function ({ $axios, $http, route, $tools, $storeino, store, app, redirect }, inject) {
     if(process.server) {
         const req = app.context.req;
-        // Set Currency and language
-        
         // Get Template settings
         
         // Set current domain
         store.state.domain = req.headers.host;
-        const params = { lang: store.state.language.code, cur: store.state.currency.code }
         try {
             let response = null
             if(req.body && req.body.preview){
                 console.log("Is Preview");
                 const body = { data: JSON.parse(req.body.preview.data), schema: JSON.parse(req.body.preview.schema) };
-                response = await $http.post('/settings/current', body ,{ params });
+                response = await $http.post('/settings/current', body);
             }else{
-               response = await $http.get('/settings/current', { params });
+               response = await $http.get('/settings/current');
             }
             store.state.settings = response.data;
         } catch (error) {
@@ -33,8 +30,6 @@ export default async function ({ $axios, $http, route, $tools, $storeino, store,
         store.state.wishlist = JSON.parse(STOREINO_WISHLIST);
         // Sentry Log
 
-        // Events
-
         // Head tags
         // Meta tags
         const settings = store.state.settings;
@@ -43,6 +38,15 @@ export default async function ({ $axios, $http, route, $tools, $storeino, store,
                 const meta = { hid: metaTag[metaTag.type], [metaTag.type]: metaTag[metaTag.type], content: metaTag.content }
                 store.state.seo.metaTags.push(meta);
             }
+        }
+        // Set Default currency And language
+        if(!store.state.currency.code){
+          const { code, symbol } = settings.store_currencies.find(c=>c.default) || settings.store_currencies[0];
+          store.state.currency = { code, symbol };
+        }
+        if(!store.state.language.code){
+          const { code, name } = settings.store_languages.find(c=>c.default) || settings.store_languages[0];
+          store.state.language = { code, name };
         }
         // Default apps
         try {

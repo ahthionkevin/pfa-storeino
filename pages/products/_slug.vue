@@ -133,7 +133,14 @@ export default {
             this.$store.state.seo.description = this.item.seo.description || this.item.description || this.$settings.store_description;
             this.$store.state.seo.keywords = this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || [];
             if(this.item.images.length > 0){ this.$store.state.seo.image = this.item.images[0].src; }
-        
+            // New meta tags
+            [ { hid: "product:price:amount", property: "product:price:amount", content: this.price.salePrice },
+            { hid: "productID", itemprop: "productID", content: this.product && this.product ? this.product._id : 'productID' }
+            ].forEach(meta=>{
+                const index = this.$store.state.seo.metaTags.findIndex(m=>m.hid === meta.hid);
+                if(index > -1){ this.$store.state.seo.metaTags.splice(index, 1, meta); }
+                this.$store.state.seo.metaTags.push(meta);
+            });
             this.loading = false;
             this.quantity = this.item.quantity;
             // Set default image if exists
@@ -155,6 +162,17 @@ export default {
     },
     mounted() {
         if(this.item) this.$tools.call('PAGE_VIEW', this.item);
+        window.addEventListener("APP_LOADER", e => {
+            window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+                detail: {
+                    product_id: this.item._id,
+                    product_quantity: this.quantity.value,
+                    product_variant: this.variant ? this.variant._id : undefined,
+                    product_currency: this.$store.state.currency.code,
+                    product_price: this.price.salePrice
+                }
+            }));
+        });
     },
     methods: {
         addToCart() {

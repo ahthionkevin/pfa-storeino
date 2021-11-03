@@ -38,10 +38,10 @@ export default function({ app, store, $tools }, inject){
                 item.parents = [...new Set([...exists.parents, ...item.parents])];
                 exists.quantity = item.quantity;
             }else{
-                //
                 store.state.cart.push(item);
             }
             $tools.setCart(store.state.cart);
+            $tools.call('ADDED_TO_CART');
             fbAddToCart({
                 id: item._id,
                 content_name: item.name,
