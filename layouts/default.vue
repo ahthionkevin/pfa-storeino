@@ -45,6 +45,7 @@ export default {
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: this.$store.state.seo.favicon || '/favicon.ico' },
+                ...this.otherLinks
             ],
             htmlAttrs: {
                 lang: this.$store.state.language.code,
@@ -54,7 +55,9 @@ export default {
     },
     data() {
         return {
-            rgb: { r: 0, g: 130, b: 70 }
+            rgb: { r: 0, g: 130, b: 70 },
+            otherLinks: [
+                ]
         }
     },
     async fetch(){
@@ -64,14 +67,21 @@ export default {
         if(this.$settings.store_og_image){ this.$store.state.seo.image = this.$settings.store_og_image.src; }
         if(this.$settings.favicon){ this.$store.state.seo.favicon = this.$settings.favicon.src; }
         this.rgb = this.$tools.hexToRgb(this.$settings.style.primary_color);
+        if(this.$store.state.language.code == 'AR'){
+            this.otherLinks = [
+                { rel: "preconnect", href: 'https://fonts.googleapis.com' },
+                { rel: "preconnect", href: 'https://fonts.gstatic.com', crossorigin: true },
+                { rel: "stylesheet", href: 'https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap' }
+            ]
+        }
     }
 }
 </script>
 <style>
-    .to-right{
+    [dir='ltr'] .to-right{
         transform: translateX(20rem);
     }
     [dir='rtl'] .to-right{
-        transform: translateX(-20rem);
+        transform: translateX(-20rem) !important;
     }
 </style>

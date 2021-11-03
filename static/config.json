@@ -123,6 +123,42 @@
                                             "path": "sections.header.logo",
                                             "type": "tc_image",
                                             "value": null
+                                        },
+                                        {
+                                            "name": "show_cart_icon",
+                                            "path": "sections.header.icons.cart",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "show_wishlist_icon",
+                                            "path": "sections.header.icons.wishlist",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "show_account_icon",
+                                            "path": "sections.header.icons.account",
+                                            "type": "tc_checkbox",
+                                            "value": false
+                                        },
+                                        {
+                                            "name": "show_search_icon",
+                                            "path": "sections.header.icons.search",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "show_language",
+                                            "path": "sections.header.icons.language",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
+                                            "name": "show_currency",
+                                            "path": "sections.header.icons.currency",
+                                            "type": "tc_checkbox",
+                                            "value": true
                                         }
                                     ]
                                 },
@@ -1541,7 +1577,15 @@
                 },
                 "header": {
                     "logo": null,
-                    "menu": null
+                    "menu": null,
+                    "icons": {
+                        "cart": true,
+                        "wishlist": true,
+                        "account": false,
+                        "search": true,
+                        "language": true,
+                        "currency": true
+                    }
                 },
                 "banner": {
                     "active": true,

@@ -169,7 +169,7 @@ export default {
                     product_quantity: this.quantity.value,
                     product_variant: this.variant ? this.variant._id : undefined,
                     product_currency: this.$store.state.currency.code,
-                    product_price: this.price.salePrice
+                    product_price: this.price
                 }
             }));
         });
