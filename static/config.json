@@ -188,7 +188,7 @@
                                             "note": "about_your_website",
                                             "path": "sections.footer.about",
                                             "type": "tc_html",
-                                            "value": "<h3>Experience Moroccofresh - for agriculture.</h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological - for agriculture. In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>"
+                                            "value": "<h3>Experience Palest </h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological  In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>"
                                         }
                                     ]
                                 },
@@ -1843,7 +1843,7 @@
                     }
                 },
                 "footer": {
-                    "about": "<h3>Experience Moroccofresh - for agriculture.</h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological - for agriculture. In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>",
+                    "about": "<h3>Experience Palest </h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological  In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>",
                     "methods": {
                         "title": "Our payment methods",
                         "visa": true,
@@ -2232,7 +2232,7 @@
                         },
                         {
                             "name": "sections.footer.about",
-                            "value": "<h3>Experience Moroccofresh - for agriculture.</h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological - for agriculture. In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>"
+                            "value": "<h3>Experience Palest </h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological  In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>"
                         },
                         {
                             "name": "sections.footer.methods.title",
