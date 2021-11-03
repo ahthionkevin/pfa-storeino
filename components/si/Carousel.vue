@@ -58,8 +58,12 @@ export default {
     }
   },
   mounted() {
-    this.parentWidth = document.querySelector('.carousel').clientWidth;
-    window.onresize = (ev)=>{ this.parentWidth = document.querySelector('.carousel').clientWidth }
+    this.$nextTick(()=>{
+      this.parentWidth = document.querySelector('.carousel').clientWidth;
+      window.onresize = (ev)=>{
+        this.parentWidth = document.querySelector('.carousel').clientWidth
+      }
+    })
   },
 };
 </script>

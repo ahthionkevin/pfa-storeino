@@ -40,15 +40,15 @@ export default {
         } catch (error) {
             console.log(error);
         }
-        const html = document.createElement(`div`);
-        const style = document.createElement(`style`);
-        element.append(html);
-        html.innerHTML = app[`loaded_${uid}`].html;
-        element.append(style);
-        style.innerHTML = app[`loaded_${uid}`].css;
-        window.eval(app[`loaded_${uid}`].js);
       }
-    },
-  },
-};
+      const html = document.createElement(`div`);
+      const style = document.createElement(`style`);
+      element.append(html);
+      html.innerHTML = app[`loaded_${uid}`].html;
+      element.append(style);
+      style.innerHTML = app[`loaded_${uid}`].css;
+      window.eval(app[`loaded_${uid}`].js);
+    }
+  }
+}
 </script>
