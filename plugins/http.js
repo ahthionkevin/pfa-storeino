@@ -1,5 +1,5 @@
 import https from 'https';
-let baseURL = 'https://api-stores.storeino.com/api';
+let baseURL = 'https://api-stores.storeino.world/api';
 if (process.env.NODE_ENV == 'production') baseURL = "https://api-stores.storeino.com/api";
 export default function ({ $axios, store, app, req }, inject) {
   if(process.server) {
