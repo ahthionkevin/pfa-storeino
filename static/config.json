@@ -744,13 +744,13 @@
                                     "values": [
                                         {
                                             "name": "delivery",
-                                            "path": "sections.services.delivery.text",
+                                            "path": "sections.services.items.delivery.text",
                                             "type": "tc_input",
                                             "value": "Fast delivery"
                                         },
                                         {
                                             "name": "delivery",
-                                            "path": "sections.services.delivery.url",
+                                            "path": "sections.services.items.delivery.url",
                                             "type": "tc_input",
                                             "value": "#"
                                         }
@@ -761,13 +761,13 @@
                                     "values": [
                                         {
                                             "name": "satisfaction",
-                                            "path": "sections.services.satisfaction.text",
+                                            "path": "sections.services.items.satisfaction.text",
                                             "type": "tc_input",
                                             "value": "Satisfaction"
                                         },
                                         {
                                             "name": "satisfaction",
-                                            "path": "sections.services.satisfaction.url",
+                                            "path": "sections.services.items.satisfaction.url",
                                             "type": "tc_input",
                                             "value": "#"
                                         }
@@ -778,13 +778,13 @@
                                     "values": [
                                         {
                                             "name": "quality",
-                                            "path": "sections.services.quality.text",
+                                            "path": "sections.services.items.quality.text",
                                             "type": "tc_input",
                                             "value": "Quality"
                                         },
                                         {
                                             "name": "quality",
-                                            "path": "sections.services.quality.url",
+                                            "path": "sections.services.items.quality.url",
                                             "type": "tc_input",
                                             "value": "#"
                                         }
@@ -1978,15 +1978,15 @@
                             "value": "خدماتنا"
                         },
                         {
-                            "name": "sections.services.delivery.text",
+                            "name": "sections.services.items.delivery.text",
                             "value": "التوصيل السريع"
                         },
                         {
-                            "name": "sections.services.satisfaction.text",
+                            "name": "sections.services.items.satisfaction.text",
                             "value": "ارضاء الزبناء"
                         },
                         {
-                            "name": "sections.services.quality.text",
+                            "name": "sections.services.items.quality.text",
                             "value": "جودة عالية"
                         },
                         {
@@ -2307,15 +2307,15 @@
                             "value": "Nos services"
                         },
                         {
-                            "name": "sections.services.delivery.text",
+                            "name": "sections.services.items.delivery.text",
                             "value": "Livraison rapide"
                         },
                         {
-                            "name": "sections.services.satisfaction.text",
+                            "name": "sections.services.items.satisfaction.text",
                             "value": "Satisfaction"
                         },
                         {
-                            "name": "sections.services.quality.text",
+                            "name": "sections.services.items.quality.text",
                             "value": "Qualité"
                         },
                         {
