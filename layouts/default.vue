@@ -46,6 +46,7 @@ export default {
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: this.$store.state.seo.favicon || '/favicon.ico' },
+                { rel: "preload", href: 'https://themes.storeino.com/palest/' },
                 ...this.otherLinks
             ],
             htmlAttrs: {

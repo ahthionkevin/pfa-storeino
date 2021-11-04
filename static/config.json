@@ -710,7 +710,7 @@
                                         },
                                         {
                                             "name": "show_more_text",
-                                            "path": "sections.posts.show_more_text",
+                                            "path": "sections.posts.buttons.show_more_text",
                                             "type": "tc_input",
                                             "value": "Show more blog posts"
                                         }
@@ -1970,7 +1970,7 @@
                             "value": "آخر الاخبار "
                         },
                         {
-                            "name": "sections.posts.show_more_text",
+                            "name": "sections.posts.buttons.show_more_text",
                             "value": "اكتشف المزيد"
                         },
                         {
@@ -2299,7 +2299,7 @@
                             "value": "Derniers articles"
                         },
                         {
-                            "name": "sections.posts.show_more_text",
+                            "name": "sections.posts.buttons.show_more_text",
                             "value": "Afficher plus d'articles"
                         },
                         {
