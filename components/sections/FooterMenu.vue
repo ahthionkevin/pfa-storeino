@@ -29,7 +29,7 @@
 export default {
   data() {
     return {
-      menu: this.$store.state.settings.sections.footer.menu
+      menu: this.$settings.sections.footer.menu
     };
   },
 };

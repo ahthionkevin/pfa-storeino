@@ -52,7 +52,7 @@ export default {
             timeout: null,
             lastItem: null,
             activeIndex: 0,
-            banner: this.$store.state.settings.sections.banner
+            banner: this.$settings.sections.banner
         }
     },
     mounted() {
