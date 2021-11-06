@@ -11,7 +11,7 @@
                 <div class="p-2 border-r border-l h-full">
                     <h3 class=" text-lg">{{ $settings.sections.footer.methods.title }}</h3>
                     <div class="flex flex-wrap p-2">
-                        <div v-for="item in methods.filter(m=>$settings.sections.footer.methods[m.name])" :key="item.name" class="w-20 h-12 mr-2 flex items-center justify-center border p-2">
+                        <div v-for="item in methods.filter(m=>$settings.sections.footer.methods[m.name])" :key="item.name" class="w-20 h-12 mx-2 flex items-center justify-center border p-2">
                             <si-image width="80" height="40" :src="item.image" :alt="item.name" class="h-full object-contain"/>
                         </div>
                     </div>

@@ -27,6 +27,7 @@ const createStore = () => {
               image: "https://storeno.b-cdn.net/themes/palest/default-shop.jpg",
               logo: ""
           },
+          baseURL: 'https://api-stores.storeino.world/api',
           currency: {
             symbol: "DH",
             code: undefined

@@ -44,7 +44,6 @@ export default {
     };
   },
   async fetch(){
-    console.log({section: this.section});
     let filter = { status: 'PUBLISH' };
     if(this.collections.length > 0) filter['collections._id-in'] = this.collections.map(c=>c._id);
     if(this.tags.length > 0) filter['tags._id-in'] = this.tags.split(',');
@@ -52,7 +51,6 @@ export default {
   },
   methods: {
     async getProducts(filter){
-      console.log({filter});
       this.loading = true;
       try{
         const { data } = await this.$storeino.products.search(filter)

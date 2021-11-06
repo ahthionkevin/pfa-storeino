@@ -59,8 +59,8 @@ export default async function ({ $axios, $http, route, $tools, $storeino, store,
                 app.loaded = loaded;
                 store.state.apps.push(app);
             }
-        } catch (error) {
-            console.log("Apps not loaded");
+        } catch (e) {
+            console.log({e});
         }
     }else{
       StoreinoApp.$store = {
@@ -140,6 +140,7 @@ export default async function ({ $axios, $http, route, $tools, $storeino, store,
         e.snapPurchase = function (d = {}) { snaptr(tr, "PURCHASE", d) }
         e.snapViewContent = function (d = {}) { snaptr(tr, 'VIEW_CONTENT', d) }
         e.snapAddToCart = function (d = {}) { snaptr(tr, "ADD_CART", d) }
+        e.snapAddToWishlist = function (d = {}) { snaptr(tr, "ADD_WISHLIST", d) }
         e.snapSignUp = function (d = {}) { snaptr(tr, 'SIGN_UP', d) }
         a.queue = []; var s = 'script', r = t.createElement(s); r.async = !0;
         r.src = n; var u = t.getElementsByTagName(s)[0];

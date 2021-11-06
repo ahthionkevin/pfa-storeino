@@ -16,7 +16,7 @@
                                 <si-loader></si-loader>
                             </div>
                             <div v-for="(item, i) in categories" :key="i" class="flex items-center px-2">
-                                <input class="w-4 h-4 mr-1" :id="item.slug" @change="setParams($event, 'categories.slug-in', item.slug)" type="checkbox"/>
+                                <input class="w-4 h-4 mx-1" :id="item.slug" @change="setParams($event, 'categories.slug-in', item.slug)" type="checkbox"/>
                                 <label class="cursor-pointer capitalize" :for="item.slug">{{ item.name }}</label>
                             </div>
                         </div>
@@ -157,7 +157,6 @@ export default {
             this.loading.categories = false;
         },
         async getItems(){
-            console.log("Get items");
             this.items = [];
             this.loading.pages = true;
             try{

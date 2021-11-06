@@ -1,0 +1,7 @@
+{
+    "env": "production",
+    "token": {
+        "clientId": "5",
+        "clientSecret": "6"
+    }
+}

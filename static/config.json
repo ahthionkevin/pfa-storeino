@@ -60,6 +60,12 @@
                                             "value": false
                                         },
                                         {
+                                            "name": "show_wishlist",
+                                            "path": "sections.products.add_to_wishlist.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
                                             "name": "add_to_cart_text",
                                             "path": "sections.products.add_to_cart.text",
                                             "type": "tc_input",
@@ -379,7 +385,7 @@
                                             "name": "activate_banner",
                                             "path": "sections.banner.active",
                                             "type": "tc_checkbox",
-                                            "value": false
+                                            "value": true
                                         }
                                     ]
                                 }
@@ -431,7 +437,7 @@
                                             "name": "collections_title",
                                             "path": "sections.collections.title",
                                             "type": "tc_input",
-                                            "value": "Top Collections"
+                                            "value": "Top collections"
                                         },
                                         {
                                             "name": "selected_collections",
@@ -652,7 +658,7 @@
                                             "name": "section_5_title",
                                             "path": "sections.products_5.title",
                                             "type": "tc_input",
-                                            "value": "Featured Products"
+                                            "value": "Clothes only"
                                         },
                                         {
                                             "name": "section_5_collections",
@@ -671,7 +677,7 @@
                                             "name": "section_5_show_more_text",
                                             "path": "sections.products_5.show_more_text",
                                             "type": "tc_input",
-                                            "value": "Last products"
+                                            "value": "Show more clothes"
                                         },
                                         {
                                             "name": "section_5_show_more_url",
@@ -704,13 +710,19 @@
                                         },
                                         {
                                             "name": "posts_list",
-                                            "path": "sections.posts.posts",
+                                            "path": "sections.posts.items",
                                             "type": "tc_pages",
                                             "value": []
                                         },
                                         {
+                                            "name": "button_text",
+                                            "path": "sections.posts.button.text",
+                                            "type": "tc_input",
+                                            "value": "More Details"
+                                        },
+                                        {
                                             "name": "show_more_text",
-                                            "path": "sections.posts.buttons.show_more_text",
+                                            "path": "sections.posts.show_more_text",
                                             "type": "tc_input",
                                             "value": "Show more blog posts"
                                         }
@@ -899,7 +911,7 @@
                                             "name": "share_buttons_title",
                                             "path": "sections.product.share_buttons.title",
                                             "type": "tc_input",
-                                            "value": "Share"
+                                            "value": "Share this product"
                                         },
                                         {
                                             "name": "show_whatsapp",
@@ -1217,6 +1229,12 @@
                                             "path": "sections.shop.pagination.prev_text",
                                             "type": "tc_input",
                                             "value": "Prev"
+                                        },
+                                        {
+                                            "name": "prev_text",
+                                            "path": "sections.shop.empty_text",
+                                            "type": "tc_input",
+                                            "value": "No products found"
                                         }
                                     ]
                                 }
@@ -1247,13 +1265,13 @@
                                     "values": [
                                         {
                                             "name": "show_categories",
-                                            "path": "sections.shop.sidebar.categories.active",
+                                            "path": "sections.blog.sidebar.categories.active",
                                             "type": "tc_checkbox",
                                             "value": true
                                         },
                                         {
                                             "name": "categories_title",
-                                            "path": "sections.shop.sidebar.categories.title",
+                                            "path": "sections.blog.sidebar.categories.title",
                                             "type": "tc_input",
                                             "value": "Categories"
                                         }
@@ -1295,7 +1313,7 @@
                                             "name": "page_description",
                                             "path": "sections.blog.description",
                                             "type": "tc_input",
-                                            "value": "Our latest "
+                                            "value": "Our latest posts"
                                         }
                                     ]
                                 },
@@ -1484,7 +1502,7 @@
                                         },
                                         {
                                             "name": "back_to_shop_text",
-                                            "path": "sections.cart.wishlist.back_to_shop_text",
+                                            "path": "sections.wishlist.buttons.back_to_shop_text",
                                             "type": "tc_input",
                                             "value": "Back to shop"
                                         }
@@ -1542,13 +1560,13 @@
                                             "name": "title",
                                             "path": "sections._404.title",
                                             "type": "tc_input",
-                                            "value": "Thanks"
+                                            "value": "Page not found"
                                         },
                                         {
                                             "name": "description",
                                             "path": "sections._404.description",
                                             "type": "tc_input",
-                                            "value": "Thank you for your order"
+                                            "value": "We are sorry, but the page you requested was not found"
                                         },
                                         {
                                             "name": "back_to_shop_text",
@@ -1644,7 +1662,9 @@
                     "active": false,
                     "title": "Toys",
                     "collections": [],
-                    "tags": ""
+                    "tags": "",
+                    "show_more_text": "Show more toys",
+                    "show_more_url": "/shop"
                 },
                 "products_4": {
                     "active": false,
@@ -1703,6 +1723,7 @@
                 },
                 "post": {
                     "share_buttons": {
+                        "active": true,
                         "title": "Share this post",
                         "whatsapp": true,
                         "facebook": true,
@@ -1734,8 +1755,7 @@
                 },
                 "blog": {
                     "title": "Blog",
-                    "description": "Our blog posts",
-                    "active": true,
+                    "description": "Our latest posts",
                     "sidebar": {
                         "active": true,
                         "categories": {
@@ -1970,7 +1990,11 @@
                             "value": "آخر الاخبار "
                         },
                         {
-                            "name": "sections.posts.buttons.show_more_text",
+                            "name": "sections.posts.button.text",
+                            "value": "المزيد من التفاصيل"
+                        },
+                        {
+                            "name": "sections.posts.show_more_text",
                             "value": "اكتشف المزيد"
                         },
                         {
@@ -2094,7 +2118,7 @@
                             "value": "السابق"
                         },
                         {
-                            "name": "sections.shop.sidebar.categories.title",
+                            "name": "sections.blog.sidebar.categories.title",
                             "value": "الفئات"
                         },
                         {
@@ -2299,6 +2323,10 @@
                             "value": "Derniers articles"
                         },
                         {
+                            "name": "sections.posts.button.text",
+                            "value": "Plus de détails"
+                        },
+                        {
                             "name": "sections.posts.buttons.show_more_text",
                             "value": "Afficher plus d'articles"
                         },
@@ -2415,7 +2443,7 @@
                             "value": "Précedent"
                         },
                         {
-                            "name": "sections.shop.sidebar.categories.title",
+                            "name": "sections.blog.sidebar.categories.title",
                             "value": "Catégories"
                         },
                         {

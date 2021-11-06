@@ -67,6 +67,12 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                             "value": false
                                         },
                                         {
+                                            "name": "show_wishlist",
+                                            "path": "sections.products.add_to_wishlist.active",
+                                            "type": "tc_checkbox",
+                                            "value": true
+                                        },
+                                        {
                                             "name": "add_to_cart_text",
                                             "path": "sections.products.add_to_cart.text",
                                             "type": "tc_input",
@@ -195,7 +201,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                             "note": "about_your_website",
                                             "path": "sections.footer.about",
                                             "type": "tc_html",
-                                            "value": "<h3>Experience Moroccofresh - for agriculture.</h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological - for agriculture. In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>"
+                                            "value": "<h3>Experience Palest </h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological  In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>"
                                         }
                                     ]
                                 },
@@ -386,7 +392,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                             "name": "activate_banner",
                                             "path": "sections.banner.active",
                                             "type": "tc_checkbox",
-                                            "value": false
+                                            "value": true
                                         }
                                     ]
                                 }
@@ -438,7 +444,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                             "name": "collections_title",
                                             "path": "sections.collections.title",
                                             "type": "tc_input",
-                                            "value": "Top Collections"
+                                            "value": "Top collections"
                                         },
                                         {
                                             "name": "selected_collections",
@@ -659,7 +665,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                             "name": "section_5_title",
                                             "path": "sections.products_5.title",
                                             "type": "tc_input",
-                                            "value": "Featured Products"
+                                            "value": "Clothes only"
                                         },
                                         {
                                             "name": "section_5_collections",
@@ -678,7 +684,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                             "name": "section_5_show_more_text",
                                             "path": "sections.products_5.show_more_text",
                                             "type": "tc_input",
-                                            "value": "Last products"
+                                            "value": "Show more clothes"
                                         },
                                         {
                                             "name": "section_5_show_more_url",
@@ -711,9 +717,15 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                         },
                                         {
                                             "name": "posts_list",
-                                            "path": "sections.posts.posts",
+                                            "path": "sections.posts.items",
                                             "type": "tc_pages",
                                             "value": []
+                                        },
+                                        {
+                                            "name": "button_text",
+                                            "path": "sections.posts.button.text",
+                                            "type": "tc_input",
+                                            "value": "More Details"
                                         },
                                         {
                                             "name": "show_more_text",
@@ -751,13 +763,13 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                     "values": [
                                         {
                                             "name": "delivery",
-                                            "path": "sections.services.delivery.text",
+                                            "path": "sections.services.items.delivery.text",
                                             "type": "tc_input",
                                             "value": "Fast delivery"
                                         },
                                         {
                                             "name": "delivery",
-                                            "path": "sections.services.delivery.url",
+                                            "path": "sections.services.items.delivery.url",
                                             "type": "tc_input",
                                             "value": "#"
                                         }
@@ -768,13 +780,13 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                     "values": [
                                         {
                                             "name": "satisfaction",
-                                            "path": "sections.services.satisfaction.text",
+                                            "path": "sections.services.items.satisfaction.text",
                                             "type": "tc_input",
                                             "value": "Satisfaction"
                                         },
                                         {
                                             "name": "satisfaction",
-                                            "path": "sections.services.satisfaction.url",
+                                            "path": "sections.services.items.satisfaction.url",
                                             "type": "tc_input",
                                             "value": "#"
                                         }
@@ -785,13 +797,13 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                     "values": [
                                         {
                                             "name": "quality",
-                                            "path": "sections.services.quality.text",
+                                            "path": "sections.services.items.quality.text",
                                             "type": "tc_input",
                                             "value": "Quality"
                                         },
                                         {
                                             "name": "quality",
-                                            "path": "sections.services.quality.url",
+                                            "path": "sections.services.items.quality.url",
                                             "type": "tc_input",
                                             "value": "#"
                                         }
@@ -906,7 +918,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                             "name": "share_buttons_title",
                                             "path": "sections.product.share_buttons.title",
                                             "type": "tc_input",
-                                            "value": "Share"
+                                            "value": "Share this product"
                                         },
                                         {
                                             "name": "show_whatsapp",
@@ -1224,6 +1236,12 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                             "path": "sections.shop.pagination.prev_text",
                                             "type": "tc_input",
                                             "value": "Prev"
+                                        },
+                                        {
+                                            "name": "prev_text",
+                                            "path": "sections.shop.empty_text",
+                                            "type": "tc_input",
+                                            "value": "No products found"
                                         }
                                     ]
                                 }
@@ -1254,13 +1272,13 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                     "values": [
                                         {
                                             "name": "show_categories",
-                                            "path": "sections.shop.sidebar.categories.active",
+                                            "path": "sections.blog.sidebar.categories.active",
                                             "type": "tc_checkbox",
                                             "value": true
                                         },
                                         {
                                             "name": "categories_title",
-                                            "path": "sections.shop.sidebar.categories.title",
+                                            "path": "sections.blog.sidebar.categories.title",
                                             "type": "tc_input",
                                             "value": "Categories"
                                         }
@@ -1302,7 +1320,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                             "name": "page_description",
                                             "path": "sections.blog.description",
                                             "type": "tc_input",
-                                            "value": "Our latest "
+                                            "value": "Our latest posts"
                                         }
                                     ]
                                 },
@@ -1491,7 +1509,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                         },
                                         {
                                             "name": "back_to_shop_text",
-                                            "path": "sections.cart.wishlist.back_to_shop_text",
+                                            "path": "sections.wishlist.buttons.back_to_shop_text",
                                             "type": "tc_input",
                                             "value": "Back to shop"
                                         }
@@ -1549,13 +1567,13 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                                             "name": "title",
                                             "path": "sections._404.title",
                                             "type": "tc_input",
-                                            "value": "Thanks"
+                                            "value": "Page not found"
                                         },
                                         {
                                             "name": "description",
                                             "path": "sections._404.description",
                                             "type": "tc_input",
-                                            "value": "Thank you for your order"
+                                            "value": "We are sorry, but the page you requested was not found"
                                         },
                                         {
                                             "name": "back_to_shop_text",
@@ -1651,7 +1669,9 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                     "active": false,
                     "title": "Toys",
                     "collections": [],
-                    "tags": ""
+                    "tags": "",
+                    "show_more_text": "Show more toys",
+                    "show_more_url": "/shop"
                 },
                 "products_4": {
                     "active": false,
@@ -1710,6 +1730,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                 },
                 "post": {
                     "share_buttons": {
+                        "active": true,
                         "title": "Share this post",
                         "whatsapp": true,
                         "facebook": true,
@@ -1741,8 +1762,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                 },
                 "blog": {
                     "title": "Blog",
-                    "description": "Our blog posts",
-                    "active": true,
+                    "description": "Our latest posts",
                     "sidebar": {
                         "active": true,
                         "categories": {
@@ -1850,7 +1870,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                     }
                 },
                 "footer": {
-                    "about": "<h3>Experience Moroccofresh - for agriculture.</h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological - for agriculture. In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>",
+                    "about": "<h3>Experience Palest </h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological  In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>",
                     "methods": {
                         "title": "Our payment methods",
                         "visa": true,
@@ -1977,6 +1997,10 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                             "value": "آخر الاخبار "
                         },
                         {
+                            "name": "sections.posts.button.text",
+                            "value": "المزيد من التفاصيل"
+                        },
+                        {
                             "name": "sections.posts.show_more_text",
                             "value": "اكتشف المزيد"
                         },
@@ -1985,15 +2009,15 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                             "value": "خدماتنا"
                         },
                         {
-                            "name": "sections.services.delivery.text",
+                            "name": "sections.services.items.delivery.text",
                             "value": "التوصيل السريع"
                         },
                         {
-                            "name": "sections.services.satisfaction.text",
+                            "name": "sections.services.items.satisfaction.text",
                             "value": "ارضاء الزبناء"
                         },
                         {
-                            "name": "sections.services.quality.text",
+                            "name": "sections.services.items.quality.text",
                             "value": "جودة عالية"
                         },
                         {
@@ -2101,7 +2125,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                             "value": "السابق"
                         },
                         {
-                            "name": "sections.shop.sidebar.categories.title",
+                            "name": "sections.blog.sidebar.categories.title",
                             "value": "الفئات"
                         },
                         {
@@ -2239,7 +2263,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                         },
                         {
                             "name": "sections.footer.about",
-                            "value": "<h3>Experience Moroccofresh - for agriculture.</h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological - for agriculture. In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>"
+                            "value": "<h3>Experience Palest </h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological  In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>"
                         },
                         {
                             "name": "sections.footer.methods.title",
@@ -2306,7 +2330,11 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                             "value": "Derniers articles"
                         },
                         {
-                            "name": "sections.posts.show_more_text",
+                            "name": "sections.posts.button.text",
+                            "value": "Plus de détails"
+                        },
+                        {
+                            "name": "sections.posts.buttons.show_more_text",
                             "value": "Afficher plus d'articles"
                         },
                         {
@@ -2314,15 +2342,15 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                             "value": "Nos services"
                         },
                         {
-                            "name": "sections.services.delivery.text",
+                            "name": "sections.services.items.delivery.text",
                             "value": "Livraison rapide"
                         },
                         {
-                            "name": "sections.services.satisfaction.text",
+                            "name": "sections.services.items.satisfaction.text",
                             "value": "Satisfaction"
                         },
                         {
-                            "name": "sections.services.quality.text",
+                            "name": "sections.services.items.quality.text",
                             "value": "Qualité"
                         },
                         {
@@ -2422,7 +2450,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
                             "value": "Précedent"
                         },
                         {
-                            "name": "sections.shop.sidebar.categories.title",
+                            "name": "sections.blog.sidebar.categories.title",
                             "value": "Catégories"
                         },
                         {
@@ -2531,9 +2559,9 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MTFkN
         }
     },
     "images": [
-        "https://cdn.dribbble.com/users/1983741/screenshots/10636148/media/c537c929947ebff9ad38dc6bc9ede9bb.jpg?compress=1&resize=400x300"
+        "https://storeno.b-cdn.net/themes/palest/palest-theme.jpg"
     ],
-    "isActive": true,
+    "isActive": false,
     "autoRenew": false,
     "expiryDate": "2050-12-12T00:00:00.000Z",
     "name": "palest",

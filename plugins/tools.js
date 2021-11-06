@@ -29,7 +29,6 @@ export default function({ store }, inject){
         return result;
     }
     tools.call = (name, data = {}) => {
-        console.log(name, data);
         if(!process.server){
             if (!window.events) window.events = {}
             if (!window.events[name]) window.events[name] = new CustomEvent(name);

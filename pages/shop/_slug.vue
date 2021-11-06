@@ -16,7 +16,7 @@
                                 <si-loader></si-loader>
                             </div>
                             <div v-for="(item, i) in collections" :key="i" class="flex items-center px-2">
-                                <input class="w-4 h-4 mr-1" :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(item.slug) >= 0" :id="item.slug" @change="setParams($event, 'collections.slug-in', item.slug)" type="checkbox"/>
+                                <input class="w-4 h-4 mx-1" :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(item.slug) >= 0" :id="item.slug" @change="setParams($event, 'collections.slug-in', item.slug)" type="checkbox"/>
                                 <label class="cursor-pointer capitalize" :for="item.slug">{{ item.name }}</label>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                         </div>
                         <div v-if="$settings.sections.shop.sidebar.tags.active && filters" class="flex flex-col mb-2">
                             <div v-for="(tag, i) in filters.tags" :key="i" class="flex items-center px-2">
-                                <input class="w-4 h-4 mr-1" :checked="params['tags-in'] && params['tags-in'].indexOf(tag) >= 0" :id="`tag_${tag}`" @change="setParams($event, 'tags-in', tag)" type="checkbox"/>
+                                <input class="w-4 h-4 mx-1" :checked="params['tags-in'] && params['tags-in'].indexOf(tag) >= 0" :id="`tag_${tag}`" @change="setParams($event, 'tags-in', tag)" type="checkbox"/>
                                 <label class="cursor-pointer capitalize" :for="`tag_${tag}`">{{ tag }}</label>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                             </div>
                             <div v-if="$settings.sections.shop.sidebar.brands.active">
                                 <div v-for="(item, i) in brands" :key="i" class="flex items-center px-2">
-                                    <input class="w-4 h-4 mr-1" :id="item.slug" :checked="params['brand.slug-in'] && params['brand.slug-in'].indexOf(item.slug) >= 0" @change="setParams($event, 'brand.slug-in', item.slug)" type="checkbox"/>
+                                    <input class="w-4 h-4 mx-1" :id="item.slug" :checked="params['brand.slug-in'] && params['brand.slug-in'].indexOf(item.slug) >= 0" @change="setParams($event, 'brand.slug-in', item.slug)" type="checkbox"/>
                                     <label class="cursor-pointer capitalize" :for="item.slug">{{ item.name }}</label>
                                 </div>
                             </div>
@@ -268,7 +268,6 @@ export default {
             this.loading.brands = false;
         },
         async getItems(page=null){
-            console.log("Getting items");
             if(page != null) this.setParams({target:{value: page}}, 'page', page);
             this.items = [];
             this.loading.products = true;

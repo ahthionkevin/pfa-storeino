@@ -7,7 +7,7 @@
         <button class="p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200" @click="move(1)"><svg class="w-5 h-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" class=""></path></svg></button>
       </div>
     </div>
-    <div class="overflow-hidden" dir="ltr">
+    <div class="overflow-hidden carousel-container" dir="ltr">
       <div class="flex carousel" :style="`width: ${items.length*width}%`">
           <div v-for="(item,i) in items" :key="i" class="carousel-item p-2" :class="itemClass">
             <component :is="component" :item="item"></component>
@@ -31,12 +31,11 @@ export default {
       loading: true,
       items: this.list,
       width: this.defaultWidth,
-      parentWidth: 1200
+      parentWidth: 1200,
     };
   },
   watch: {
     parentWidth(val){
-      console.log({val});
       if(val<640) this.width = 100;
       if(val>=640&&val<768) this.width = 50;
       if(val>=768&&val<1024) this.width = 33.33;
@@ -59,9 +58,9 @@ export default {
   },
   mounted() {
     this.$nextTick(()=>{
-      this.parentWidth = document.querySelector('.carousel').clientWidth;
+      this.parentWidth = document.querySelector('.carousel-container').clientWidth;
       window.onresize = (ev)=>{
-        this.parentWidth = document.querySelector('.carousel').clientWidth
+        this.parentWidth = document.querySelector('.carousel-container').clientWidth;
       }
     })
   },

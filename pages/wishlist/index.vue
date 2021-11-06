@@ -50,7 +50,7 @@ export default {
                     const response = await this.$storeino.products.search({ '_id-in': ids, limit: 1000 });
                     this.items = response.data.results;
                 }catch(e){
-                    console.log(e);
+                    console.log({e});
                 }
             }
             this.loading.wishlist = false;

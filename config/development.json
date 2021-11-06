@@ -1,0 +1,7 @@
+{
+    "env": "development",
+    "token": {
+        "clientId": "3",
+        "clientSecret": "4"
+    }
+}
