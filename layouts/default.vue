@@ -45,8 +45,8 @@ export default {
                 ...this.$store.state.seo.metaTags
             ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: this.$store.state.seo.favicon || '/favicon.ico' },
-                { rel: "preload", href: 'https://themes.storeino.com/palest/' },
+                { rel: 'icon', type: 'image/x-icon', href: this.$store.state.seo.favicon || this.$store.state.defaults.icon },
+                { rel: "dns-prefetch", href: 'https://storeno.b-cdn.net/stores/' },
                 ...this.otherLinks
             ],
             htmlAttrs: {

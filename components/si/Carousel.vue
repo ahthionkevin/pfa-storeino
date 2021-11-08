@@ -31,11 +31,12 @@ export default {
       loading: true,
       items: this.list,
       width: this.defaultWidth,
-      parentWidth: 1200,
-    };
+      parentWidth: 1000,
+    }
   },
   watch: {
-    parentWidth(val){
+    parentWidth(val, oldVal){
+      console.log(val, oldVal);
       if(val<640) this.width = 100;
       if(val>=640&&val<768) this.width = 50;
       if(val>=768&&val<1024) this.width = 33.33;

@@ -25,7 +25,7 @@
                         <div v-if="loading.filters" class="flex justify-center items-center my-5">
                             <si-loader></si-loader>
                         </div>
-                        <div v-if="$settings.sections.shop.sidebar.prices.active && filters" class="flex flex-col mb-2">
+                        <div v-if="$settings.sections.shop.sidebar.prices.active && filters" class="flex flex-col mb-2" dir="ltr">
                             <si-price-range @change="setParams" :min="filters.prices.min" :max="filters.prices.max" />
                         </div>
                         <hr v-if="$settings.sections.shop.sidebar.prices.active">
@@ -180,6 +180,8 @@ export default {
         }
     },
     async fetch(){
+        this.$store.state.seo.title = this.$settings.sections.shop.title + ' - ' + this.$settings.store_name;
+        this.$store.state.seo.description = this.$settings.sections.shop.description || this.$settings.store_description;
         if(this.$route.params.slug){
             this.param = this.$route.params.slug.split(',');
             this.$route.params.slug.split(',').forEach(item => {
@@ -207,6 +209,7 @@ export default {
         setParams(e, key, value){
             if(key.indexOf('price') >= 0 || key.indexOf('page') >= 0){
                 this.$set(this.params,key, e.target.value);
+                return false;
             }else{
                 if(e.target.checked) {
                     if(!this.params[key]) this.params[key] = this.$set(this.params, key, []);
@@ -230,7 +233,9 @@ export default {
             url += this.param.length > 0 ? [...new Set(this.param)].join(',') : '';
             for (const key in this.query) {
                 url += url.indexOf('?') == -1 ? '?' : '&';
-                url += `${key}=${this.query[key].join(',')}`;
+                if(typeof this.query[key] == 'object'){
+                    url += `${key}=${this.query[key].join(',')}`;
+                }else url += `${key}=${this.query[key]}`;
             }
             window.history.pushState({}, '', url);
         },

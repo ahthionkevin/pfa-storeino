@@ -64,6 +64,8 @@ export default {
         }
     },
     async fetch(){
+        this.$store.state.seo.title = this.$settings.sections.cart.title + ' - ' + this.$settings.store_name;
+        this.$store.state.seo.description = this.$settings.sections.cart.description || this.$settings.store_description;
         await this.initCart();
         if(this.items.length > 0){
             await this.getUpsells();

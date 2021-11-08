@@ -84,6 +84,7 @@ export default {
                 {
                     _id: "lang",
                     text: this.$store.state.language.code,
+                    active: this.$settings.sections.header.icons.language,
                     childrens: this.$settings.store_languages.map(l=> {
                         return {
                             _id: l.code,
@@ -95,6 +96,7 @@ export default {
                 {
                     _id: "currency",
                     text: this.$store.state.currency.code,
+                    active: this.$settings.sections.header.icons.currency,
                     childrens: this.$settings.store_currencies.map(c=> {
                         return {
                             _id: c.code,
@@ -103,7 +105,7 @@ export default {
                         }
                     })
                 }
-            ]
+            ].filter(item=> item.active)
         }
     },
     watch: {

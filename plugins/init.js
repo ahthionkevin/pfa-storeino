@@ -3,7 +3,6 @@ export default async function ({ $axios, $http, route, $tools, $storeino, store,
     if(process.server) {
         const req = app.context.req;
         // Get Template settings
-        
         // Set current domain
         store.state.domain = req.headers.host;
         try {

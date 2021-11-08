@@ -21,7 +21,9 @@
                             </div>
                         </div>
                         <hr>
-                        <si-carousel v-if="$settings.sections.blog.sidebar.products.active" :size="100" component="si-product" :title="$settings.sections.blog.sidebar.products.title" :list="products" itemClass="w-full"></si-carousel>
+                        <div v-if="products.length > 0 && $settings.sections.blog.sidebar.products.active" class="w-full">
+                            <si-carousel :size="100" component="si-product" :title="$settings.sections.blog.sidebar.products.title" :list="products" itemClass="w-full"></si-carousel>
+                        </div>
                     </div>
                 </div>
             </transition>
@@ -81,17 +83,13 @@ export default {
             items: [],
             categories:[],
             paginate: { page: 1, limit: 12, total: 12 },
-            params: { 'categories.slug-in': [], sort: { createdAt: -1 } },
-            lastParams: { 'categories.slug-in': [], sort: { createdAt: -1 } },
+            params: { 'categories.slug-in': [], sort: { createdAt: -1 }, type: 'POST' },
+            lastParams: { 'categories.slug-in': [], sort: { createdAt: -1 }, type: 'POST' },
             sorts: [
-                { field: { 'price.salePrice': 1 }, name: 'Price: Low to High' },
-                { field: { 'price.salePrice': -1 }, name: 'Price: High to Low' },
-                { field: { 'review.rating': -1 }, name: 'Reviews: High to Low' },
-                { field: { 'review.rating': 1 }, name: 'Reviews: Low to High' },
-                { field: { 'name': 1 }, name: 'Name: A to Z' },
-                { field: { 'name': -1 }, name: 'Name: Z to A' },
-                { field: { createdAt: -1 }, name: 'Newest' },
-                { field: { createdAt: 1 }, name: 'Oldest' }
+                { field: { 'name': 1 }, name: this.$settings.sections.blog.sorts.name_asc },
+                { field: { 'name': -1 }, name: this.$settings.sections.blog.sorts.name_desc },
+                { field: { createdAt: -1 }, name: this.$settings.sections.blog.sorts.newest },
+                { field: { createdAt: 1 }, name: this.$settings.sections.blog.sorts.oldest }
             ],
             girds: [
                 { number: 6, width: 16, class: 'w-full md:w-1/2 lg:w-1/2' },
@@ -114,6 +112,8 @@ export default {
         await this.getItems();
         await this.getCategories();
         await this.getProducts();
+        this.$store.state.seo.title = this.$settings.sections.blog.title + ' - ' + this.$settings.store_name;
+        this.$store.state.seo.description = this.$settings.sections.blog.description || this.$settings.store_description;
     },
     methods: {
         setParams(e, key, value){

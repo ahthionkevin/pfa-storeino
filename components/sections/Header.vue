@@ -7,26 +7,26 @@
                 <button @click="$store.state.showHeaderMenu = !$store.state.showHeaderMenu" aria-label="Search button" class="flex flex-col p-2 bg-gray-100 rounded-md hover:bg-gray-200">
                     <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-5 h-5"><g class="fa-group"><path fill="currentColor" d="M16 288h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16z" class="fa-secondary"></path><path fill="currentColor" d="M432 384H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-320H16A16 16 0 0 0 0 80v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16z"></path></g></svg>
                 </button>
-                <div v-if="$settings.store_currencies.length > 1" class="relative mx-1">
+                <div v-if="$settings.sections.header.icons.currency && $settings.store_currencies.length > 1" class="relative mx-1">
                     <div v-if="iconMenu == 'currency'" class="absolute rounded-md flex flex-col top-5 z-50 bg-gray-100">
                         <a class="whitespace-nowrap m-1 p-2 bg-white" v-for="cur of $settings.store_currencies" :key="cur.code" :href="`?cur=${cur.code}`">{{ cur.name }} ( {{ cur.code }} )</a>
                     </div>
                 </div>
-                <button @click="iconMenu = iconMenu == 'currency' ? null : 'currency'" v-if="$settings.store_currencies.length > 1" title="Currency" class="item hidden md:block p-1.5 bg-gray-100 rounded-md hover:bg-gray-200">
+                <button @click="iconMenu = iconMenu == 'currency' ? null : 'currency'" v-if="$settings.sections.header.icons.currency && $settings.store_currencies.length > 1" title="Currency" class="item hidden md:block p-1.5 bg-gray-100 rounded-md hover:bg-gray-200">
                     <span class="text-sm">{{ $store.state.currency.code }}</span>
                 </button>
-                <div v-if="$settings.store_languages.length > 1" class="relative mx-1">
+                <div v-if="$settings.sections.header.icons.language && $settings.store_languages.length > 1" class="relative mx-1">
                     <div v-if="iconMenu == 'language'" class="absolute rounded-md flex flex-col top-5 z-50 bg-gray-100">
                         <a class="whitespace-nowrap m-1 p-2 bg-white" v-for="lang of $settings.store_languages" :key="lang.code" :href="`?lang=${lang.code}`">{{ lang.name }} ( {{ lang.code }} )</a>
                     </div>
                 </div>
-                <button @click="iconMenu = iconMenu == 'language' ? null : 'language'" v-if="$settings.store_languages.length > 1" title="Language" class="item hidden md:block p-1.5 bg-gray-100 rounded-md hover:bg-gray-200">
+                <button @click="iconMenu = iconMenu == 'language' ? null : 'language'" v-if="$settings.sections.header.icons.language && $settings.store_languages.length > 1" title="Language" class="item hidden md:block p-1.5 bg-gray-100 rounded-md hover:bg-gray-200">
                     <span class="text-sm">{{ $store.state.language.code }}</span>
                 </button>
             </div>
             <div class="logo flex justify-center items-center w-1/3">
                 <router-link to="/">
-                    <si-image width="70" height="50" property="height" class="h-12 w-full w-full object-contain" :src="section.logo ? section.logo.src : null" alt="Store logo"/>
+                    <si-image width="70" height="50" property="height" class="h-12 w-full w-full object-contain" :src="section.logo ? section.logo.src : $store.state.defaults.logo" alt="Store logo"/>
                 </router-link>
             </div>
             <div class="icons flex items-center justify-end w-1/3">

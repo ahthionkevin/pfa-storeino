@@ -32,6 +32,8 @@ export default {
         }
     },
     async fetch(){
+        this.$store.state.seo.title = this.$settings.sections.wishlist.title + ' - ' + this.$settings.store_name;
+        this.$store.state.seo.description = this.$settings.sections.wishlist.description || this.$settings.store_description;
         await this.initWishlist();
     },
     watch: {

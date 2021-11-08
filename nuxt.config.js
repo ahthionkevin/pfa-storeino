@@ -1,5 +1,4 @@
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'palest-theme',
     meta: [
@@ -8,17 +7,14 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: 'https://storeno.b-cdn.net/themes/palest/icon.png' }
     ]
   },
   target: 'server',
-  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~/assets/css/icons.css',
     '~/assets/css/main.css'
   ],
-
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/tools.js',
     '~/plugins/http.js',
@@ -26,38 +22,24 @@ export default {
     '~/plugins/init.js',
     '~/plugins/events.js',
   ],
-
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
-
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
   ],
-
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
+    '@nuxtjs/axios'
   ],
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
-
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
       lang: 'en'
     }
   },
+  serverMiddleware: ['~/server/index'],
   server: {
     port: 3000,
     host: '0.0.0.0'
   },
-  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
 }

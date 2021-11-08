@@ -11,6 +11,10 @@
 </template>
 <script>
 export default {
+  async fetch(){
+    this.$store.state.seo.title = this.$settings.store_name;
+    this.$store.state.seo.description = this.$settings.store_description;    
+  },
   mounted() {
     this.$tools.call('PAGE_VIEW');
   },
