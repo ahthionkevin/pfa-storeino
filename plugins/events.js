@@ -93,6 +93,7 @@ export default function({ app, store, $tools }, inject){
             $tools.setWishlist(store.state.wishlist);
             fbAddToWishlist({ id: item._id, content_name: item.name, content_ids: [item._id], content_type: 'product' });
             snapAddToWishlist({ item_ids: [item._id] });
+            tiktokAddToWishlist({ content_id: item._id, price: item.price, currency: store.state.currency.code || "USD" });
         });
         window.addEventListener('REMOVE_FROM_WISHLIST', (e)=>{
             const item = $tools.reformWishlistItem(e.data);

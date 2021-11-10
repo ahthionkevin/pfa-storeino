@@ -22,16 +22,6 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         }
         // init Cart
         let cookies = $tools.cookieToObject(req.headers.cookie);
-
-
-        if(route.name == 'thanks'){
-          if(cookies['ORDER_ID']) {
-            app.context.res.clearCookie("ORDER_ID");
-          }else{
-            redirect('/');
-          }
-        }
-
         const STOREINO_CART = cookies['STOREINO-CART'] ? cookies['STOREINO-CART'] : '[]';
         store.state.cart = JSON.parse(STOREINO_CART);
         // init Wishlist
@@ -72,6 +62,18 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
             console.log({e});
         }
     }else{
+      // client side
+      const cookies = $tools.cookieToObject(document.cookie);
+      if(route.name == 'thanks'){
+        if(cookies['ORDER_ID']) {
+          document.cookie = 'ORDER_ID=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }else{
+          window.location.href = '/';
+          return false;
+        }
+      }
+
+
       StoreinoApp.$store = {
         search: async function (module, params) {
           let response = await $http.get(`/${module}/search`, { params });
