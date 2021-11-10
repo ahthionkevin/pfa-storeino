@@ -126,8 +126,57 @@ export default async function ({ $axios, $http, route, $tools, $storeino, store,
         }
         if(route.query.pixel){
           const pixel = JSON.parse(route.query.pixel);
-          console.log(pixel);
           window.fbPurchase(pixel);
+        }
+      }
+      // Tiktok pixel
+
+      !function (w, d, t) {
+        w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){
+          var i="https://analytics.tiktok.com/i18n/pixel/events.js";
+          if(!(settings.tiktok_pixel && settings.tiktok_pixel.length > 0)){ i = 'data:application/javascript;utf-8,console.log("Tiktok%20Pixel%20not%20found")'; }
+          else { ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a) };
+        }
+        w.tiktokPixel = function (id) { ttq.load(id); }
+        w.tiktokPageView = function (){ ttq.page();}
+        w.tiktokAddPaymentInfo = function (s = {}) { ttq.track('AddPaymentInfo', s); }
+        w.tiktokAddToCart = function (s = {}) { ttq.track('AddToCart', s); }
+        w.tiktokAddToWishlist = function (s = {}) { ttq.track('AddToWishlist', s); }
+        w.tiktokClickButton = function (s = {}) { ttq.track('ClickButton', s); }
+        w.tiktokPurchase = function (s = {}) { ttq.track('CompletePayment', s); }
+        w.tiktokCompleteRegistration = function (s = {}) { ttq.track('CompleteRegistration', s); }
+        w.tiktokViewContent = function (s = {}) { ttq.track('ViewContent', s); }
+        w.tiktokSubscribe = function (s = {}) { ttq.track('Subscribe', s); }
+        w.tiktokSubmitForm = function (s = {}) { ttq.track('SubmitForm', s); }
+        w.tiktokSearch = function (s = {}) { ttq.track('Search', s); }
+        w.tiktokPlaceAnOrder = function (s = {}) { ttq.track('PlaceAnOrder', s); }
+        w.tiktokInitiateCheckout = function (s = {}) { ttq.track('InitiateCheckout', s); }
+        w.tiktokDownload = function (s = {}) { ttq.track('Download', s); }
+        w.tiktokContact = function (s = {}) { ttq.track('Contact', s); }
+      }(window, document, 'ttq');
+      if(settings.tiktok_pixel && settings.tiktok_pixel.length > 0){
+        for (const pixel of settings.tiktok_pixel) {
+            if (pixel.active){
+              window.tiktokPixel(pixel.id);
+              console.log("%cSimple Tiktok pixel is ready", 'color: #bada55');
+            }
+        }
+        if(route.query.pixel){
+          const pixel = JSON.parse(route.query.pixel);
+          window.tiktokPurchase(
+            {
+              contents: pixel.contents.map(p => {
+                return {
+                  content_id: p.id,
+                  content_type: 'product',
+                  content_name: p.name,
+                  quantity: p.quantity,
+                  price: p.price
+                }
+              }),
+              value: pixel.total,
+              currency: store.state.currency.code || "USD"
+           });
         }
       }
       // Snapchat Pixel
@@ -165,9 +214,6 @@ export default async function ({ $axios, $http, route, $tools, $storeino, store,
           defer: true
         });
       }
-
-
-
       // google ads
 
       (function (w, d, t) {

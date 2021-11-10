@@ -16,6 +16,7 @@ export default function({ app, store, $tools }, inject){
             // Facebook Snap Tiktok Linkedin
             fbPageView();
             snapPageView();
+            tiktokPageView();
             if(e.data && e.data._id){
                 fbViewContent({
                     content_name: e.data.name,
@@ -25,6 +26,13 @@ export default function({ app, store, $tools }, inject){
                     currency: store.state.currency.code
                 });
                 snapViewContent({ item_ids: [e.data._id] });
+                tiktokViewContent({
+                    content_id: e.data._id,
+                    quantity: 1,
+                    price: e.data.price.salePrice,
+                    value: e.data.price.salePrice,
+                    currency: store.state.currency.code || "USD"
+                })
             }
             //tiktokPageView();
             //linkedinPageView();
@@ -53,7 +61,14 @@ export default function({ app, store, $tools }, inject){
             snapAddToCart({
                 item_ids: [item._id],
                 price: item.price,
-                currency: store.state.code || "USD"
+                currency: store.state.currency.code || "USD"
+            });
+            tiktokAddToCart({
+                content_id: item._id,
+                quantity: item.quantity,
+                price: item.price,
+                value: item.price * item.quantity,
+                currency: store.state.currency.code || "USD"
             });
         });
         window.addEventListener('REMOVE_FROM_CART', (e)=>{

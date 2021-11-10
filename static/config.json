@@ -1279,7 +1279,7 @@
                                             "name": "limit",
                                             "path": "sections.shop.pagination.limit",
                                             "type": "tc_input",
-                                            "inputType": "number",
+                                            "input_type": "number",
                                             "value": 12
                                         },
                                         {
@@ -1428,7 +1428,7 @@
                                             "name": "limit",
                                             "path": "sections.blog.pagination.limit",
                                             "type": "tc_input",
-                                            "inputType": "number",
+                                            "input_type": "number",
                                             "value": 12
                                         },
                                         {
