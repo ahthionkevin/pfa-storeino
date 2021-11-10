@@ -1,5 +1,5 @@
 import StoreinoApp from 'vue/dist/vue.common.prod';
-export default async function ({ $axios, $http, route, $tools, $storeino, store, app, redirect }, inject) {
+export default async function ({ $axios, $http ,route, $tools, $storeino, store, app, redirect }, inject) {
     if(process.server) {
         const req = app.context.req;
         // Get Template settings
@@ -22,6 +22,16 @@ export default async function ({ $axios, $http, route, $tools, $storeino, store,
         }
         // init Cart
         let cookies = $tools.cookieToObject(req.headers.cookie);
+
+
+        if(route.name == 'thanks'){
+          if(cookies['ORDER_ID']) {
+            app.context.res.clearCookie("ORDER_ID");
+          }else{
+            redirect('/');
+          }
+        }
+
         const STOREINO_CART = cookies['STOREINO-CART'] ? cookies['STOREINO-CART'] : '[]';
         store.state.cart = JSON.parse(STOREINO_CART);
         // init Wishlist
