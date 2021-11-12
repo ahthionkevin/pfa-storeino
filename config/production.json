@@ -1,7 +1,7 @@
 {
     "env": "production",
     "token": {
-        "clientId": "5",
-        "clientSecret": "6"
+        "clientId": "611d702e23de571fb9b97d94-techno.storeino.com",
+        "clientSecret": "rkfSjNMvfKerjyQjN3kZeQM8"
     }
 }

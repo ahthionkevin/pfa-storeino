@@ -1,10 +1,12 @@
 import https from 'https';
-export default function ({ $axios, store, $tools, app, route }, inject) {
+export default async function ({ $axios, store, $tools, app, route }, inject) {
   if(process.server) {
-    const config = require('config');
+    const config = app.context.req.config;
     if (process.env.NODE_ENV == 'production') store.state.baseURL = "https://api-stores.storeino.com/api";
-    if(config.get('env') == 'production') store.state.baseURL = "https://api-stores.storeino.com/api";
-    let cookies = $tools.cookieToObject(app.context.req.headers.cookie);
+    if(config.env == 'production') store.state.baseURL = "https://api-stores.storeino.com/api";
+    try{ 
+    }catch(e){ console.log(e); }
+    const cookies = $tools.cookieToObject(app.context.req.headers.cookie);
     // Set Currency and language
     if(route.query.cur) {
       store.state.currency.code = route.query.cur;
@@ -20,6 +22,18 @@ export default function ({ $axios, store, $tools, app, route }, inject) {
       // baseURL = 'http://api-stores:3031/api';
       store.state.token = app.context.req.headers['x-auth-token'];
     }
+
+    if(!store.state.token) {
+      try { 
+        const token = config.token;
+        const response = await $axios.post(store.state.baseURL+'/stores/auth', token);
+        store.state.token = response.data.accessToken;
+      } catch (error) {
+        console.log({error});
+      }
+    }
+
+
   }else{
     if(store.state.currency.code) document.cookie = `CURRENT_CURRENCY=${store.state.currency.code}`;
     if(store.state.language.code) document.cookie = `CURRENT_LANGUAGE=${store.state.language.code}`;

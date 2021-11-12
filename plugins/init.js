@@ -1,12 +1,12 @@
 import StoreinoApp from 'vue/dist/vue.common.prod';
 export default async function ({ $axios, $http ,route, $tools, $storeino, store, app, redirect }, inject) {
     if(process.server) {
+        let response = null;
         const req = app.context.req;
         // Get Template settings
         // Set current domain
         store.state.domain = req.headers.host;
         try {
-            let response = null
             if(req.body && req.body.preview){
                 console.log("Is Preview");
                 const body = { data: JSON.parse(req.body.preview.data), schema: JSON.parse(req.body.preview.schema) };
