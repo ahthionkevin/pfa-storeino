@@ -1,5 +1,13 @@
-export default function({ app, store, $tools }, inject){
+export default function({ app, store, router, $tools }, inject){
     if(!process.server){
+        window.addEventListener('TO_CHECKOUT', (e)=> {
+            window.location.href = '/checkout2'
+        });
+        window.addEventListener('APP_GO_TO', (e)=> {
+            if (e.detail && e.detail.url) {
+                app.router.push(e.detail.url)
+            }
+        });
         // Page view 
         window.addEventListener('PAGE_VIEW', (e)=> {
             // Analytics ready
