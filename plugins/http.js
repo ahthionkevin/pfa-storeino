@@ -3,7 +3,7 @@ export default async function ({ $axios, store, $tools, app, route }, inject) {
   if(process.server) {
     const config = app.context.req.config;
     console.log({ env: process.env.NODE_ENV, config: config.env });
-    if (process.env.NODE_ENV == 'production') store.state.baseURL = "https://api-stores.storeino.com/api";
+    //if (process.env.NODE_ENV == 'production') store.state.baseURL = "https://api-stores.storeino.com/api";
     if(config.env == 'production') store.state.baseURL = "https://api-stores.storeino.com/api";
     try{ 
     }catch(e){ console.log(e); }
