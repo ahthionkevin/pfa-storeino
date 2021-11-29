@@ -29,7 +29,7 @@ export default {
         },
         $route(to, from) {
             if(to.params.route!=from.params.route){
-              document.getElementById('iframe').contentWindow.location.reload();
+              this.src+=''
               this.$store.state.loading=true;
           }
      }},
@@ -59,13 +59,13 @@ export default {
         load(){
           if(!process.server){
             this.resizeIframe()
-            // new ResizeObserver(this.resizeIframe).observe(this.iframe.contentWindow.document.body)
+            new ResizeObserver(this.resizeIframe).observe(this.iframe.contentWindow.document.body)
           }
         },
         resizeIframe(){
           this.iframe = document.getElementById("iframe");
-          // this.iframe.style.height =  this.iframe.contentWindow.document.body.scrollHeight+100 + 'px';
-          // this.iframe.style.width  =  this.iframe.contentWindow.document.body.scrollWidth + 'px';
+          this.iframe.style.height =  this.iframe.contentWindow.document.body.scrollHeight+100 + 'px';
+          this.iframe.style.width  =  this.iframe.contentWindow.document.body.scrollWidth + 'px';
         },
        seo() {
         let headTags = {
