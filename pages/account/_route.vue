@@ -31,6 +31,7 @@ export default {
             if(to.params.route!=from.params.route){
               this.src+=''
               this.$store.state.loading=true;
+              // this.$store.state.loading=true;
           }
      }},
     data(){
