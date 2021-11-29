@@ -99,5 +99,29 @@ export default function({ store }, inject){
             }, 3000);
         }
     }
+  tools.tokenDecode =(token)=> {
+    if (/^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.[A-Za-z0-9-_.+/=]*$/.test(token) && token.split(".").length > 1) {
+      let data = token.split(".")[1];
+      let buff = new Buffer.from(data, 'base64');
+      let text = buff.toString('ascii');
+      return JSON.parse(text)
+    } else return null;
+  }
+  tools.tokenDecode = (token)=> {
+    if (/^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.[A-Za-z0-9-_.+/=]*$/.test(token) && token.split(".").length > 1) {
+      let data = token.split(".")[1];
+      let buff = new Buffer.from(data, 'base64');
+      let text = buff.toString('ascii');
+      return JSON.parse(text)
+    } else return null;
+  }
+   tools.pushState =(path, params, query)=> {
+    if (typeof params == 'object') {
+      params = params.join('+');
+      let qs = serializeQuery(query);
+      qs = qs == '' ? '' : '?' + qs;
+      return path + params + qs;
+    }
+  }
     inject('tools', tools);
 }

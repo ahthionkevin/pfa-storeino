@@ -1,8 +1,10 @@
 import Vuex from 'vuex'
 const createStore = () => {
-    return new Vuex.Store({ 
+    return new Vuex.Store({
       state: ()=>{
         return {
+          loading:true,
+          customer:null,
           cart: [],
           whishlist: [],
           seo: {
@@ -39,7 +41,7 @@ const createStore = () => {
             name: "Unknown",
             code: undefined
           },
-          // 
+          //
           fullImage: null,
           showHeaderMenu: false
         }
