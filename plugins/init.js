@@ -107,17 +107,28 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
           s.fbCompleteRegistration = function (d = {}) { fbq(n, 'CompleteRegistration', d); };
           s.fbInitiateCheckout = function (d = {}) { fbq(n, 'InitiateCheckout', d); };
           s.fbAddPaymentInfo = function (d = {}) { fbq(n, 'AddPaymentInfo', d); };
-          s.fbPurchase = function (d = {}) {
+          s.fbPurchase = function (d = {}, id=null) {
               let valueCur = 1 ;
               if (d.currency && settings && settings.facebook_currency && settings.facebook_currency[d.currency] && settings.facebook_currency[d.currency] != 0 ) {
                   valueCur = settings.facebook_currency[d.currency];
               }
               d.currency = 'USD';
-              d.value = Number(d.value) / valueCur;
-              fbq(n, 'Purchase', d);
+            d.value = Number(d.value) / valueCur;
+             if (id) {
+              fbq('trackSingle', id, 'Purchase', d);
+             }else  fbq(n, 'Purchase', d);
           };
           s.fbSearch = function (d = {}) { fbq(n, 'Search', d); };
-          s.fbLead = function (d = {}) { fbq(n, 'Lead', d); };
+        s.fbLead = function (d = {}, id = null) {
+           let valueCur = 1 ;
+           if (d.currency && settings && settings.facebook_currency && settings.facebook_currency[d.currency] && settings.facebook_currency[d.currency] != 0 ) {
+               valueCur = settings.facebook_currency[d.currency];
+           }
+           d.currency = 'USD';
+          if (id) {
+            fbq('trackSingle', id, 'Lead', d);
+          }else fbq(n, 'Lead', d);
+        };
           s.fbContact = function (d = {}) { fbq(n, 'Contact', d); };
           s.fbAddToWishlist = function (d = {}) { fbq(n, 'AddToWishlist', d); };
           s.fbCustomizeProduct = function (d = {}) { fbq(n, 'CustomizeProduct', d); };
@@ -135,10 +146,16 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
                     console.log("%cAPI Facebook pixel is ready", 'color: #bada55');
                 }
             }
-        }
-        if(route.query.pixel){
-          const pixel = JSON.parse(route.query.pixel);
-          window.fbPurchase(pixel);
+            if(route.query.pixel){
+              const objData = JSON.parse(route.query.pixel);
+              if(pixel.type && pixel.type=="Lead" ){
+                console.log('fpqLead===========>',pixel)
+                window.fbLead(objData,pixel.id);
+              }else{
+                console.log('fpqPurchase===========>',pixel)
+                window.fbPurchase(objData,pixel.id);
+              }
+            }
         }
       }
       // Tiktok pixel
@@ -219,7 +236,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       }
       // google analytics
       if(settings && settings.google_analytics_id){
-        store.state.seo.scripts.push({ 
+        store.state.seo.scripts.push({
           hid: 'google-analytics',
           type: "text/javascript",
           src: `https://www.googletagmanager.com/gtag/js?id=${settings.google_analytics_id}`,
