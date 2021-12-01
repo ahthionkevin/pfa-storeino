@@ -7,7 +7,6 @@
             .text-primary{ color: var(--primary-color); }
         </component>
         <sections-header-top></sections-header-top>
-        <button @click="test()">dddddddddddddddddddd</button>
         <sections-header></sections-header>
         <sections-header-menu></sections-header-menu>
         <Nuxt keep-alive/>
@@ -79,9 +78,6 @@ export default {
         }
     },
     methods: {
-        test(){
-            this.$storeino.fbpx('add_to_cart')
-        }
     }
 }
 </script>
