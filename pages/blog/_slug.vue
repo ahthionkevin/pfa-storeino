@@ -115,6 +115,9 @@ export default {
         this.$store.state.seo.title = this.$settings.sections.blog.title + ' - ' + this.$settings.store_name;
         this.$store.state.seo.description = this.$settings.sections.blog.description || this.$settings.store_description;
     },
+    mounted() {
+      this.$storeino.fbpx('PageView')
+    },
     methods: {
         setParams(e, key, value){
             if(key.indexOf('price') >= 0){
@@ -131,7 +134,7 @@ export default {
                 case 'categories.slug-in': this.param = [...new Set(...this.param, value)];break;
                 case 'price.salePrice-from': this.query['price-from'] = value;
                 case 'price.salePrice-to': this.query['price-to'] = value;
-                case 'options.values.value1': this.query['colors'] = value 
+                case 'options.values.value1': this.query['colors'] = value
             }
         },
         async getProducts(){

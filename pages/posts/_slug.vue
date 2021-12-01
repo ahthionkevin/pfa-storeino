@@ -68,7 +68,7 @@ export default {
             this.$store.state.seo.title = this.item.title + ' - ' + this.$settings.store_name;
             this.$store.state.seo.description = this.item.excerpt || this.$settings.store_description;
             if(this.item.image){ this.$store.state.seo.image = this.item.image.url; }
-        
+
 
             let url = `https://${this.$store.state.domain}/posts/${slug}`;
             for (const button of this.socialMedia) {
@@ -80,6 +80,9 @@ export default {
             // Redirect to error page if product not exists
             this.$nuxt.error({ statusCode: 404, message: 'post_not_found' })
         }
+    },
+    mounted() {
+      this.$storeino.fbpx('PageView')
     }
 }
 </script>

@@ -9,11 +9,11 @@
             <p class="m-2"><small>{{ item.excerpt }}</small></p>
             <hr>
             <div  v-if="item" class="bg-white rounded-md p-2 my-3 mx-2 description" id="description" v-html="item.content"></div>
-            
+
             <div v-if="$route.params.slug && $route.params.slug.indexOf('contact') > -1">
                 <si-app-loader :placement="'AFTER_CONTACT_PAGE'"/>
             </div>
-            
+
             <div class="flex items-center">
                 <div class=" flex w-full border-b border-gray-200"></div>
                 <h3 class=" whitespace-nowrap p-2">{{ $settings.sections.post.share_buttons.title }}</h3>
@@ -80,6 +80,9 @@ export default {
             // Redirect to error page if product not exists
             this.$nuxt.error({ statusCode: 404, message: 'post_not_found' })
         }
+    },
+    mounted(){
+      this.$storeino.fbpx('PageView')
     }
 }
 </script>

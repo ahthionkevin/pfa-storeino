@@ -51,10 +51,7 @@ export default {
         if(this.routes.includes(this.$route.params.route) && document.querySelector("#account")){
            document.querySelector("#account").submit();
         }
-        // fbPageView();
-        // this.$fbpx('PageView')
-        // snapPageView();
-
+        this.$storeino.fbpx('PageView')
     },
     methods:{
         load(){
@@ -77,8 +74,8 @@ export default {
               { hid: "description", name: "description", content: this.settings ? this.settings.store_description + " account" : " description acount" },
             ],
            script:[]
-         };
-      return headTags;
+        };
+        return headTags;
     },
     }
 }

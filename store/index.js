@@ -6,6 +6,7 @@ const createStore = () => {
           loading:true,
           customer:null,
           cart: [],
+          isPreview:false,
           whishlist: [],
           seo: {
             title: '',

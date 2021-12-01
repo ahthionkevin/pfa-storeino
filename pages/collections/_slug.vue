@@ -41,6 +41,9 @@ export default {
             console.log({e});
         }
         this.loading = false;
+    },
+    mounted() {
+      this.$storeino.fbpx('PageView')
     }
 }
 </script>

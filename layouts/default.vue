@@ -7,6 +7,7 @@
             .text-primary{ color: var(--primary-color); }
         </component>
         <sections-header-top></sections-header-top>
+        <button @click="test()">dddddddddddddddddddd</button>
         <sections-header></sections-header>
         <sections-header-menu></sections-header-menu>
         <Nuxt keep-alive/>
@@ -75,6 +76,11 @@ export default {
                 { rel: "preconnect", href: 'https://fonts.gstatic.com', crossorigin: true },
                 { rel: "stylesheet", href: 'https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap' }
             ]
+        }
+    },
+    methods: {
+        test(){
+            this.$storeino.fbpx('add_to_cart')
         }
     }
 }

@@ -110,7 +110,7 @@ export default function({ app, store, router, $tools }, inject){
             store.state.wishlist.splice(index, 1);
             $tools.setWishlist(store.state.wishlist);
         });
-          window.addEventListener('message', (e) => {
+        window.addEventListener('message', (e) => {
            let response = e.data
            if (response.type == "addToCart")  app.router.push(`/products/${response.data.product.slug}`)
            if (response.type == "loading") {

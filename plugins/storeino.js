@@ -6,7 +6,7 @@ export default async function ({ $http, store, app }, inject) {
     const searches = ['products', 'collections', 'categories', 'upsells' ,'pages', 'brands', 'reviews', 'apps'];
     // Creates and updates
     const creates = []; const updates = [];
-    
+
     // Functions
     for (const module of gets) {
         if(!storeino[module]) storeino[module] = {};
@@ -39,6 +39,18 @@ export default async function ({ $http, store, app }, inject) {
     storeino.products.filters = async function (params) {
         return $http.get('/products/filters', { params });
     }
-    
+
+  storeino.fbpx = async function (ev, data = {}) {
+     console.log(`%cFIRE EVENT : ${ev}`, 'color: #2196f3');
+      if(!store.state.isPreview && store.state.settings && store.state.settings['facebook_multiple_pixel'] && store.state.settings['facebook_multiple_pixel'].length > 0){
+      let exits = false;
+      store.state.settings['facebook_multiple_pixel'].forEach(p => { if (p.active && p.token) exits = true;  });
+      if (exits) {
+        let urlRef = window.location.href;
+        const { data } = await $http.post(`/events/create?name=fbpx&type=${ev}&ref=${urlRef}`,data);
+      }
+    }
+   }
+
     inject('storeino', storeino);
 }

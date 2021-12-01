@@ -45,13 +45,13 @@
                             <button v-if="$settings.sections.product.add_to_cart.active" @click="addToCart" class="w-full flex ai-c p-2 justify-center bg-primary text-white click-effect">
                                 <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="shopping-cart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-6 h-6"><path fill="currentColor" d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z"></path></svg>
                                 <span>&ensp;</span>
-                                <span class="w-full">{{ $settings.sections.product.add_to_cart.text }}</span>         
+                                <span class="w-full">{{ $settings.sections.product.add_to_cart.text }}</span>
                             </button>
                             <span class="w-1 h-1"></span>
                             <button v-if="$settings.sections.product.buy_now.active" v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= -1)" @click="buyNow" class="w-full flex ai-c p-2 justify-center bg-primary text-white click-effect">
                                 <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="shopping-cart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-6 h-6"><path fill="currentColor" d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z"></path></svg>
                                 <span>&ensp;</span>
-                                <span class="w-full">{{ $settings.sections.product.buy_now.text }}</span>         
+                                <span class="w-full">{{ $settings.sections.product.buy_now.text }}</span>
                             </button>
                         </div>
                         <si-app-loader placement="REPLACE_BUYNOW"/>
@@ -128,7 +128,7 @@ export default {
         try{
             const { data } = await this.$storeino.products.get({ slug })
             this.item = data;
-            
+
             this.$store.state.seo.title = (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name;
             this.$store.state.seo.description = this.item.seo.description || this.item.description || this.$settings.store_description;
             this.$store.state.seo.keywords = this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || [];
@@ -154,13 +154,25 @@ export default {
             for (const button of this.socialMedia) {
                 button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
             }
-            if(!process.server) this.$tools.call('PAGE_VIEW', this.item);
+            if(!process.server){
+               this.$storeino.fbpx('PageView')
+          this.$storeino.fbpx('ViewContent',{
+            content_name: this.item.name?this.item.name:'',
+            content_ids: [this.item._id],
+            content_type: "product",
+            value: this.item.price.salePrice,
+            currency: this.$store.state.currency.code
+          })
+              this.$tools.call('PAGE_VIEW', this.item);
+            }
+
         }catch(e){
             // Redirect to error page if product not exists
             this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
         }
     },
     mounted() {
+      console.log('item=====>',this.item);
         if(this.item) this.$tools.call('PAGE_VIEW', this.item);
         window.addEventListener("APP_LOADER", e => {
             window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
@@ -173,6 +185,16 @@ export default {
                 }
             }));
         });
+        if(this.item){
+          this.$storeino.fbpx('PageView')
+           this.$storeino.fbpx('ViewContent',{
+              content_name: this.item.name?this.item.name:'',
+              content_ids: [this.item._id],
+              content_type: "product",
+              value: this.item.price.salePrice,
+              currency: this.$store.state.currency.code
+            })
+        }
     },
     methods: {
         addToCart() {
@@ -201,7 +223,7 @@ export default {
         buyNow() {
             // Add to cart and redirect to checkout
             this.addToCart();
-            this.$nextTick(()=>{ window.location.href = '/checkout2'; });  
+            this.$nextTick(()=>{ window.location.href = '/checkout2'; });
         },
         quantitySelected(quantity) {
             this.item.quantity.value = quantity;
@@ -217,7 +239,7 @@ export default {
             this.variant = variant;
             if(variant.imageId && this.item.images.length > 0){
                 let index = this.item.images.findIndex(i=>i._id == variant.imageId);
-                if(index == -1) index = 0; 
+                if(index == -1) index = 0;
                 this.image = this.item.images[index];
             }else if(this.item.images.length > 0){
                 this.image = this.item.images[0];

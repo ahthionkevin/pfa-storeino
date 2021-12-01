@@ -9,6 +9,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         try {
             if(req.body && req.body.preview){
                 console.log("Is Preview");
+                store.state.isPreview = true;
                 const body = { data: JSON.parse(req.body.preview.data), schema: JSON.parse(req.body.preview.schema) };
                 response = await $http.post('/settings/current', body);
             }else{
@@ -148,11 +149,11 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
             }
             if(route.query.pixel){
               const objData = JSON.parse(route.query.pixel);
+              this.$storeino.fbpx('PageView')
+              this.$storeino.fbpx('Purchase',objData)
               if(pixel.type && pixel.type=="Lead" ){
-                console.log('fpqLead===========>',pixel)
                 window.fbLead(objData,pixel.id);
               }else{
-                console.log('fpqPurchase===========>',pixel)
                 window.fbPurchase(objData,pixel.id);
               }
             }
