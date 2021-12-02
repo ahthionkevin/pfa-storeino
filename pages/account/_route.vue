@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  layout:'defaultAccount',
+  layout:'account',
   head() {
     // return this.seo();
   },
@@ -26,28 +26,19 @@ export default {
     watch: {
         src: function(val) {
             console.log(`Source ${val}`);
-        },
-        $route(to, from) {
-            if(to.params.route!=from.params.route){
-              this.src+=''
-              this.$store.state.loading=true;
-              this.$store.state.loading=true;
-          }
-     }},
+        },},
     data(){
         return{
             routes:['password','orders','profile','messages','login'],
-            src:'/checkout2/orders',
+            src:'http://192.168.0.108:3000/checkout2/orders',
             settings :null
         }
     },
    async fetch(){
-     this.$store.state.loading=true;
-     if(this.$route.params && this.$route.params.route) this.src="/checkout2/"+this.$route.params.route
+     if(this.$route.params && this.$route.params.route) this.src="http://192.168.0.108:3000/checkout2/"+this.$route.params.route
      if(this.$route.query && this.$route.query.orderId) this.src=this.src+'?orderId='+this.$route.query.orderId
    },
     mounted(){
-      this.$store.state.loading=true;
         if(this.routes.includes(this.$route.params.route) && document.querySelector("#account")){
            document.querySelector("#account").submit();
         }
@@ -57,13 +48,13 @@ export default {
         load(){
           if(!process.server){
             this.resizeIframe()
-            new ResizeObserver(this.resizeIframe).observe(this.iframe.contentWindow.document.body)
+            // new ResizeObserver(this.resizeIframe).observe(this.iframe.contentWindow.document.body)
           }
         },
         resizeIframe(){
           this.iframe = document.getElementById("iframe");
-          this.iframe.style.height =  this.iframe.contentWindow.document.body.scrollHeight+100 + 'px';
-          this.iframe.style.width  =  this.iframe.contentWindow.document.body.scrollWidth + 'px';
+          // this.iframe.style.height =  this.iframe.contentWindow.document.body.scrollHeight+100 + 'px';
+          // this.iframe.style.width  =  this.iframe.contentWindow.document.body.scrollWidth + 'px';
         },
        seo() {
         let headTags = {

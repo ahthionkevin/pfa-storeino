@@ -118,7 +118,7 @@ export default function({ app, store, router, $tools }, inject){
                app.router.push('/account/login')
              }
              setTimeout(() => {
-               store.state.loading = response.data.loading
+               store.state.loading = false
              }, 1000)
            }
            if(e.data.token) store.state.customer = $tools.tokenDecode(e.data.token)

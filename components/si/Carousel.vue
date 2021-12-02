@@ -59,9 +59,12 @@ export default {
   },
   mounted() {
     this.$nextTick(()=>{
-      this.parentWidth = document.querySelector('.carousel-container').clientWidth;
-      window.onresize = (ev)=>{
-        this.parentWidth = document.querySelector('.carousel-container').clientWidth;
+      var element=document.querySelector('.carousel-container')
+      if(element) {
+        this.parentWidth = element.clientWidth;
+        window.onresize = (ev)=>{
+          this.parentWidth = element.clientWidth;
+        }
       }
     })
   },
