@@ -30,12 +30,12 @@ export default {
     data(){
         return{
             routes:['password','orders','profile','messages','login'],
-            src:'http://192.168.0.108:3000/checkout2/orders',
+            src:'/checkout2/orders',
             settings :null
         }
     },
    async fetch(){
-     if(this.$route.params && this.$route.params.route) this.src="http://192.168.0.108:3000/checkout2/"+this.$route.params.route
+     if(this.$route.params && this.$route.params.route) this.src="/checkout2/"+this.$route.params.route
      if(this.$route.query && this.$route.query.orderId) this.src=this.src+'?orderId='+this.$route.query.orderId
    },
     mounted(){
