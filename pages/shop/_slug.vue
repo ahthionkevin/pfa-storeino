@@ -2,7 +2,7 @@
     <div class="container">
         <div class="flex mb-2 relative">
             <transition name="slideleft">
-                <div :class="showSideBar ? 'show':'hide'" class="w-80 md:w-1/4 fixed hidden md:block md:top-0 h-full top-0 bottom-0 bg-white md:relative z-10">
+                <div :class="showSideBar ? 'show':'hide'" class="w-80 md:w-1/4 fixed hidden md:block md:top-0 h-full top-0 bottom-0 bg-white md:relative z-20">
                     <div class="bg-black bg-opacity-50 fixed block md:hidden inset-0" @click="showSideBar=false"></div>
                     <div class="border-r bg-white h-full flex flex-col relative">
                         <div class="w-full flex justify-end md:hidden">
