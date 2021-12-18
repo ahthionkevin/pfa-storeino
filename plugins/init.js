@@ -43,7 +43,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         if(!store.state.currency.code){
           const { code, symbol } = settings.store_currencies.find(c=>c.default) || settings.store_currencies[0];
           store.state.currency = { code, symbol };
-        }
+        }else if(settings.store_currencies.find(c=>c.code == store.state.currency.code)) store.state.currency.symbol = settings.store_currencies.find(c=>c.code == store.state.currency.code).symbol;
         if(!store.state.language.code){
           const { code, name } = settings.store_languages.find(c=>c.default) || settings.store_languages[0];
           store.state.language = { code, name };
