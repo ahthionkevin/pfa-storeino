@@ -255,7 +255,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         var ga = document.createElement('script');
         ga.type = 'text/javascript'; ga.async = true;
         ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + settings.google_analytics_id;
-        var s = document.getElementsByTagName('head'); s.appendChild(ga);
+        document.getElementsByTagName('head')[0].appendChild(ga);
         window.dataLayer = window.dataLayer || [];
         window.gtag = function(){dataLayer.push(arguments);}
         window.gtag('js', new Date());
