@@ -249,7 +249,6 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
           w.gtag('config', settings.google_ads.id);
         }else w.gtag = function gtag(a,b,c,d){};
       })(window, document, 'script');
-
       // google analytics
       if(settings && settings.google_analytics_id){
         console.log("Add Google Analytics");
