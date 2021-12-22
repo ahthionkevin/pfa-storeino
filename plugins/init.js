@@ -237,15 +237,14 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       }
       // google analytics
       if(settings && settings.google_analytics_id){
-        store.state.seo.scripts.push({
-          hid: 'google-analytics',
-          type: "text/javascript",
-          src: `https://www.googletagmanager.com/gtag/js?id=${settings.google_analytics_id}`,
-          defer: true
-        });
+        console.log("Add Google Analytics");
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + settings.google_analytics_id;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
       }
-      // google ads
-
+      // google ads d
       (function (w, d, t) {
         if(settings && settings.google_ads && settings.google_ads.id){
           var s = d.createElement(t); s.async = !0;
