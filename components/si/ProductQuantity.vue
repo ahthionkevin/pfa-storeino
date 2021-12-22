@@ -11,6 +11,7 @@
         <button @click="inc(1)" class="bg-gray-50 border py-2 px-4" :class="value < quantity.instock ? 'bg-primary text-white' : ''">+</button>
     </div>
 </template>
+
 <script>
 export default {
     props: {
