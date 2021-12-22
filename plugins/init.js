@@ -235,15 +235,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
           window.snapPurchase({});
         }
       }
-      // google analytics
-      if(settings && settings.google_analytics_id){
-        console.log("Add Google Analytics");
-        var ga = document.createElement('script');
-        ga.type = 'text/javascript'; ga.async = true;
-        ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + settings.google_analytics_id;
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(ga, s);
-      }
+      
       // google ads d
       (function (w, d, t) {
         if(settings && settings.google_ads && settings.google_ads.id){
@@ -257,6 +249,21 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
           w.gtag('config', settings.google_ads.id);
         }else w.gtag = function gtag(a,b,c,d){};
       })(window, document, 'script');
+
+      // google analytics
+      if(settings && settings.google_analytics_id){
+        console.log("Add Google Analytics");
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + settings.google_analytics_id;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+        window.dataLayer = window.dataLayer || [];
+        w.gtag = function(){dataLayer.push(arguments);}
+        w.gtag('js', new Date());
+        w.gtag('config', settings.google_analytics_id);
+      }
+
       window.googleAdsEvent = (eventName)=>{
         if(settings.google_ads && settings.google_ads.id && settings.google_ads.events){
           console.log(`%cGoogle Ads ${eventName}`, 'color: #bada55');
