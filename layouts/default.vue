@@ -52,7 +52,8 @@ export default {
             htmlAttrs: {
                 lang: this.$store.state.language.code,
                 dir: this.$store.state.language.code == 'AR' ? 'rtl' : 'ltr'
-            }
+            },
+            script: this.$store.state.seo.scripts
         }
     },
     data() {
