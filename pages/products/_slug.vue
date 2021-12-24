@@ -172,7 +172,7 @@ export default {
         }
     },
     mounted() {
-      console.log('item=====>',this.item);
+        console.log('item=====>',this.item);
         if(this.item) this.$tools.call('PAGE_VIEW', this.item);
         window.addEventListener("APP_LOADER", e => {
             window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
@@ -194,6 +194,29 @@ export default {
               value: this.item.price.salePrice,
               currency: this.$store.state.currency.code
             })
+        }
+
+
+        if(this.item){
+            const iframes=document.querySelectorAll('iframe')
+            for(const ifram of iframes){
+            const width = ifram.getAttribute('width')
+            const height = ifram.getAttribute('height')
+            const parent = ifram.parentNode
+            if (!parent.classList.contains('video-wrapper')) {
+                const div = document.createElement("div");
+                ifram.after(div)
+                div.classList.add('video-wrapper')
+                div.style.width=width+'px'
+                div.style.height=height+'px'
+                div.style.maxWidth='100%'
+                div.style.maxHeight='100%'
+                div.style.display='inline-block'
+                ifram.style.width=null
+                ifram.style.height=null
+                div.appendChild(ifram)
+            }
+            }
         }
     },
     methods: {
@@ -256,3 +279,20 @@ export default {
     },
 }
 </script>
+<style>
+.video-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+}
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
