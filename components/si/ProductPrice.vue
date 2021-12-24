@@ -3,7 +3,7 @@
         <div class="price flex justify-center my-2" v-if="type=='simple'">
             <b class="text-primary">{{ price.salePrice }}{{ $store.state.currency.symbol }}</b>
             <span class="flex w-2"></span>
-            <span class="relative">
+            <span class="relative" v-if="price.comparePrice > 0">
                 <b class="text-gray-600">{{ price.comparePrice }}{{ $store.state.currency.symbol }}</b>
                 <span class="compare-price absolute top-3 block w-full bg-red-600"></span>
             </span>
@@ -16,7 +16,7 @@
         <div class="price flex justify-center my-2" v-else-if="variants.length > 0">
             <b class=" text-primary">{{ variants[0].price.salePrice }}{{ $store.state.currency.symbol }}</b>
             <span class="flex w-2"></span>
-            <span class="relative">
+            <span class="relative" v-if="variants[0].price.comparePrice > 0">
                 <b class="text-gray-600">{{ variants[0].price.comparePrice }}{{ $store.state.currency.symbol }}</b>
                 <span class="compare-price absolute top-3 block w-full bg-red-600"></span>
             </span>

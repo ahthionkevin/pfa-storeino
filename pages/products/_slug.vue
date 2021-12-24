@@ -206,14 +206,11 @@ export default {
             if (!parent.classList.contains('video-wrapper')) {
                 const div = document.createElement("div");
                 ifram.after(div)
-                div.classList.add('video-wrapper')
-                div.style.width=width+'px'
-                div.style.height=height+'px'
-                div.style.maxWidth='100%'
-                div.style.maxHeight='100%'
-                div.style.display='inline-block'
-                ifram.style.width=null
-                ifram.style.height=null
+                div.classList.add('video-wrapper');
+                ifram.style.width=null;
+                ifram.style.height=null;
+                ifram.setAttribute('width','');
+                ifram.setAttribute('height','');
                 div.appendChild(ifram)
             }
             }
@@ -284,6 +281,7 @@ export default {
   position: relative;
   overflow: hidden;
   width: 100%;
+  height: 0;
   padding-top: 56.25%;
 }
 .video-wrapper iframe {
