@@ -1,5 +1,6 @@
 <template>
     <div>
+        <meta itemprop="priceCurrency" :content="$store.state.currency.code" />
         <div class="price flex justify-center my-2" v-if="type=='simple'">
             <b class="text-primary">{{ price.salePrice }}{{ $store.state.currency.symbol }}</b>
             <span class="flex w-2"></span>
@@ -7,13 +8,16 @@
                 <b class="text-gray-600">{{ price.comparePrice }}{{ $store.state.currency.symbol }}</b>
                 <span class="compare-price absolute top-3 block w-full bg-red-600"></span>
             </span>
+            <meta itemprop="price" :content="price.salePrice" />
         </div>
         <div class="price flex justify-center my-2" v-else-if="minPrice != maxPrice">
+            <meta itemprop="price" :content="minPrice" />
             <b class=" text-primary">{{ minPrice }}{{ $store.state.currency.symbol }}</b>
             <span class="flex">~</span>
             <b class=" text-primary">{{ maxPrice }}{{ $store.state.currency.symbol }}</b>
         </div>
         <div class="price flex justify-center my-2" v-else-if="variants.length > 0">
+            <meta itemprop="price" :content="variants[0].price.salePrice" />
             <b class=" text-primary">{{ variants[0].price.salePrice }}{{ $store.state.currency.symbol }}</b>
             <span class="flex w-2"></span>
             <span class="relative" v-if="variants[0].price.comparePrice > 0">

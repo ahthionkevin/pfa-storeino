@@ -4,6 +4,7 @@
             <si-loader></si-loader>
         </div>
         <div class="flex flex-wrap" v-if="item">
+            <meta itemprop="productID" :content="item._id" />
             <div class="w-full md:w-1/2">
                 <div class="p-2 relative flex flex-col">
                     <button v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="item absolute top-1 right-2 m-2 p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
@@ -24,6 +25,7 @@
                 <div class="p-2">
                     <div class="bg-white p-2">
                         <h1 class="text-3xl font-bold mb-2">{{ item.name }}</h1>
+                        <meta itemprop="name" :content="item.name" />
                         <div class="flex items-center justify-start mb-2" v-if="$settings.sections.product.reviews.active">
                             <div class="mb-1 flex">
                                 <span v-for="(star,i) in 5" :class="star <= item.review.rating ? 'text-yellow-500 ': 'text-gray-400'" :key="i">
