@@ -245,7 +245,9 @@ export default {
         buyNow() {
             // Add to cart and redirect to checkout
             this.addToCart();
-            this.$nextTick(()=>{ window.location.href = '/checkout2'; });
+            setTimeout(() => {
+                window.location.href = '/checkout2';
+            }, 500);
         },
         quantitySelected(quantity) {
             this.item.quantity.value = quantity;
