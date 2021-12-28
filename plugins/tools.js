@@ -55,10 +55,12 @@ export default function({ store }, inject){
         return { _id: item._id };
     }
     tools.setCart = (cart) => {
+        console.log('setCart', cart);
         const cartString = JSON.stringify(cart);
         document.cookie = `STOREINO-CART=${cartString};`;
     }
     tools.setWishlist = (wishlist) => {
+        console.log('setWishlist', wishlist);
         const wishString = JSON.stringify(wishlist);
         document.cookie = `STOREINO-WISHLIST=${wishString};`;
     }
