@@ -57,7 +57,7 @@ export default function({ store }, inject){
     tools.setCart = (cart) => {
         console.log('setCart', cart);
         const cartString = JSON.stringify(cart);
-        document.cookie = `STOREINO-CART=${cartString};`;
+        document.cookie = `STOREINO-CART=${cartString};;path=/`;
     }
     tools.setWishlist = (wishlist) => {
         console.log('setWishlist', wishlist);
