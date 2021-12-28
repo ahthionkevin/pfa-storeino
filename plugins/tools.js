@@ -57,12 +57,12 @@ export default function({ store }, inject){
     tools.setCart = (cart) => {
         console.log('setCart', cart);
         const cartString = JSON.stringify(cart);
-        document.cookie = `STOREINO-CART=${cartString};;path=/`;
+        document.cookie = `STOREINO-CART=${cartString};path=/`;
     }
     tools.setWishlist = (wishlist) => {
         console.log('setWishlist', wishlist);
         const wishString = JSON.stringify(wishlist);
-        document.cookie = `STOREINO-WISHLIST=${wishString};`;
+        document.cookie = `STOREINO-WISHLIST=${wishString};path=/`;
     }
     tools.toast = (message, type = 'success') => {
         if(!process.server){
