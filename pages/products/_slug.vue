@@ -81,6 +81,7 @@
                 <sections-upsell :item="item.upsell"/>
             </div>
             <div  v-if="item" class="bg-white rounded-md p-2 my-3 mx-2 description" id="description" v-html="item.html"></div>
+            <si-app-loader placement="AFTER_DESCRIPTION"/>
             <div v-if="item && $settings.sections.product.reviews.active" class="reviews">
                 <sections-reviews :item="item"></sections-reviews>
             </div>
