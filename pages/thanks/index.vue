@@ -17,6 +17,8 @@
 export default {
 	mounted() {
 		this.$tools.call('PAGE_VIEW');
+		this.$storeino.fbpx('PageView');
+		this.$storeino.fbpx('Purchase');
 	}
 }
 </script>

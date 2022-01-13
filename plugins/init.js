@@ -95,70 +95,30 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       };
       window.StoreinoApp = StoreinoApp;
       const settings = store.state.settings;
-      // Facebook pixel
-      !function (s, t, o, r, e, i, n, o_) {
-          if(!(settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0)){ r = 'data:application/javascript;utf-8,console.log("Fb%20Pixel%20not%20found%20")'; }
-          if (s.fbq) return; e = s.fbq = function () { e.callMethod ? e.callMethod.apply(e, arguments) : e.queue.push(arguments); }
-          if (!s.fbq) s._fbq = e; e.push = e; e.loaded = !0; e.version = '2.0'; e.queue = [];
-          i = t.createElement(o); i.async = !0; i.src = r; t.head.appendChild(i);
-          s.fbPixel = function (fbId, d = {}) { s.fbq(o_, String(fbId).trim(), d);};
-          s.fbPageView = function (d = {}) { s.fbq(n, 'PageView', d); };
-          s.fbAddToCart = function (d = {}) { fbq(n, 'AddToCart', d); };
-          s.fbViewContent = function (d = {}) { fbq(n, 'ViewContent', d); };
-          s.fbCompleteRegistration = function (d = {}) { fbq(n, 'CompleteRegistration', d); };
-          s.fbInitiateCheckout = function (d = {}) { fbq(n, 'InitiateCheckout', d); };
-          s.fbAddPaymentInfo = function (d = {}) { fbq(n, 'AddPaymentInfo', d); };
-          s.fbPurchase = function (d = {}, id=null) {
-              let valueCur = 1 ;
-              if (d.currency && settings && settings.facebook_currency && settings.facebook_currency[d.currency] && settings.facebook_currency[d.currency] != 0 ) {
-                  valueCur = settings.facebook_currency[d.currency];
-              }
-              d.currency = 'USD';
-            d.value = Number(d.value) / valueCur;
-             if (id) {
-              fbq('trackSingle', id, 'Purchase', d);
-             }else  fbq(n, 'Purchase', d);
-          };
-          s.fbSearch = function (d = {}) { fbq(n, 'Search', d); };
-        s.fbLead = function (d = {}, id = null) {
-           let valueCur = 1 ;
-           if (d.currency && settings && settings.facebook_currency && settings.facebook_currency[d.currency] && settings.facebook_currency[d.currency] != 0 ) {
-               valueCur = settings.facebook_currency[d.currency];
-           }
-           d.currency = 'USD';
-          if (id) {
-            fbq('trackSingle', id, 'Lead', d);
-          }else fbq(n, 'Lead', d);
-        };
-          s.fbContact = function (d = {}) { fbq(n, 'Contact', d); };
-          s.fbAddToWishlist = function (d = {}) { fbq(n, 'AddToWishlist', d); };
-          s.fbCustomizeProduct = function (d = {}) { fbq(n, 'CustomizeProduct', d); };
-          s.fbDonate = function (d = {}) { fbq(n, 'Donate', d); };
-          s.fbStartTrial = function (d = {}) { fbq(n, 'StartTrial', d); }; s.c = function (d = {}) { fbq(n, 'SubmitApplication', d); };
-          s.fbSubscribe = function (d = {}) { fbq(n, 'Subscribe', d); };
-      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js', 0, 0, 'track', 'init');
-      if(settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0){
-        for (const pixel of settings.facebook_multiple_pixel) {
-            if (pixel.active){
-                if(!pixel.token) {
-                    console.log("%cSimple Facebook pixel is ready", 'color: #bada55');
-                    fbPixel(pixel.id);
-                }else{
-                    console.log("%cAPI Facebook pixel is ready", 'color: #bada55');
-                }
-            }
-            if(route.query.pixel){
-              const objData = JSON.parse(route.query.pixel);
-              $storeino.fbpx('PageView')
-              $storeino.fbpx('Purchase',objData)
-              if(pixel.type && pixel.type=="Lead" ){
-                window.fbLead(objData,pixel.id);
-              }else{
-                window.fbPurchase(objData,pixel.id);
-              }
-            }
-        }
+      if (route.query.fbclid) {
+        console.log("SET FBCLID");
+        localStorage.setItem('__fbc',`fb.1.${Date.now()}.${route.query.fbclid}`);
+        localStorage.setItem('__fbp',`fb.1.${Date.now()}.${parseInt(Math.random() * (9999999999 - 1999999999) + 1999999999)}`);
       }
+
+      // Facebook pixel
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+
+      if(!store.state.isPreview && settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0){
+        settings.facebook_multiple_pixel.forEach(p => {
+          if (p.active) {
+            fbq('init', p.id);
+          }
+        });
+      }
+      window._fbpx = app.context.$storeino.fbpx;
       // Tiktok pixel
 
       !function (w, d, t) {
