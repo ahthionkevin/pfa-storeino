@@ -58,7 +58,7 @@ export default async function ({ $http, store, app, route }, inject) {
 //     }
 //    }
     storeino.fbpx = async function fbpx(ev, data = {},params = {}){
-        if (ev == "Purchase" && !route.query.pixel) return 0;
+        if (ev == "Purchase" && !route.query.pixel && !data.currency) return 0;
         else if ( ev == "Purchase" && route.query.pixel) {
             let pixelData = JSON.parse(route.query.pixel);
             pixelData.contents.forEach((element) => {
