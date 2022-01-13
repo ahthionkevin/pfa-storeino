@@ -67,6 +67,9 @@ export default async function ({ $http, store, app, route }, inject) {
                 delete element.variant;
                 delete element.name;
             });
+            console.log("--- pixel1 ---");
+            console.log(data);
+            console.log(params);
             data = {
                 content_ids: pixelData.content_ids,
                 content_type: "product",
@@ -75,6 +78,9 @@ export default async function ({ $http, store, app, route }, inject) {
                 currency: (store.state.currency && store.state.currency.code) ? store.state.currency.code : "USD"
             };
             if(pixelData.fbParams) params =  pixelData.fbParams;
+            console.log("--- pixel2 ---");
+            console.log(data);
+            console.log(params);
         }
 
 
@@ -108,10 +114,7 @@ export default async function ({ $http, store, app, route }, inject) {
         let exits = false;
         store.state.settings['facebook_multiple_pixel'].forEach(p => { if (p.active && p.token) exits = true;  });
         if (exits) {
-            console.log("--- pixel ---");
-            console.log(data);
-            console.log(query);
-            const { data } = await $http.post(`/events/create`, data,{ params:query });
+            await $http.post(`/events/create`, data,{ params:query });
         }
         }
     }
