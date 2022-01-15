@@ -84,7 +84,7 @@ export default async function ({ $http, store, app, route }, inject) {
         let event_id = 'STORE_'+ Date.now();
         let query = { name: "fbpx", type: ev, ref: window.location.href, event_id };
         if (params) { for (const key in params) { query[key] = params[key];} }
-        if (localStorage.getItem('__fbp')) query['user_fbp'] = localStorage.getItem('__fbp');
+        if (localStorage.getItem('__external_id')) query['user_external_id'] = localStorage.getItem('__external_id');
         if (localStorage.getItem('__fbc')) query['user_fbc'] = localStorage.getItem('__fbc');
         
         if (data.currency) {

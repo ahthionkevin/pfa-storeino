@@ -98,9 +98,8 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       if (route.query.fbclid) {
         console.log("SET FBCLID");
         localStorage.setItem('__fbc',`fb.1.${Date.now()}.${route.query.fbclid}`);
-        localStorage.setItem('__fbp',`fb.1.${Date.now()}.${parseInt(Math.random() * (9999999999 - 1999999999) + 1999999999)}`);
       }
-
+      localStorage.setItem('__external_id','U'+Date.now());
       // Facebook pixel
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -110,11 +109,11 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-
+      window.external_id = localStorage.getItem('__external_id');
       if(!store.state.isPreview && settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0){
         settings.facebook_multiple_pixel.forEach(p => {
           if (p.active) {
-            fbq('init', p.id);
+            fbq('init', p.id, { external_id: window.external_id });
           }
         });
       }
