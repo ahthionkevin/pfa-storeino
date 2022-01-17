@@ -57,7 +57,7 @@ export default async function ({ $http, store, app, route }, inject) {
 //       }
 //     }
 //    }
-    storeino.fbpx = async function fbpx(ev, data = {},params = {}){
+    storeino.fbpx = async function(ev, data = {},params = {}){
         if (ev == "Purchase" && !route.query.pixel && !data.currency) return 0;
         else if ( ev == "Purchase" && route.query.pixel) {
             let pixelData = JSON.parse(route.query.pixel);
@@ -81,7 +81,7 @@ export default async function ({ $http, store, app, route }, inject) {
         console.log(`%cFIRE EVENT : ${ev}`, 'color: #2196f3');
         if(!store.state.isPreview && store.state.settings && store.state.settings['facebook_multiple_pixel'] && store.state.settings['facebook_multiple_pixel'].length > 0){
         
-        let event_id = 'STORE_'+ Date.now();
+        const event_id = 'STORE_'+ Date.now();
         let query = { name: "fbpx", type: ev, ref: window.location.href, event_id };
         if (params) { for (const key in params) { query[key] = params[key];} }
         if (localStorage.getItem('__external_id')) query['user_external_id'] = localStorage.getItem('__external_id');
@@ -102,7 +102,11 @@ export default async function ({ $http, store, app, route }, inject) {
                 else fbq("trackSingle", pixel.id, 'Purchase', data, { eventID: event_id });
             }
             });
-        }else fbq("track", ev, data, { eventID: event_id });
+        }else{
+            console.log("%cEVENT : "+ev, 'color: #2196f3');
+            console.log({ev, data, event_id});
+            fbq("track", ev, data, { eventID: event_id });
+        }
         
 
         let exits = false;
