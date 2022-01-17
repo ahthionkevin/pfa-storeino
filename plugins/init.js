@@ -113,7 +113,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       if(!store.state.isPreview && settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0){
         settings.facebook_multiple_pixel.forEach(p => {
           if (p.active) {
-            fbq('init', p.id, { external_id: window.external_id });
+            fbq('init', p.id, { external_ID: window.external_id });
           }
         });
       }
