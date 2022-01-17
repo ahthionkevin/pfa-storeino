@@ -158,15 +158,16 @@ export default {
                 button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
             }
             if(!process.server){
-               this.$storeino.fbpx('PageView')
-          this.$storeino.fbpx('ViewContent',{
-            content_name: this.item.name?this.item.name:'',
-            content_ids: [this.item._id],
-            content_type: "product",
-            value: this.item.price.salePrice,
-            currency: this.$store.state.currency.code
-          })
-              this.$tools.call('PAGE_VIEW', this.item);
+                console.log("Send facebook events");
+                this.$storeino.fbpx('PageView')
+                this.$storeino.fbpx('ViewContent',{
+                    content_name: this.item.name?this.item.name:'',
+                    content_ids: [this.item._id],
+                    content_type: "product",
+                    value: this.item.price.salePrice,
+                    currency: this.$store.state.currency.code
+                });
+                this.$tools.call('PAGE_VIEW', this.item);
             }
 
         }catch(e){
