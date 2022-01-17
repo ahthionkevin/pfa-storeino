@@ -80,9 +80,7 @@ export default async function ({ $http, store, app, route }, inject) {
 
         console.log(`%cFIRE EVENT : ${ev}`, 'color: #2196f3');
         if(!store.state.isPreview && store.state.settings && store.state.settings['facebook_multiple_pixel'] && store.state.settings['facebook_multiple_pixel'].length > 0){
-        
-        const event_id = 'STORE_'+ Date.now();
-        let query = { name: "fbpx", type: ev, ref: window.location.href, event_id };
+        let query = { name: "fbpx", type: ev, ref: window.location.href };
         if (params) { for (const key in params) { query[key] = params[key];} }
         if (localStorage.getItem('__external_id')) query['user_external_id'] = localStorage.getItem('__external_id');
         if (localStorage.getItem('__fbc')) query['user_fbc'] = localStorage.getItem('__fbc');
@@ -98,14 +96,13 @@ export default async function ({ $http, store, app, route }, inject) {
         if (ev == "Purchase") {
             store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
             if (pixel.active) {
-                if (pixel.type && pixel.type == "Lead") fbq("trackSingle", pixel.id, 'Lead', data, { eventID: event_id });
-                else fbq("trackSingle", pixel.id, 'Purchase', data, { eventID: event_id });
+                if (pixel.type && pixel.type == "Lead") fbq("trackSingle", pixel.id, 'Lead', data);
+                else fbq("trackSingle", pixel.id, 'Purchase', data);
             }
             });
         }else{
             console.log("%cEVENT : "+ev, 'color: #2196f3');
-            console.log({ev, data, event_id});
-            fbq("track", ev, data, { eventID: event_id });
+            fbq("track", ev, data);
         }
         
 
