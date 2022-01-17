@@ -95,14 +95,18 @@ export default async function ({ $http, store, app, route }, inject) {
         }
         if (ev == "Purchase") {
             store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
-            if (pixel.active) {
+            if (pixel.active && !pixel.token) {
                 if (pixel.type && pixel.type == "Lead") fbq("trackSingle", pixel.id, 'Lead', data);
                 else fbq("trackSingle", pixel.id, 'Purchase', data);
             }
             });
         }else{
             console.log("%cEVENT : "+ev, 'color: #2196f3');
-            fbq("track", ev, data);
+            store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
+                if (pixel.active && !pixel.token) {
+                    fbq("trackSingle", pixel.id, ev, data);
+                }
+            });
         }
         
 
