@@ -17,6 +17,8 @@
         <sections-footer-menu></sections-footer-menu>
         <sections-copyright></sections-copyright>
         <si-full-image></si-full-image>
+      <div v-if="$settings.other_scripts" class="other-scripts" v-html="$settings.other_scripts"></div>
+
     </div>
 </template>
 <script>
