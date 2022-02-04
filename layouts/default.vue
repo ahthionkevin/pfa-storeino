@@ -9,7 +9,7 @@
         <sections-header-top></sections-header-top>
         <sections-header></sections-header>
         <sections-header-menu></sections-header-menu>
-        <Nuxt keep-alive/>
+        <Nuxt />
         <sections-footer></sections-footer>
         <div class="bg-white flex">
             <hr class="my-2 w-full">
