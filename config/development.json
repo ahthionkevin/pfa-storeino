@@ -1,7 +1,7 @@
 {
     "env": "development",
     "token": {
-        "clientId": "3",
-        "clientSecret": "4"
+        "clientId": "60dca6a2fbabab01f8e2d08d-devstore2.storeino.world",
+        "clientSecret": "s609Jex6s9QlajZuoj1TQjPo"
     }
 }

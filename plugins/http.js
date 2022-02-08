@@ -34,7 +34,6 @@ export default async function ({ $axios, store, $tools, app, route }, inject) {
       }
     }
 
-
   }else{
     if(store.state.currency.code) document.cookie = `CURRENT_CURRENCY=${store.state.currency.code}`;
     if(store.state.language.code) document.cookie = `CURRENT_LANGUAGE=${store.state.language.code}`;

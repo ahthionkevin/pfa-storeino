@@ -15,7 +15,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
             <div class="flex flex-col justify-center w-1/2 md:w-1/4 bg-gray-100 md:bg-white p-2">
                 <si-product-quantity @selected="quantitySelected" :quantity="item.quantity"/>
