@@ -459,4 +459,8 @@ export default {
     transform: rotate(0deg);
   }
 
+  [dir="rtl"] .rotated {
+    transform: rotate(92deg);
+  }
+
 </style>
