@@ -11,7 +11,7 @@
             <!-- Size style for Color option -->
             <div v-if="option.key == 'color' && option.style == 'SIZE'" class="options-list">
                 <div v-for="(val, ii) in option.values" :key="ii" class="option mx-1">
-                    <button class="size-style" :class="selected[`option${i+1}`] && selected[`option${i+1}`].value == val._id ? 'active': ''" @click="setVariant(i+1, val._id)" :id="val._id" :style="``"><small>{{ val.value1 }}</small></button>
+                    <button class="size-style " :class="selected[`option${i+1}`] && selected[`option${i+1}`].value == val._id ? 'active': ''" @click="setVariant(i+1, val._id)" :id="val._id" :style="``"><small>{{ val.value1 }}</small></button>
                 </div>
             </div>
 
@@ -19,7 +19,7 @@
             <div v-if="option.style == 'LIST' && option.key == 'color'" class="options-list">
                 <div class="select-list-option">
                     <select class="select-list" v-model="listStyleColorValue" @change="changeVarColor($event)">
-                        <option v-for="(val, ii) in option.values" :key="ii" :value="{index: i+1,value: val._id}" >{{ val.value1 }}</option>
+                        <option class="option-of-select" v-for="(val, ii) in option.values" :key="ii" :value="{index: i+1,value: val._id}" >{{ val.value1 }}</option>
                     </select>
                 </div>
             </div>
@@ -28,7 +28,7 @@
             <div v-if="option.style == 'LIST' && option.key == 'size'" class="options-list">
                 <div class="select-list-option">
                     <select class="select-list" v-model="listStyleSizeValue" @change="changeVarSize($event)" >
-                        <option v-for="(val, ii) in option.values" :key="ii" :value="{index: i+1,value: val._id}" >{{ val.value1 }}</option>
+                        <option class="option-of-select" v-for="(val, ii) in option.values" :key="ii" :value="{index: i+1,value: val._id}" >{{ val.value1 }}</option>
                     </select>
                 </div>
             </div>
@@ -37,7 +37,7 @@
             <div v-if="option.style == 'LIST' && option.key !== 'size' && option.key !== 'color'" class="options-list">
                 <div class="select-list-option">
                     <select class="select-list" v-model="listStyleOtherOption" @change="changeVarOther($event)" >
-                        <option v-for="(val, ii) in option.values" :key="ii" :value="{index: i+1,value: val._id}" >{{ val.value1 }}</option>
+                        <option class="option-of-select" v-for="(val, ii) in option.values" :key="ii" :value="{index: i+1,value: val._id}" >{{ val.value1 }}</option>
                     </select>
                 </div>
             </div>
@@ -326,7 +326,7 @@ export default {
 .options-list .select-list-option::after {
   content: '\25BC';
   position: absolute;
-  top: 0;
+  top: -5px;
   right: 0;
   padding: 1em;
   background-color: #f0f0f0;
@@ -397,6 +397,10 @@ export default {
   .content-check-style{
     align-items: center;
     display: flex;
+  }
+
+  .option-of-select{
+    direction: ltr;
   }
 
 </style>

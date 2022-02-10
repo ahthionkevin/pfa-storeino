@@ -15,10 +15,56 @@
                             <div v-if="loading.collections" class="flex justify-center items-center my-5">
                                 <si-loader></si-loader>
                             </div>
-                            <div v-for="(item, i) in collections" :key="i" class="flex items-center px-2">
-                                <input class="w-4 h-4 mx-1" :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(item.slug) >= 0" :id="item.slug" @change="setParams($event, 'collections.slug-in', item.slug)" type="checkbox"/>
-                                <label class="cursor-pointer capitalize" :for="item.slug">{{ item.name }}</label>
-                            </div>
+                            <div v-for="(item, i) in collections" :key="i" class="px-2">
+                                <div class="flex items-center">
+                                    <input class="w-4 h-4 mx-1" :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(item.slug) >= 0" :id="item.slug" @change="setParams($event, 'collections.slug-in', item.slug)" type="checkbox"/>
+                                    <label class="cursor-pointer capitalize collec-name" :for="item.slug">{{ item.name }}</label>
+                                    <svg @click="setActive(i+'fit',i+'ret')" :id="i+'ret'"  v-if="item.childrens && item.childrens.length > 0 " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="15" height="15" x="0" y="0" viewBox="0 0 451.847 451.847" style="enable-background:new 0 0 512 512 ; cursor:pointer;" xml:space="preserve" class="rotated"><g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751   c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0   c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z" fill="#7a7575" data-original="#000000" style="" class=""/>
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        <g xmlns="http://www.w3.org/2000/svg">
+                                        </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div :id="i+'fit'" class="fit-collapsible" :class="item.childrens.length > 0 ? 'sub-collections' : ''">
+                                    <ul class="list-sub-collections fit-collapsible-content" v-if="item.childrens && item.childrens.length > 0 ">
+                                        <li v-for="(child, i) in item.childrens">
+                                            <input class="w-4 h-4 mx-1" :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(child.slug) >= 0" :id="child.slug" @change="setParams($event, 'collections.slug-in', child.slug)" type="checkbox"/>
+                                            <label :for="child" class=" c-p c-grey">{{ child.name }}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div> 
                         </div>
                         <hr v-if="$settings.sections.shop.sidebar.collections.active">
                         <h2 v-if="$settings.sections.shop.sidebar.prices.active" class="px-2 mt-2">{{ $settings.sections.shop.sidebar.prices.title }}</h2>
@@ -204,8 +250,41 @@ export default {
         await this.getItems();
         await this.getCollections();
         await this.getBrands();
+        this.subCollections();
     },
     methods: {
+        subCollections(){
+            console.log('collections items ====>', this.items);
+            for(let itm of this.collections){
+                if(itm.childrens && itm.childrens.length>0) itm.childrens = [];
+            }
+            for(let i=0; i<this.collections.length; i++){
+                for(let j=0; j<this.collections.length; j++){ 
+                    if(this.collections[i].parent == this.collections[j]._id ){
+                    console.log('this item _____',this.collections[i]);
+                    let childObject = this.collections[i];
+                    this.collections[j].childrens.push(childObject);
+                    this.collections.splice(i,1);
+                        i--;
+                    }
+                }
+            }
+            console.log('items childrens is vide _______',this.collections);
+        },
+        setActive:function(id,idRet){
+            var element = document.getElementById(id);
+            if(element.classList.contains('active')){
+                element.classList.remove('active');
+            }else{
+                element.classList.add('active');
+            }
+            var icon = document.getElementById(idRet);
+            if(icon.classList.contains('active')){
+                icon.classList.remove('active');
+            }else{
+                icon.classList.add('active');
+            }
+        },
         setParams(e, key, value){
             if(key.indexOf('price') >= 0 || key.indexOf('page') >= 0){
                 this.$set(this.params,key, e.target.value);
@@ -332,5 +411,52 @@ export default {
         display: block !important;
     }
 }
+
+    .collec-name{
+        margin-right: auto;
+    }
+
+
+  .sub-collections .list-sub-collections{
+    list-style: none;
+    padding-left:40px;
+  }
+
+ .fit-collapsible{
+    overflow: unset;
+    /*padding-bottom: 20px;*/
+    /*border-bottom: 1px solid #dadbdd;*/
+    text-align: left;
+    display: block;
+    margin: 0;
+    /*padding: 0;*/
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: 0 0;
+  }
+
+  .fit-collapsible .fit-collapsible-content{
+    max-height: 0;
+    position: relative;
+    overflow: hidden;
+    /* padding: 0; */
+    transition: 0.4s;
+    /*overflow-y: auto;*/
+  }
+
+  .fit-collapsible.active .fit-collapsible-content{
+    max-height: 500px;
+    /*padding: 10px;*/
+  }
+
+  .rotated{
+    transform: rotate(-92deg);
+    transition: 0.3s;
+  }
+
+  .rotated.active{
+    transform: rotate(0deg);
+  }
 
 </style>
