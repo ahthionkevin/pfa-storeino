@@ -421,10 +421,10 @@ export default {
 }
 
 
-[dir="ltr"]  .sub-collections .list-sub-collections{
-    list-style: none;
-    padding-left:40px;
-  }
+    [dir="ltr"]  .sub-collections .list-sub-collections{
+        list-style: none;
+        padding-left:40px;
+    }
 
   [dir="rtl"]  .sub-collections .list-sub-collections{
     list-style: none;
@@ -432,7 +432,7 @@ export default {
   }
 
   [dir="rtl"]  .list-sub-collections li{
-    padding-left: 133px;
+    /*padding-left: 133px;*/
     text-align: right;
   }
 
@@ -478,7 +478,7 @@ export default {
     transition: 0.3s;
   }
 
- [dir="rtl"] .rotated.active{
+[dir="rtl"] .rotated.active{
     transform: rotate(0deg);
   }
 
