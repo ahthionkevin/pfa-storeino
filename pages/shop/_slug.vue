@@ -412,14 +412,28 @@ export default {
     }
 }
 
-    .collec-name{
-        margin-right: auto;
-    }
+[dir="ltr"] .collec-name{
+    margin-right: auto;
+}
+
+[dir="rtl"] .collec-name{
+    margin-left:auto;
+}
 
 
-  .sub-collections .list-sub-collections{
+[dir="ltr"]  .sub-collections .list-sub-collections{
     list-style: none;
     padding-left:40px;
+  }
+
+  [dir="rtl"]  .sub-collections .list-sub-collections{
+    list-style: none;
+    padding-right:40px;
+  }
+
+  [dir="rtl"]  .list-sub-collections li{
+    padding-left: 133px;
+    text-align: right;
   }
 
  .fit-collapsible{
@@ -461,6 +475,11 @@ export default {
 
   [dir="rtl"] .rotated {
     transform: rotate(92deg);
+    transition: 0.3s;
+  }
+
+ [dir="rtl"] .rotated.active{
+    transform: rotate(0deg);
   }
 
 </style>
