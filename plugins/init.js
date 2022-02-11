@@ -53,7 +53,8 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
             store.state.apps = [];
             const response =  await $storeino.apps.search({only: ['name', 'route', 'placement', 'config']});
             const names = response.data.results.map(app => app.route);
-            const { data: objects } = await $http.get('https://appstatic.storeino.com/all/store', { params: { names } });
+            const url = store.state.baseURL != 'https://api-stores.storeino.com/api' ? 'https://appstatic.storeino.world' : 'https://appstatic.storeino.com';
+            const { data: objects } = await $http.get(`${url}/all/store`, { params: { names } });
             for (const app of response.data.results) {
                 const loaded = objects.find(object => object.name === app.route);
                 app.loaded = loaded;
