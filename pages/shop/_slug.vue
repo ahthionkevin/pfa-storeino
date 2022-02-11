@@ -18,7 +18,8 @@
                             <div v-for="(item, i) in collections" :key="i" class="px-2">
                                 <div class="flex items-center">
                                     <input v-if="item.childrens && item.childrens.length == 0 " class="w-4 h-4 mx-1" :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(item.slug) >= 0" :id="item.slug" @change="setParams($event, 'collections.slug-in', item.slug)" type="checkbox"/>
-                                    <label class="cursor-pointer capitalize collec-name" :for="item.slug">{{ item.name }}</label>
+                                    <label @click="setActive(i+'fit',i+'ret')" v-if="item.childrens && item.childrens.length > 0 " class="cursor-pointer capitalize collec-name" :for="item.slug">{{ item.name }}</label>
+                                    <label v-if="item.childrens && item.childrens.length == 0 " class="cursor-pointer capitalize collec-name" :for="item.slug">{{ item.name }}</label>
                                     <svg @click="setActive(i+'fit',i+'ret')" :id="i+'ret'"  v-if="item.childrens && item.childrens.length > 0 " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="15" height="15" x="0" y="0" viewBox="0 0 451.847 451.847" style="enable-background:new 0 0 512 512 ; cursor:pointer;" xml:space="preserve" class="rotated"><g>
                                         <g xmlns="http://www.w3.org/2000/svg">
                                             <path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751   c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0   c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z" fill="#7a7575" data-original="#000000" style="" class=""/>
@@ -60,7 +61,7 @@
                                     <ul class="list-sub-collections fit-collapsible-content" v-if="item.childrens && item.childrens.length > 0 ">
                                         <li v-for="(child, i) in item.childrens">
                                             <input class="w-4 h-4 mx-1" :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(child.slug) >= 0" :id="child.slug" @change="setParams($event, 'collections.slug-in', child.slug)" type="checkbox"/>
-                                            <label :for="child" class=" c-p c-grey">{{ child.name }}</label>
+                                            <label  :for="child.slug" class="cursor-pointer c-p c-grey">{{ child.name }}</label>
                                         </li>
                                     </ul>
                                 </div>
@@ -421,10 +422,10 @@ export default {
 }
 
 
-    [dir="ltr"]  .sub-collections .list-sub-collections{
-        list-style: none;
-        padding-left:40px;
-    }
+[dir="ltr"]  .sub-collections .list-sub-collections{
+    list-style: none;
+    padding-left:40px;
+}
 
   [dir="rtl"]  .sub-collections .list-sub-collections{
     list-style: none;
