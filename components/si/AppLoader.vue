@@ -27,6 +27,7 @@ export default {
   },
   methods: {
     async loadApp(app, element) {
+      if(!element) return;
       const uid = `${app.route}_${this.placement}`;
       if (!app[`loaded_${uid}`]) {
         try {

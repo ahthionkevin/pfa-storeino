@@ -172,6 +172,7 @@ export default {
 
         }catch(e){
             // Redirect to error page if product not exists
+            console.log(e);
             this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
         }
     },
@@ -259,6 +260,17 @@ export default {
             }else{
                 this.price.salePrice = this.item.price.salePrice * quantity;
                 this.price.comparePrice = this.item.price.comparePrice * quantity;
+            }
+            if(!process.server){
+                window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+                    detail: {
+                        product_id: this.item._id,
+                        product_quantity: this.quantity.value,
+                        product_variant: this.variant ? this.variant._id : undefined,
+                        product_currency: this.$store.state.currency.code,
+                        product_price: this.price
+                    }
+                }));
             }
         },
         variantSelected(variant) {
