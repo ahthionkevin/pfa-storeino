@@ -138,7 +138,7 @@ export default {
             if(this.item.images.length > 0){ this.$store.state.seo.image = this.item.images[0].src; }
             // New meta tags
             [ { hid: "product:price:amount", property: "product:price:amount", content: this.price.salePrice },
-            { hid: "productID", itemprop: "productID", content: this.product && this.product ? this.product._id : 'productID' }
+            { hid: "productID", itemprop: "productID", content: this.item && this.item ? this.item._id : 'productID' }
             ].forEach(meta=>{
                 const index = this.$store.state.seo.metaTags.findIndex(m=>m.hid === meta.hid);
                 if(index > -1){ this.$store.state.seo.metaTags.splice(index, 1, meta); }
