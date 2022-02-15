@@ -180,6 +180,7 @@ export default {
         console.log('item=====>',this.item);
         if(this.item) this.$tools.call('PAGE_VIEW', this.item);
         window.addEventListener("APP_LOADER", e => {
+            console.log("Despatching event CURRENT_PRODUCT");
             window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
                 detail: {
                     product_id: this.item._id,
@@ -262,6 +263,7 @@ export default {
                 this.price.comparePrice = this.item.price.comparePrice * quantity;
             }
             if(!process.server){
+                console.log("Despatching event CURRENT_PRODUCT");
                 window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
                     detail: {
                         product_id: this.item._id,
