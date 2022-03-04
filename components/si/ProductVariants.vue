@@ -48,6 +48,7 @@
                     <li v-for="(value, vindex2) in option.values" :key="vindex2">
                         <div class="content-check-style"> 
                             <input :checked="selected[`option${i+1}`] && selected[`option${i+1}`].value == value._id"  class="check-style" style="cursor:pointer;" @click="selectOneVarColor(vindex2+'check',option.values.length,value._id,i+1)"  name="color" :id="vindex2+'check'" type="checkbox" >
+                            <span class="space-between"></span>
                             <label style="cursor:pointer;" :for="vindex2+'check'">{{ value.value1 }}</label>
                         </div>
                     </li>
@@ -60,6 +61,7 @@
                     <li v-for="(value, vindex2) in option.values" :key="vindex2">
                         <div class="content-check-style"> 
                             <input :checked="selected[`option${i+1}`] && selected[`option${i+1}`].value == value._id"  class="check-style" style="cursor:pointer;" @click="selectOneVarSize(vindex2+'checksize',option.values.length,value._id,i+1)"  name="size" :id="vindex2+'checksize'" type="checkbox" >
+                            <span class="space-between"></span>
                             <label style="cursor:pointer;" :for="vindex2+'checksize'">{{ value.value1 }}</label>
                         </div>
                     </li>
@@ -72,6 +74,7 @@
                     <li v-for="(value, vindex2) in option.values" :key="vindex2">
                         <div class="content-check-style"> 
                             <input :checked="selected[`option${i+1}`] && selected[`option${i+1}`].value == value._id"  class="check-style" style="cursor:pointer;" @click="selectOneVarOther(vindex2+'checkother',option.values.length,value._id,i+1)"  name="size" :id="vindex2+'checkother'" type="checkbox" >
+                            <span class="space-between"></span>
                             <label style="cursor:pointer;" :for="vindex2+'checkother'">{{ value.value1 }}</label>
                         </div>
                     </li>
@@ -84,6 +87,7 @@
                     <li v-for="(value, vindex2) in option.values" :key="vindex2">
                         <div class="content-radio-style"> 
                             <input class="radio-style" style="cursor:pointer;" name="color" :id="vindex2+'radiocolor'" :value="value._id" :checked="selected[`option${i+1}`] && selected[`option${i+1}`].value == value._id" @change="setVariant(i+1,value._id)" type="radio" >
+                            <span class="space-between"></span>
                             <label style="cursor:pointer;" :for="vindex2+'radiocolor'">{{ value.value1 }}</label>
                         </div>
                     </li>
@@ -96,6 +100,7 @@
                     <li v-for="(value, vindex2) in option.values" :key="vindex2">
                         <div class="content-radio-style"> 
                             <input class="radio-style" style="cursor:pointer;" name="size" :id="vindex2+'radiosize'" :value="value._id" :checked="selected[`option${i+1}`] && selected[`option${i+1}`].value == value._id" @change="setVariant(i+1,value._id)" type="radio" >
+                            <span class="space-between"></span>
                             <label style="cursor:pointer;" :for="vindex2+'radiosize'">{{ value.value1 }}</label>
                         </div>
                     </li>
@@ -108,20 +113,28 @@
                     <li v-for="(value, vindex2) in option.values" :key="vindex2">
                         <div class="content-radio-style"> 
                             <input class="radio-style" style="cursor:pointer;" name="other" :id="vindex2+'radioother'" :value="value._id" :checked="selected[`option${i+1}`] && selected[`option${i+1}`].value == value._id" @change="setVariant(i+1,value._id)" type="radio" >
+                            <span class="space-between"></span>
                             <label style="cursor:pointer;" :for="vindex2+'radioother'">{{ value.value1 }}</label>
                         </div>
                     </li>
                 </ul>
             </div>
 
-            <!--<div class="list-option" v-if="option.style == 'LIST' && option.key == 'color'">
-                <h4 class="options-key">{{ option.name }}:</h4>
-                <div class="select-list-option">
-                    <select @change="changeVarColor($event)" v-model="listStyleColorValue" class="select-list">
-                        <option v-for="(value, vindex2) in option.values" :key="vindex2"  :value="{value: value._id,index: index}">{{ value.value1 }}</option>
-                    </select>
+            <div class="image-option-vr" v-if="option.style == 'IMAGE' && loadImages">
+                 <div v-for="(value, vindex3) in option.values" :key="vindex3" class="vr-image-style">
+                    <div class="content-image-style">
+                        <span v-if="option.key !== 'color' && value.images && value.images.length == 0" :class="selected[`option${i+1}`] && selected[`option${i+1}`].value == value._id ? 'active': ''" @click="setVariant(i+1, value._id)" class="size-style-image syles-image">
+                            {{value.value1}}
+                        </span>
+                        <span v-if="option.key == 'color' && value.images && value.images.length == 0" @click="setVariant(i+1, value._id)" :class="selected[`option${i+1}`] && selected[`option${i+1}`].value == value._id ? 'active': ''" :style="{'background-color': value.value2}" class="color-style-image syles-image">
+                            
+                        </span>
+                        <span :class="selected[`option${i+1}`] && selected[`option${i+1}`].value == value._id ? 'active': ''"  @click="setVariant(i+1, value._id)" v-if="value.images && value.images.length > 0" class="image-style-image syles-image">
+                            <img  :src="value.images[0].src+`?width=70&height=70`">
+                        </span>
+                    </div>
                 </div>
-            </div>-->
+            </div>
 
         </div>
 
@@ -133,6 +146,7 @@ export default {
     props: {
         options: Array,
         variants: Array,
+        images:Array,
         showPrice: {type: Boolean, false: true},
     },
     data() {
@@ -147,34 +161,60 @@ export default {
             },
             listStyleOtherOption:{
 
-            } 
+            },
+            loadImages : false
+
         }
     },
-    fetch(){
-        if(this.options && this.options.length > 0){
-            for(let i=0; i<this.options.length; i++){
-                if(this.options[i].style == 'LIST' && this.options[i].key == 'color'){
-                    this.listStyleColorValue.index = i+1;
-                    this.listStyleColorValue.value = this.options[i].values[0]._id;
-                    console.log('List Style color ===>',this.listStyleColorValue);
-                }
-                if(this.options[i].style == 'LIST' && this.options[i].key == 'size'){
-                    this.listStyleSizeValue.index = i+1;
-                    this.listStyleSizeValue.value = this.options[i].values[0]._id;
-                }
-                if(this.options[i].style == 'LIST' && this.options[i].key !== 'size' && this.options[i].key !== 'color'){
-                    this.listStyleOtherOption.index = i+1;
-                    this.listStyleOtherOption.value = this.options[i].values[0]._id;
-                }
-            }
-        }
+    async fetch(){
+        await this.stylesOptions();
+        await this.getImageStyle();
     },
     mounted() {
        
     },
     methods: {
+        getImageStyle(){
+            for(let option of this.options){
+                if(option.style && option.style == 'IMAGE'){
+                    for(let val of option.values){
+                        for(let variant of this.variants){
+                            if(( variant.option1 && val._id == variant.option1.value) 
+                            || (variant.option2 && val._id == variant.option2.value) ||
+                             (variant.option3 && val._id == variant.option3.value) ){
+                                for(let img of this.images){
+                                    if(variant.imageId == img._id){
+                                        if(!val.images) val.images = [];
+                                        val.images.push(img);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            this.loadImages = true;
+        },
+        stylesOptions(){
+            if(this.options && this.options.length > 0){
+                for(let i=0; i<this.options.length; i++){
+                    if(this.options[i].style == 'LIST' && this.options[i].key == 'color'){
+                        this.listStyleColorValue.index = i+1;
+                        this.listStyleColorValue.value = this.options[i].values[0]._id;
+                        console.log('List Style color ===>',this.listStyleColorValue);
+                    }
+                    if(this.options[i].style == 'LIST' && this.options[i].key == 'size'){
+                        this.listStyleSizeValue.index = i+1;
+                        this.listStyleSizeValue.value = this.options[i].values[0]._id;
+                    }
+                    if(this.options[i].style == 'LIST' && this.options[i].key !== 'size' && this.options[i].key !== 'color'){
+                        this.listStyleOtherOption.index = i+1;
+                        this.listStyleOtherOption.value = this.options[i].values[0]._id;
+                    }
+                }
+            }
+        },
         selectOneVarColor(id,length,value,index){
-            console.log('value check color ===>', value);
             for(let i=0; i<length;i++){
                 document.getElementById(i+"check").checked = false;
             }
@@ -212,19 +252,16 @@ export default {
             this.$emit('selected', this.selected);
         },
         changeVarColor(event){
-            console.log('event target variant value =====> ',event.target.value,this.listStyleColorValue);
             let value = this.listStyleColorValue.value;
             let index = this.listStyleColorValue.index;
             this.setVariant(index,value);
         },
         changeVarSize(event){
-            console.log('event target variant value =====> ',event.target.value,this.listStyleSizeValue);
             let value = this.listStyleSizeValue.value;
             let index = this.listStyleSizeValue.index;
             this.setVariant(index,value);
         },
         changeVarOther(event){
-            console.log('event target variant value =====> ',event.target.value,this.listStyleOtherOption);
             let value = this.listStyleOtherOption.value;
             let index = this.listStyleOtherOption.index;
             this.setVariant(index,value);
@@ -364,7 +401,7 @@ export default {
   .check-style{
     width: 20px;
     height: 20px;
-    margin-right: 7px;
+    /*margin-right: 7px;*/
   }
 
   .content-check-style{
@@ -375,7 +412,7 @@ export default {
   .radio-style{
     width: 20px;
     height: 20px;
-    margin-right: 7px;
+    /*margin-right: 7px;*/
   }
 
   .content-radio-style{
@@ -391,7 +428,7 @@ export default {
   .check-style{
     width: 20px;
     height: 20px;
-    margin-right: 7px;
+    /*margin-right: 7px;*/
   }
 
   .content-check-style{
@@ -402,5 +439,68 @@ export default {
   .option-of-select{
     direction: ltr;
   }
+
+  .space-between{
+    margin-right:3px;
+    margin-left: 3px;
+  }
+
+    .vr-image-style{
+        margin-right: 5px;
+    }
+    
+    .vr-image-style .content-image-style{
+        width: 60px;
+        height: 60px;
+        position: relative;
+    }
+
+    .image-option-vr{
+        display: flex;
+    }
+
+    .vr-image-style .content-image-style .syles-image{
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        cursor: pointer;
+        margin-right: 5px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .vr-image-style .content-image-style .syles-image.active{
+        border: 4px solid #009688;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .vr-image-style .content-image-style .size-style-image{
+        background-color: #fff;
+        text-align: center;
+        padding-top: 17px;
+        padding-bottom: 13px;
+    }
+
+    .vr-image-style .content-image-style .color-style-image{
+        background-color: #e6199b;
+        text-align: center;
+        padding-top: 17px;
+        padding-bottom: 13px;
+    }
+
+    .vr-image-style .content-image-style .image-style-image{
+        /* display: inline-block;
+        cursor: pointer;
+        margin-right: 5px; */
+    }
+
+    .vr-image-style .content-image-style .image-style-image img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
 
 </style>

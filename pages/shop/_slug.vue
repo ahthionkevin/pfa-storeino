@@ -58,7 +58,7 @@
                                     </svg>
                                 </div>
                                 <div :id="i+'fit'" class="fit-collapsible" :class="item.childrens.length > 0 ? 'sub-collections' : ''">
-                                    <ul class="list-sub-collections fit-collapsible-content" v-if="item.childrens && item.childrens.length > 0 ">
+                                    <ul class="list-sub-collections fit-collapsible-content" v-if="item.childrens && item.childrens.length > 0" >
                                         <li v-for="(child, i) in item.childrens">
                                             <input class="w-4 h-4 mx-1" :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(child.slug) >= 0" :id="child.slug" @change="setParams($event, 'collections.slug-in', child.slug)" type="checkbox"/>
                                             <label  :for="child.slug" class="cursor-pointer c-p c-grey">{{ child.name }}</label>
@@ -255,7 +255,7 @@ export default {
     },
     methods: {
         subCollections(){
-            console.log('collections items ====>', this.items);
+            console.log('collections items ====>', this.collections);
             for(let itm of this.collections){
                 if(itm.childrens && itm.childrens.length>0) itm.childrens = [];
             }

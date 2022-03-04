@@ -59,7 +59,7 @@
                 <si-product-price class="text-2xl" v-if="item.type == 'simple'" :type="item.type" :originalPrice="item.originalPrice" :price="item.price" :variants="item.variants"></si-product-price>
                 <hr class="my-1">
                 <div class="w-full">
-                    <si-product-variants v-if="item.type=='variable'" showPrice :options="item.options" :variants="item.variants" @selected="variantSelected"></si-product-variants>
+                    <si-product-variants v-if="item.type=='variable'" showPrice :options="item.options" :variants="item.variants" :images="item.images" @selected="variantSelected"></si-product-variants>
                     <hr v-if="item.type=='variable'" class="my-1">
                     <div class="flex justify-center">
                         <si-product-quantity @selected="quantitySelected" :quantity="quantity"></si-product-quantity>

@@ -35,7 +35,7 @@
                             <span class="text-sm text-gray-600" key="count">({{ item.review.reviews.length }})</span>
                         </div>
                         <p class="text-xl">{{ item.description }}</p>
-                        <si-product-variants class="flex" v-if="item.type=='variable'" :options="item.options" :variants="item.variants" @selected="variantSelected"></si-product-variants>
+                        <si-product-variants class="flex" v-if="item.type=='variable'" :options="item.options" :images="item.images" :variants="item.variants" @selected="variantSelected"></si-product-variants>
                         <!-- <si-product-price class="flex text-3xl" :type="item.type" :price="item.price" :variants="item.variants"></si-product-price> -->
                         <si-product-price class="flex text-3xl" :type="'simple'" :price="price" :variants="[]"></si-product-price>
                         <div class="flex justify-start">
