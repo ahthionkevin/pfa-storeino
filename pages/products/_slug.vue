@@ -138,7 +138,7 @@ export default {
             if(this.item.images.length > 0){ this.$store.state.seo.image = this.item.images[0].src; }
             // New meta tags
             [ { hid: "product:price:amount", property: "product:price:amount", content: this.price.salePrice },
-            { hid: "productID", itemprop: "productID", content: this.product && this.product ? this.product._id : 'productID' }
+            { hid: "productID", itemprop: "productID", content: this.item && this.item ? this.item._id : 'productID' }
             ].forEach(meta=>{
                 const index = this.$store.state.seo.metaTags.findIndex(m=>m.hid === meta.hid);
                 if(index > -1){ this.$store.state.seo.metaTags.splice(index, 1, meta); }
@@ -180,6 +180,7 @@ export default {
         console.log('item=====>',this.item);
         if(this.item) this.$tools.call('PAGE_VIEW', this.item);
         window.addEventListener("APP_LOADER", e => {
+            console.log("Despatching event CURRENT_PRODUCT APP_LOADER");
             window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
                 detail: {
                     product_id: this.item._id,
@@ -262,6 +263,7 @@ export default {
                 this.price.comparePrice = this.item.price.comparePrice * quantity;
             }
             if(!process.server){
+                console.log("Despatching event CURRENT_PRODUCT quantitySelected");
                 window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
                     detail: {
                         product_id: this.item._id,
