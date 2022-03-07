@@ -83,8 +83,9 @@
             <div  v-if="item" class="bg-white rounded-md p-2 my-3 mx-2 description" id="description" v-html="item.html"></div>
             <si-app-loader placement="AFTER_DESCRIPTION"/>
             <div v-if="item && $settings.sections.product.reviews.active" class="reviews">
-                <sections-reviews :item="item"></sections-reviews>
+                <sections-reviews v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_REVIEWS') >= 0)" :item="item"></sections-reviews>
             </div>
+            <si-app-loader  placement="REPLACE_REVIEWS"/>
             <div v-if="item && $settings.sections.product.related.active" class="related">
                 <sections-related-products :item="item"/>
             </div>
@@ -221,6 +222,9 @@ export default {
             }
             }
         }
+
+        // const productId = document.querySelector('[itemprop="productID"]')? document.querySelector('[itemprop="productID"]').content : null;
+        // console.log('product id from meta====>',productId);
     },
     methods: {
         addToCart() {

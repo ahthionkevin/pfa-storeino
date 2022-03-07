@@ -33,7 +33,7 @@ export default {
         try {
           const stateApp = this.$store.state.apps.find(a => a.route === app.route);
           let { manifest, html, css, js } = this.$tools.copy(stateApp.loaded);
-          js = js.replace("__DATA__", JSON.stringify(app.config).replace(/\"/g, '"'));
+          js = js.replace("__DATA__", JSON.stringify({placement: this.placement ,...app.config}).replace(/\"/g, '"'));
           html = html.replace(new RegExp(`app_${app.route}`, "g"),`app_${app.route}_${uid}`);
           css = css.replace(new RegExp(`#app_${app.route}`, "g"),`#app_${app.route}_${uid}`);
           js = js.replace(new RegExp(`app_${app.route}`, "g"),`app_${app.route}_${uid}`);
