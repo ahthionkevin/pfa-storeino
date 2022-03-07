@@ -5,6 +5,7 @@ const createStore = () => {
         return {
           loading:true,
           customer:null,
+          IP: undefined,
           cart: [],
           isPreview:false,
           whishlist: [],
