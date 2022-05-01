@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-50 transition-all delay-300" :class="$store.state.showHeaderMenu ? 'to-right' : ''">
+    <div class="bg-white transition-all delay-300" :class="$store.state.showHeaderMenu ? 'to-right' : ''">
         <component :is="'style'">
             :root{ --primary-rgb: {{ rgb.r }}, {{rgb.g}}, {{ rgb.b }}; --primary-color: rgb(var(--primary-rgb)); }
             .bg-primary{ background-color: var(--primary-color); }
@@ -10,13 +10,15 @@
         <sections-header></sections-header>
         <sections-header-menu></sections-header-menu>
         <Nuxt />
-        <sections-footer></sections-footer>
+        <part-footer></part-footer>
+        <part-copyright></part-copyright>
+        <!-- <sections-footer></sections-footer>
         <div class="bg-white flex">
             <hr class="my-2 w-full">
         </div>
         <sections-footer-menu></sections-footer-menu>
         <sections-copyright></sections-copyright>
-        <si-full-image></si-full-image>
+        <si-full-image></si-full-image> -->
       <div v-if="$settings.other_scripts" class="other-scripts" v-html="$settings.other_scripts"></div>
 
     </div>

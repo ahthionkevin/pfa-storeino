@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <template v-for="(key,i) in Object.keys(banner.items)">
-                    <div class="flex flex-wrap h-full mx-2 slider-item relative" :class="i==activeIndex ? 'active': ''" :key="i">
+                    <div :key="i" :class="i==activeIndex ? 'active flex flex-wrap h-full mx-2 slider-item relative': 'flex flex-wrap h-full mx-2 slider-item relative'">
                         <div class="image w-full md:w-2/3 relative">
                             <si-image width="100%" height="300" class="h-48 bg-gray-200 md:h-96 max-h-full object-cover" :src="banner.items[key].image ? banner.items[key].image.src : $store.state.defaults.sliderImage" :alt="banner.items[key].title"/>
                             <div class="flex absolute bottom-0 p-2">
