@@ -1,12 +1,30 @@
 <template>
-<div>
+<div class="bg-black mt-2">
     <si-app-loader placement="BEFORE_HEADER"/>
-    <div class="bg-white mb-2 relative">
-        <div class="flex p-2 justify-between items-center container">
-            <div class="flex h-full justify-start items-center w-1/3">
-                <button @click="$store.state.showHeaderMenu = !$store.state.showHeaderMenu" aria-label="Search button" class="flex flex-col p-2 bg-gray-100 rounded-md hover:bg-gray-200">
-                    <si-svg><svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-5 h-5 translate"><g class="fa-group"><path fill="currentColor" d="M16 288h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16z" class="fa-secondary"></path><path fill="currentColor" d="M432 384H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-320H16A16 16 0 0 0 0 80v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16z"></path></g></svg></si-svg>
-                </button>
+<div>  
+     <div class="flex p-2 justify-between items-center container">
+        <div class="flex p-2 justify-between items-center">
+             <div>
+
+             </div>
+        </div>
+        <div class="logo flex justify-center items-center w-1/2 bg-black mt-2 ">
+                <router-link to="/">
+                  <div class="transition duration-300 delay-150 hover:delay-0">
+                    <img class="h-12 w-full w-full object-contain" :src="section.logo ? section.logo.src : 'https://storeno.b-cdn.net/stores/3-2022/1647442436770.png'" alt='Store logo'/>
+                   </div>
+                </router-link>
+            </div>
+      <!-- $store.state.defaults.logo  
+             <div class="logo flex justify-center items-center w-1/2 bg-black mt-2 ">
+                <router-link to="/">
+                  <div class="transition duration-300 delay-150 hover:delay-0">
+                    <img class="h-12 w-full w-full object-contain" :src="section.logo ? section.logo.src : 'https://storeno.b-cdn.net/stores/3-2022/1647442436770.png'" alt='Store logo'/>
+                   </div>
+                </router-link>
+            </div>
+     
+            <div class="icons flex items-center justify-between bg-white mt-2">
                 <div v-if="$settings.sections.header.icons.currency && $settings.store_currencies.length > 1" class="relative mx-1">
                     <div v-if="iconMenu == 'currency'" class="absolute rounded-md flex flex-col top-5 z-50 bg-gray-100">
                         <a class="whitespace-nowrap m-1 p-2 bg-white" v-for="cur of $settings.store_currencies" :key="cur.code" :href="`?cur=${cur.code}`">{{ cur.name }} ( {{ cur.code }} )</a>
@@ -29,42 +47,99 @@
                     <si-image width="70" height="50" property="height" class="h-12 w-full w-full object-contain" :src="section.logo ? section.logo.src : $store.state.defaults.logo" alt="Store logo"/>
                 </router-link>
             </div>
-            <div class="icons flex items-center justify-end w-1/3">
-                <button v-if="$settings.sections.header.icons.search" @click="showSearch=true" aria-label="Search button" class="item p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200 relative">
-                    <si-svg><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 translate"><path fill="currentColor" d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z" class=""></path></svg></si-svg>
-                    <small v-if="$route.query.search" class="-top-1 -right-1 rounded-full absolute w-1 h-1 p-1 bg-green-700 text-white flex justify-center items-center"></small>
+            -->
+            <div class="icons flex items-center justify-between rounded-full bg-white mt-2">
+
+                <button v-if="$settings.sections.header.icons.search" @click="showSearch=true"   aria-label="Search button" class="item p-2 rounded-md mx-1 relative">
+                    <si-svg><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="search" role="img" class="w-5 h-5 translate self-center" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 52.966 52.966" style="enable-background:new 0 0 52.966 52.966;" xml:space="preserve">
+         <path d="M51.704,51.273L36.845,35.82c3.79-3.801,6.138-9.041,6.138-14.82c0-11.58-9.42-21-21-21s-21,9.42-21,21s9.42,21,21,21
+	   c5.083,0,9.748-1.817,13.384-4.832l14.895,15.491c0.196,0.205,0.458,0.307,0.721,0.307c0.25,0,0.499-0.093,0.693-0.279
+	  C52.074,52.304,52.086,51.671,51.704,51.273z M21.983,40c-10.477,0-19-8.523-19-19s8.523-19,19-19s19,8.523,19,19
+	  S32.459,40,21.983,40z"></svg></si-svg>
+                    <small v-if="$route.query.search" class="-top-1  rounded-full absolute w-1 h-1 p-1 bg-green-700 text-white flex justify-center items-center"></small>
                 </button>
+
+
                 <router-link v-if="$settings.sections.header.icons.account" to="/account/orders" title="Account" class="item hidden md:block p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200">
                     <si-svg><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-5 h-5 translate"><path fill="currentColor" d="M313.6 304c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 304 0 364.2 0 438.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-25.6c0-74.2-60.2-134.4-134.4-134.4zM400 464H48v-25.6c0-47.6 38.8-86.4 86.4-86.4 14.6 0 38.3 16 89.6 16 51.7 0 74.9-16 89.6-16 47.6 0 86.4 38.8 86.4 86.4V464zM224 288c79.5 0 144-64.5 144-144S303.5 0 224 0 80 64.5 80 144s64.5 144 144 144zm0-240c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z" class=""></path></svg></si-svg>
                     
                 </router-link>
-                <router-link v-if="$settings.sections.header.icons.wishlist" to="/wishlist" title="Wishlist" class="item hidden md:block p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200 relative">
-                    <si-svg><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 translate"><path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z" class=""></path></svg></si-svg>
-                    <small class="-top-2 -right-2 rounded-full absolute w-5 h-5 p-2 bg-red-700 text-white flex justify-center items-center">{{ $store.state.wishlist.length }}</small>
+
+
+
+
+                <router-link v-if="$settings.sections.header.icons.wishlist" to="/wishlist" title="Wishlist" class="item hidden md:block p-2 rounded-md mx-1 relative">
+                    <svg width="20px" height="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="20px"
+	                viewBox="0 0 490.4 490.4" style="enable-background:new 0 0 490.4 490.4;" xml:space="preserve">
+                        <g>
+                            <g>
+                                <path d="M222.5,453.7c6.1,6.1,14.3,9.5,22.9,9.5c8.5,0,16.9-3.5,22.9-9.5L448,274c27.3-27.3,42.3-63.6,42.4-102.1
+                                    c0-38.6-15-74.9-42.3-102.2S384.6,27.4,346,27.4c-37.9,0-73.6,14.5-100.7,40.9c-27.2-26.5-63-41.1-101-41.1
+                                    c-38.5,0-74.7,15-102,42.2C15,96.7,0,133,0,171.6c0,38.5,15.1,74.8,42.4,102.1L222.5,453.7z M59.7,86.8
+                                    c22.6-22.6,52.7-35.1,84.7-35.1s62.2,12.5,84.9,35.2l7.4,7.4c2.3,2.3,5.4,3.6,8.7,3.6l0,0c3.2,0,6.4-1.3,8.7-3.6l7.2-7.2
+                                    c22.7-22.7,52.8-35.2,84.9-35.2c32,0,62.1,12.5,84.7,35.1c22.7,22.7,35.1,52.8,35.1,84.8s-12.5,62.1-35.2,84.8L251,436.4
+                                    c-2.9,2.9-8.2,2.9-11.2,0l-180-180c-22.7-22.7-35.2-52.8-35.2-84.8C24.6,139.6,37.1,109.5,59.7,86.8z"/>
+                            </g>
+                        </g>
+                    </svg>
                 </router-link>
-                <router-link v-if="$settings.sections.header.icons.cart" to="/cart" title="Cart" id="cart-icon" class="item p-2 bg-gray-100 rounded-md mx-1 hover:bg-gray-200 relative">
-                    <si-svg><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="shopping-cart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-5 h-5 translate"><path fill="currentColor" d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z" class=""></path></svg></si-svg>
-                    <small class="-top-2 -right-2 rounded-full absolute w-5 h-5 p-2 bg-red-700 text-white flex justify-center items-center">{{ $store.state.cart.length }}</small>
+
+                <router-link v-if="$settings.sections.header.icons.cart" to="/cart" title="Cart" id="cart-icon" class="item hidden md:block p-2 relative">
+                    <svg width="20px" height="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 366.305 366.305" style="enable-background:new 0 0 366.305 366.305;" xml:space="preserve">
+                        <g>
+                            <g>
+                                <path style="fill:#010002;" d="M160.336,292.917c-20.167,0-36.579,16.42-36.579,36.579c0,20.167,16.412,36.579,36.579,36.579
+                                    s36.579-16.412,36.579-36.579C196.915,309.328,180.511,292.917,160.336,292.917z M160.336,349.817
+                                    c-11.201,0-20.321-9.112-20.321-20.321c0-11.201,9.12-20.321,20.321-20.321c11.201,0,20.321,9.12,20.321,20.321
+                                    C180.658,340.705,171.545,349.817,160.336,349.817z"/>
+                                <path style="fill:#010002;" d="M274.965,292.917c-20.167,0-36.579,16.42-36.579,36.579c0,20.167,16.412,36.579,36.579,36.579
+                                    c20.159,0,36.579-16.412,36.579-36.579C311.544,309.328,295.124,292.917,274.965,292.917z M274.965,349.817
+                                    c-11.209,0-20.321-9.112-20.321-20.321c0-11.201,9.112-20.321,20.321-20.321c11.193,0,20.321,9.12,20.321,20.321
+                                    C295.287,340.705,286.158,349.817,274.965,349.817z"/>
+                                <path style="fill:#010002;" d="M364.575,92.783c-1.536-1.967-3.894-3.113-6.397-3.113H83.342L60.688,6.23
+                                    c-0.049-0.179-0.179-0.317-0.244-0.488c-0.179-0.528-0.447-0.992-0.732-1.463c-0.268-0.447-0.512-0.886-0.853-1.268
+                                    c-0.333-0.382-0.723-0.667-1.13-0.975C57.306,1.711,56.9,1.394,56.42,1.158c-0.447-0.228-0.927-0.341-1.422-0.488
+                                    c-0.528-0.154-1.04-0.284-1.601-0.325c-0.195-0.008-0.358-0.114-0.561-0.114H8.129C3.642,0.231,0,3.873,0,8.36
+                                    s3.642,8.129,8.129,8.129h38.489l22.622,83.334l40.627,164.579c0.894,3.633,4.154,6.186,7.893,6.186h199.768
+                                    c3.739,0,6.991-2.544,7.893-6.186l40.643-164.652C366.672,97.319,366.119,94.758,364.575,92.783z M311.17,254.33H124.131
+                                    L87.504,105.927h260.301L311.17,254.33z"/>
+                            </g>
+                        </g>
+                    </svg>
                 </router-link>
+
             </div>
         </div>
         <div v-if="showSearch" class="flex items-center justify-center absolute inset-0 z-20">
             <!-- <div @click="showSearch=false" class="bg-black bg-opacity-50 flex fixed inset-0"></div> -->
-            <div class="bg-white absolute w-full p-2">
+            <div class="bg-white absolute w-1/3 p-2">
                 <form @submit.prevent="search" class="search flex container bg-gray-50 p-2 rounded-md border border-gray-200" action="/shop?">
                     <button type="button" @click="showSearch=false" aria-label="Search button">
-                        <si-svg><svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-5 h-5 translate"><path fill="currentColor" d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z" class=""></path></svg></si-svg>
+                        <si-svg><svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times" role="img" class="w-5 h-5 translate self-center" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 52.966 52.966" style="enable-background:new 0 0 52.966 52.966;" xml:space="preserve">
+         <path d="M51.704,51.273L36.845,35.82c3.79-3.801,6.138-9.041,6.138-14.82c0-11.58-9.42-21-21-21s-21,9.42-21,21s9.42,21,21,21
+	   c5.083,0,9.748-1.817,13.384-4.832l14.895,15.491c0.196,0.205,0.458,0.307,0.721,0.307c0.25,0,0.499-0.093,0.693-0.279
+	  C52.074,52.304,52.086,51.671,51.704,51.273z M21.983,40c-10.477,0-19-8.523-19-19s8.523-19,19-19s19,8.523,19,19
+	  S32.459,40,21.983,40z"></svg></si-svg>
                     </button>
-                    <input autofocus v-model="q" class="bg-transparent outline-none w-full px-2" :placeholder="'Search for products'" type="search" name="q">
-                    <button aria-label="Search button">
-                        <si-svg><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 translate"><path fill="currentColor" d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z" class=""></path></svg></si-svg>
-                    </button>
+                    <input autofocus v-model="q" class="bg-transparent outline-none w-full px-2" :placeholder="'Cherchez ici'" type="search" name="q">
+                   
+                    
                 </form>
+                 <small class="justify-center text-xs bg-blend-color-burn">Taper puis cliquer sur Entrer</small>
             </div>
         </div>
     </div>
+
     <si-app-loader placement="AFTER_HEADER"/>
+
+    
+
+
 </div>
+
 </template>
 <script>
 export default {
