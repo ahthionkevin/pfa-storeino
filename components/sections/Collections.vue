@@ -1,7 +1,8 @@
 <template>
   <div class="container">
+    
     <div v-if="loading" class="flex justify-center items-center my-5">
-      <si-loader></si-loader>
+      <si-loader> </si-loader>
     </div>
     <div v-if="items.length>0">
       <si-carousel v-if="$settings.sections.collections.active" component="si-collection" :title="$settings.sections.collections.title" :list="items" itemClass="w-full"></si-carousel>
