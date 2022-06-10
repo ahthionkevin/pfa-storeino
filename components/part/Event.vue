@@ -1,24 +1,26 @@
 <template>
     <div class="container my-5">
-        <h4 class="text-center text-4xl py-3 font-semibold">{{ title }}</h4>
+        <div v-for="(event,key) in this.events" :key="key">
+        <h4 class="text-center text-4xl py-3 font-semibold">{{ event.name }}</h4>
         <div class="flex flex-wrap justify-evenly">
-            <stage-product-block v-for="(item,key) in this.items" :key="key" :item="item"></stage-product-block>
+            <local-product-block v-for="(item,key) in event.products" :key="key" :item="item"></local-product-block>
         </div>
-        <div class="flex justify-center" v-if="section.show_more_text">
+        <!-- <div class="flex justify-center" v-if="section.show_more_text"> -->
             <!-- <nuxt-link class="py-2 px-4 w-full mx-2 bg-white shadow rounded hover:bg-gray-50 text-primary flex items-center" :to="section.show_more_url">
                 <span class="w-full">{{ section.show_more_text }}</span>
                 <svg class="h-4 text-primary translate" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" x="0" y="0" viewBox="0 0 492.004 492.004" style="enable-background:new 0 0 512 512" xml:space="preserve"><g> <g xmlns="http://www.w3.org/2000/svg"> <g> <path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12    c-10.492,10.504-10.492,27.576,0,38.064L293.398,245.9l-184.06,184.06c-5.064,5.068-7.86,11.824-7.86,19.028    c0,7.212,2.796,13.968,7.86,19.04l16.124,16.116c5.068,5.068,11.824,7.86,19.032,7.86s13.968-2.792,19.032-7.86L382.678,265    c5.076-5.084,7.864-11.872,7.848-19.088C390.542,238.668,387.754,231.884,382.678,226.804z" fill="currentColor" data-original="currentColor" style="" class=""></path> </g> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> <g xmlns="http://www.w3.org/2000/svg"> </g> </g></svg>
             </nuxt-link> -->
-            <div class="my-2 py-2">
-                <nuxt-link :to="section.show_more_url">
-                    <button>
-                        <span class="circle">
-                            <span class="icon arrow"></span>
-                        </span>
-                        <span class="text text-lg font-bold">{{ section.show_more_text }}</span>
-                    </button>
-                </nuxt-link>
-            </div>
+            <!-- <div class="my-2 py-2"> -->
+                <!-- <nuxt-link :to="section.show_more_url"> -->
+                    <!-- <button> -->
+                        <!-- <span class="circle"> -->
+                            <!-- <span class="icon arrow"></span> -->
+                        <!-- </span> -->
+                        <!-- <span class="text text-lg font-bold">{{ section.show_more_text }}</span> -->
+                    <!-- </button> -->
+                <!-- </nuxt-link> -->
+            <!-- </div> -->
+        <!-- </div> -->
         </div>
     </div>
 </template>
@@ -30,19 +32,22 @@
         },
         data() {
             return {
-            title: this.section.title,
-            tags: this.section.tags,
-            collections: this.section.collections,
-            items: [],
-            loading: true
+            // title: this.section.title,
+            // tags: this.section.tags,
+            // collections: this.section.collections,
+            // items: [],
+            // loading: true,
+            events: []
             };
         },
         async fetch(){
-            let filter = { status: 'PUBLISH' };
-            if(this.collections.length > 0) filter['collections._id-in'] = this.collections.map(c=>c._id);
-            if(this.tags.length > 0) filter['tags._id-in'] = this.tags.split(',');
-            await this.getProducts(filter);
-            console.log(this.items);
+            // let filter = { status: 'PUBLISH' };
+            // if(this.collections.length > 0) filter['collections._id-in'] = this.collections.map(c=>c._id);
+            // if(this.tags.length > 0) filter['tags._id-in'] = this.tags.split(',');
+            // await this.getProducts(filter);
+            // console.log(this.items);
+            this.events = await fetch('http://localhost:9000/api/events/wantedEvent').then(res => res.json())
+            console.log(this.events)
         },
         methods: {
             async getProducts(filter){

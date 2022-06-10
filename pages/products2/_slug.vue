@@ -5,33 +5,34 @@
             <div class="flex-box">
                 <div class="left">
                     <div class="big-img">
-                        <img  @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name"/>
+                        <!-- <img  @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name"/> -->
+                        <img   :src="item.img ? item.img : null " :alt="item.title"/>
                     </div>
-                    <div class="images">
+                    <!-- <div class="images">
                         <div v-for="(image, index) in item.images" @click="setImage(index)" :key="index"  class="mr-4 small-img">
                             <img :src="image.src" :alt="`${item.name} - ${image.title}`"/>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="right p-4">
                     <div class="url py-3">
-                        <h4 class="text-sm">Home / {{ item.collections[0].name }} / <span class="text-gray-500">{{ item.name }}</span></h4> 
+                        <h4 class="text-sm">Home / {{ item.categories[0] }} / <span class="text-gray-500">{{ item.title }}</span></h4> 
                     </div>
                     <div class="pname py-2">
-                        <h2 class="text-3xl font-bold">{{ item.name }}</h2>
+                        <h2 class="text-3xl font-bold">{{ item.title }}</h2>
                     </div>
                     <div class="desc py-4">
-                        <p class="text-base">{{ item.description }}</p>
+                        <p class="text-base">{{ item.desc }}</p>
                     </div>
                     <div  v-if="$settings.sections.product.reviews.active" class="rating">
-                        <i v-for="(star,i) in 5" :class="star<= item.review.rating ? 'fa fa-star px-1 text-yellow-500 ': 'fa fa-star px-1 text-gray-400'" aria-hidden="true" :key="i"></i>
-                        <span class="text-lg text-gray-400">({{ item.review.reviews.length }} customer review)</span>
+                        <i v-for="(star,i) in 5" :class="star<= 2 ? 'fa fa-star px-1 text-yellow-500 ': 'fa fa-star px-1 text-gray-400'" aria-hidden="true" :key="i"></i>
+                        <span class="text-lg text-gray-400">({{ Math.round(Math.random()*20) }} customer review)</span>
                     </div>
                     <div class="price mt-5 pt-5">
-                        <p class="text-4xl font-semibold">{{ formatPrice(item.price.salePrice).split(".")[0] }}<sup>.{{ formatPrice(item.price.salePrice).split(".")[1] }}</sup> {{ $store.state.currency.symbol }}</p>
+                        <p class="text-4xl font-semibold">{{ formatPrice(item.price).split(".")[0] }}<sup>.{{ formatPrice(item.price).split(".")[1] }}</sup> {{ $store.state.currency.symbol }}</p>
                     </div>
                     <div v-if="item.collections && item.collections.length>0" class="collections pt-6">
-                        <p>Collection: <span v-for="(c,k) in item.collections" :key="k" class="collection mx-2">{{ c.name }}</span></p>
+                        <p>Collection: <span v-for="(c,k) in item.categories" :key="k" class="collection mx-2">{{ c }}</span></p>
                     </div>
                     <div class="order flex">
                         <button id="decrement"> - </button>
@@ -43,7 +44,7 @@
         </div>
         <div class="p-2 my-3 mx-2 description text-center container">
             <h4 class="text-center text-4xl py-3 font-semibold">Description</h4>
-            <div class="p-2 my-3 mx-2 description text-base" id="description" v-html="item.html"></div>
+            <div class="p-2 my-3 mx-2 description text-base" id="description" v-html="item.desc"></div>
         </div>
     
         <div>
@@ -89,46 +90,49 @@ export default {
     async fetch() {
         const { slug } = this.$route.params;
         try{
-            const { data } = await this.$storeino.products.get({ slug })
-            this.item = data;
+            // const { data } = await this.$storeino.products.get({ slug })
+            // this.item = data;
 
-            this.$store.state.seo.title = (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name;
-            this.$store.state.seo.description = this.item.seo.description || this.item.description || this.$settings.store_description;
-            this.$store.state.seo.keywords = this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || [];
-            if(this.item.images.length > 0){ this.$store.state.seo.image = this.item.images[0].src; }
-            // New meta tags
-            [ { hid: "product:price:amount", property: "product:price:amount", content: this.price.salePrice },
-            { hid: "productID", itemprop: "productID", content: this.item && this.item ? this.item._id : 'productID' }
-            ].forEach(meta=>{
-                const index = this.$store.state.seo.metaTags.findIndex(m=>m.hid === meta.hid);
-                if(index > -1){ this.$store.state.seo.metaTags.splice(index, 1, meta); }
-                this.$store.state.seo.metaTags.push(meta);
-            });
-            this.loading = false;
-            this.quantity = this.item.quantity;
-            // Set default image if exists
-            if(this.item.images.length > 0) this.setImage(0);
-            // Set default variant if exists
-            if(this.item.type == 'variable' && this.item.variants.length > 0) this.variantSelected(this.item.variants[0]);
-            // Set default quantity
-            this.quantitySelected(this.quantity.default);
-            // Generate share urls
-            let url = `https://${this.$store.state.domain}/posts/${slug}`;
-            for (const button of this.socialMedia) {
-                button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
-            }
-            if(!process.server){
-                console.log("Send facebook events");
-                this.$storeino.fbpx('PageView')
-                this.$storeino.fbpx('ViewContent',{
-                    content_name: this.item.name?this.item.name:'',
-                    content_ids: [this.item._id],
-                    content_type: "product",
-                    value: this.item.price.salePrice,
-                    currency: this.$store.state.currency.code
-                });
-                this.$tools.call('PAGE_VIEW', this.item);
-            }
+            this.item = await fetch(`http://localhost:9000/api/products/find/${slug}`).then(res => res.json())
+            console.log(this.item)
+
+            // this.$store.state.seo.title = (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name;
+            // this.$store.state.seo.description = this.item.seo.description || this.item.description || this.$settings.store_description;
+            // this.$store.state.seo.keywords = this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || [];
+            // if(this.item.images.length > 0){ this.$store.state.seo.image = this.item.images[0].src; }
+            // // New meta tags
+            // [ { hid: "product:price:amount", property: "product:price:amount", content: this.price.salePrice },
+            // { hid: "productID", itemprop: "productID", content: this.item && this.item ? this.item._id : 'productID' }
+            // ].forEach(meta=>{
+            //     const index = this.$store.state.seo.metaTags.findIndex(m=>m.hid === meta.hid);
+            //     if(index > -1){ this.$store.state.seo.metaTags.splice(index, 1, meta); }
+            //     this.$store.state.seo.metaTags.push(meta);
+            // });
+            // this.loading = false;
+            // this.quantity = this.item.quantity;
+            // // Set default image if exists
+            // if(this.item.images.length > 0) this.setImage(0);
+            // // Set default variant if exists
+            // if(this.item.type == 'variable' && this.item.variants.length > 0) this.variantSelected(this.item.variants[0]);
+            // // Set default quantity
+            // this.quantitySelected(this.quantity.default);
+            // // Generate share urls
+            // let url = `https://${this.$store.state.domain}/posts/${slug}`;
+            // for (const button of this.socialMedia) {
+            //     button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
+            // }
+            // if(!process.server){
+            //     console.log("Send facebook events");
+            //     this.$storeino.fbpx('PageView')
+            //     this.$storeino.fbpx('ViewContent',{
+            //         content_name: this.item.name?this.item.name:'',
+            //         content_ids: [this.item._id],
+            //         content_type: "product",
+            //         value: this.item.price.salePrice,
+            //         currency: this.$store.state.currency.code
+            //     });
+            //     this.$tools.call('PAGE_VIEW', this.item);
+            // }
 
         }catch(e){
             // Redirect to error page if product not exists
