@@ -1,8 +1,9 @@
 <template>
-    <div class="container my-5">
+    <div class="my-5 pt-10 bg-white">
         <div v-for="(event,key) in this.events" :key="key">
-        <h4 class="text-center text-4xl py-3 font-semibold">{{ event.name }}</h4>
-        <div class="flex flex-wrap justify-evenly">
+        <h4 class="text-center text-4xl py-3 font-semibold text-red-600">{{ event.msg }}</h4>
+        <h5 class="text-center text-2xl text-red-700">Du {{ new Date(event.startDate).toLocaleDateString("fr-FR",options)}} Au {{ new Date(event.endDate).toLocaleDateString("fr-FR",options)}}</h5>
+        <div class="mt-8 flex flex-wrap justify-evenly">
             <local-product-block v-for="(item,key) in event.products" :key="key" :item="item"></local-product-block>
         </div>
         <!-- <div class="flex justify-center" v-if="section.show_more_text"> -->
@@ -37,7 +38,8 @@
             // collections: this.section.collections,
             // items: [],
             // loading: true,
-            events: []
+            events: [],
+            options : { year: 'numeric', month: 'long', day: 'numeric' }
             };
         },
         async fetch(){

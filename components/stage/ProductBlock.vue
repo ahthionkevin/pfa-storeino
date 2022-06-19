@@ -22,7 +22,7 @@
                             <span>Add to Your WishList</span>
                         </div>
                     </li>
-                    <li v-if="$settings.sections.products.add_to_cart.active">
+                    <li v-if="$settings.sections.products.add_to_cart.active" @click="addToCart">
                         <i class="fa fa-shopping-cart"></i>
                         <span>Add To Cart</span>
                     </li>

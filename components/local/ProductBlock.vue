@@ -1,5 +1,5 @@
 <template>
-        <div class="card">
+        <div class="card bg-white">
             <div class="imgBx bore relative">
                  <nuxt-link :to="`/products2/${item._id}`">
                     <!-- <img :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/> -->
@@ -157,7 +157,7 @@
 <style scoped>
 
      .card{
-        background: #fff;
+        /* background: #fff; */
         width: 310px;
         cursor: pointer;
         /* border: #333 .8px solid; */

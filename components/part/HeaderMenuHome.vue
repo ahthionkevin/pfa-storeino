@@ -1,14 +1,12 @@
 <template>
-<div class="header mb-6">
+<div class="header mb-6" :style="`background-image: url(${banner.items[Object.keys(banner.items)[0]].image ? banner.items[Object.keys(banner.items)[0]].image.src : $store.state.defaults.sliderImage});`">
     <nav id="navbar" class="">
-        <!-- <div class="img"> -->
-        <!-- <nuxt-link to="/"> -->
+        <router-link to="/">
             <img :src="section.logo ? section.logo.src : require('~/assets/pay/logo.png')" alt="" class="logo"/>
-            <!-- <img class="h-12 w-full object-contain storeino" :src="section.logo ? section.logo.src : 'https://storeno.b-cdn.net/stores/3-2022/1647442436770.png'" alt='Store logo'/> -->
-        <!-- </nuxt-link> -->
-        <!-- </div> -->
+            <!-- <img class="h-12 w-full object-contain storeino logo" :src="section.logo ? section.logo.src : 'https://storeno.b-cdn.net/stores/3-2022/1647442436770.png'" alt='Store logo'/> -->
+        </router-link>
         <ul v-if="menu" id="menu">
-            <li v-for="(item,key) in menu.items" :key="key"><nuxt-link :to="item.url">{{item.text}}</nuxt-link></li>
+            <li v-for="(item,key) in menu.items" :key="key" class="text-lg font-medium"><nuxt-link :to="item.url">{{item.text}}</nuxt-link></li>
         </ul>
     </nav>
 </div>
@@ -72,18 +70,16 @@ export default {
     },
     methods: {
         handleScroll () {
-            // Your scroll handling here
-            window.onscroll = function(){
-                if(window.pageYOffset >= menu.offsetTop + 20){
-                    navbar.classList.add("sticky");
-                    // toggle=false;
-                }else{
-                    navbar.classList.remove("sticky");
-                    // toggle: true;
-                }
+        // Your scroll handling here
+        window.onscroll = function(){
+            if(window.pageYOffset >= menu.offsetTop + 20){
+                navbar.classList.add("sticky")
+            }else{
+                navbar.classList.remove("sticky");
             }
-            console.log(window.scrollY)
-            }
+        }
+        console.log(window.scrollY)
+        }
     },
     beforeMount () {
         if(process.client){
@@ -109,10 +105,11 @@ export default {
 <style lang="css" scoped>
 .header{
     width: 100%;
-    /* height: 100vh;
+    height: 100vh;
     background-image: url(../../assets/pay/image.png);
     background-position: center;
-    background-size: cover; */
+    background-size: cover;
+    background-attachment: fixed;
     /* background-color: brown; */
 }
 nav{
@@ -139,6 +136,15 @@ nav ul li{
     list-style: none;
     margin: 20px 30px;
     color: #FFF;
+    transition: .4s ease-in;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+nav ul li:hover{
+    display: inline-block;
+    list-style: none;
+    margin: 20px 30px;
+    color: rgb(243, 192, 42);
 }
 nav.sticky{
     position: fixed;
@@ -150,7 +156,6 @@ nav.sticky{
     align-items: center;
     justify-content: space-between;
     transition: padding 1s;
-    margin-bottom: 20px;
 }
 
 nav.sticky ul{
