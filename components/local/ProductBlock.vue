@@ -42,7 +42,7 @@
                 </div>
                 <div class="flex justify-center mt-2">
                     <nuxt-link :to="`/products2/${item._id}`">
-                        <span class="order-now py-1 px-3 inline-block text-center font-semibold text-lg">Order Now</span>
+                        <span class="order-now py-1 px-3 inline-block text-center font-semibold text-lg">View Now</span>
                     </nuxt-link>
                 </div>
             </div>

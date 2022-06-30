@@ -25,7 +25,7 @@
         
 
       
-        <div class="logo flex justify-center items-center w-1/2 bg-white mt-2 ">
+        <!-- <div class="logo flex justify-center items-center w-1/2 bg-white mt-2 ">
 
              <router-link to="/">
                   <div class="transition duration-300 delay-150 hover:delay-0">
@@ -33,7 +33,7 @@
                    </div>
                 </router-link>
                 
-            </div>
+            </div> -->
 
            
             <div class="icons flex items-center justify-between rounded-full bg-gray-100 mt-2">

@@ -7,7 +7,7 @@
             .text-primary{ color: var(--primary-color); }
         </component>
         <sections-header-top></sections-header-top>
-        <part-test></part-test>
+        <!-- <part-test></part-test> -->
         <part-header-menu-home></part-header-menu-home>
         <Nuxt />
         <part-footer></part-footer>

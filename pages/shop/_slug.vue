@@ -152,7 +152,7 @@
                     </div>
                     <div class="flex flex-wrap">
                         <div v-for="(item, i) in items" :key="i" class="p-2" :class="gridClass">
-                            <stage-product-block :item="item"></stage-product-block>
+                            <stage-product-block :item="item" class="px-3"></stage-product-block>
                         </div>
                     </div>
                     <div v-if="items.length>0" class="p-2 bg-white border-t items-center flex justify-end w-full">

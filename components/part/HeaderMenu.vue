@@ -2,10 +2,10 @@
 <div class="header mb-6">
     <nav id="navbar" class="">
         <!-- <div class="img"> -->
-        <!-- <nuxt-link to="/"> -->
-            <img :src="section.logo ? section.logo.src : require('~/assets/pay/logo.png')" alt="" class="logo"/>
-            <!-- <img class="h-12 w-full object-contain storeino" :src="section.logo ? section.logo.src : 'https://storeno.b-cdn.net/stores/3-2022/1647442436770.png'" alt='Store logo'/> -->
-        <!-- </nuxt-link> -->
+        <nuxt-link to="/">
+            <!-- <img :src="section.logo ? section.logo.src : require('~/assets/pay/logo.png')" alt="" class="logo"/> -->
+            <img class="h-12 w-full object-contain storeino" :src="section.logo ? section.logo.src : 'https://storeno.b-cdn.net/stores/3-2022/1647442436770.png'" alt='Store logo'/>
+        </nuxt-link>
         <!-- </div> -->
         <ul v-if="menu" id="menu">
             <li v-for="(item,key) in menu.items" :key="key"><nuxt-link :to="item.url">{{item.text}}</nuxt-link></li>
@@ -98,7 +98,12 @@ export default {
                 console.log('fail...') 
                 }
     }
-        window.addEventListener('wheel', this.handleScroll)
+        // window.addEventListener('wheel', this.handleScroll)
+    },
+
+    mounted(){
+        window.addEventListener('scroll', this.handleScroll)
+
     },
     
     beforeDestroy() {
@@ -139,6 +144,9 @@ nav ul li{
     list-style: none;
     margin: 20px 30px;
     color: #FFF;
+    transition: .4s ease-in;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 nav.sticky{
     position: fixed;
@@ -151,6 +159,13 @@ nav.sticky{
     justify-content: space-between;
     transition: padding 1s;
     margin-bottom: 20px;
+}
+
+nav ul li:hover{
+    display: inline-block;
+    list-style: none;
+    margin: 20px 30px;
+    color: rgb(243, 192, 42);
 }
 
 nav.sticky ul{

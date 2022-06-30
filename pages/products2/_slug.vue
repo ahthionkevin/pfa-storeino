@@ -25,7 +25,7 @@
                         <p class="text-base">{{ item.desc }}</p>
                     </div>
                     <div  v-if="$settings.sections.product.reviews.active" class="rating">
-                        <i v-for="(star,i) in 5" :class="star<= 2 ? 'fa fa-star px-1 text-yellow-500 ': 'fa fa-star px-1 text-gray-400'" aria-hidden="true" :key="i"></i>
+                        <i v-for="(star,i) in 5" :class="star<= 3 ? 'fa fa-star px-1 text-yellow-500 ': 'fa fa-star px-1 text-gray-400'" aria-hidden="true" :key="i"></i>
                         <span class="text-lg text-gray-400">({{ Math.round(Math.random()*20) }} customer review)</span>
                     </div>
                     <div class="price mt-5 pt-5">

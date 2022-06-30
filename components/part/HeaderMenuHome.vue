@@ -1,9 +1,20 @@
 <template>
-<div class="header mb-6" :style="`background-image: url(${banner.items[Object.keys(banner.items)[0]].image ? banner.items[Object.keys(banner.items)[0]].image.src : $store.state.defaults.sliderImage});`">
+<div v-if="banner.items[Object.keys(banner.items)[0]]" class="header mb-6" :style="`background-image: url(${banner.items[Object.keys(banner.items)[0]].image ? banner.items[Object.keys(banner.items)[0]].image.src : $store.state.defaults.sliderImage});`">
     <nav id="navbar" class="">
         <router-link to="/">
-            <img :src="section.logo ? section.logo.src : require('~/assets/pay/logo.png')" alt="" class="logo"/>
-            <!-- <img class="h-12 w-full object-contain storeino logo" :src="section.logo ? section.logo.src : 'https://storeno.b-cdn.net/stores/3-2022/1647442436770.png'" alt='Store logo'/> -->
+            <!-- <img :src="section.logo ? section.logo.src : require('~/assets/pay/logo.png')" alt="" class="logo"/> -->
+            <img class="h-12 w-full object-contain storeino logo" :src="section.logo ? section.logo.src : 'https://storeno.b-cdn.net/stores/3-2022/1647442436770.png'" alt='Store logo'/>
+        </router-link>
+        <ul v-if="menu" id="menu">
+            <li v-for="(item,key) in menu.items" :key="key" class="text-lg font-medium"><nuxt-link :to="item.url">{{item.text}}</nuxt-link></li>
+        </ul>
+    </nav>
+</div>
+<div v-else class="header1 mb-6" >
+    <nav id="navbar" class="">
+        <router-link to="/">
+            <!-- <img :src="section.logo ? section.logo.src : require('~/assets/pay/logo.png')" alt="" class="logo"/> -->
+            <img class="h-12 w-full object-contain storeino logo" :src="section.logo ? section.logo.src : 'https://storeno.b-cdn.net/stores/3-2022/1647442436770.png'" alt='Store logo'/>
         </router-link>
         <ul v-if="menu" id="menu">
             <li v-for="(item,key) in menu.items" :key="key" class="text-lg font-medium"><nuxt-link :to="item.url">{{item.text}}</nuxt-link></li>
@@ -94,15 +105,29 @@ export default {
                 console.log('fail...') 
                 }
     }
-        window.addEventListener('wheel', this.handleScroll)
+        // window.addEventListener('scroll', this.handleScroll);
+    },
+
+    mounted(){
+                window.addEventListener('scroll', this.handleScroll);
+
     },
     
     beforeDestroy() {
-        window.removeEventListener('wheel', this.handleScroll);
+        window.removeEventListener('scroll', this.handleScroll);
     },
 }
 </script>
 <style lang="css" scoped>
+.header1{
+    width: 100%;
+    /* height: 100vh;
+    background-image: url(../../assets/pay/image.png);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed; */
+    /* background-color: brown; */
+}
 .header{
     width: 100%;
     height: 100vh;

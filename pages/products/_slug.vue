@@ -31,15 +31,15 @@
                         <p class="text-4xl font-semibold">{{ formatPrice(item.price.salePrice).split(".")[0] }}<sup>.{{ formatPrice(item.price.salePrice).split(".")[1] }}</sup> {{ $store.state.currency.symbol }}</p>
                     </div>
                     <div class="py-3 my-8 order container bg-transparent flex justify-start items-center">
-                        <div class="bg-red-400 py-3  px-14 mr-8 text-lg font-semibold rounded-3xl text-white" @click="addToCart">
+                        <div class="bg-red-400 py-3  px-14 mr-8 text-lg font-semibold rounded-3xl text-white cursor-pointer hover:bg-red-300" @click="addToCart">
                             Order
                         </div>
                         <div v-if="$settings.sections.products.add_to_wishlist.active">
                             <div class="py-3  px-14" v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist">
-                                <i class="fa fa-heart text-red-400" style="font-size: 36px"></i>
+                                <i class="fa fa-heart cursor-pointer text-red-400" style="font-size: 36px"></i>
                             </div>
                             <div class="py-3  px-14" v-else @click="addToWishlist">
-                                <i class="fa fa-heart text-gray-700" style="font-size: 36px"></i>
+                                <i class="fa fa-heart cursor-pointer text-gray-700" style="font-size: 36px"></i>
                             </div>
                             <!-- <i class="fa fa-heart py-3  px-14 mr-8 fa-xl" style="color:#F87171;font-size: 36px"></i> -->
                         </div>
