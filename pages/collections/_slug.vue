@@ -15,7 +15,7 @@
                 <si-loader></si-loader>
             </div>
             <div v-for="(item,i) in items" :key="i" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
-                <si-collection :item="item"></si-collection>
+                <stage-product-block :item="item"></stage-product-block>
             </div>
         </div>
     </div>

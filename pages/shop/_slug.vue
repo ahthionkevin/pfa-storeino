@@ -60,7 +60,7 @@
                                 <div :id="i+'fit'" class="fit-collapsible" :class="item.childrens.length > 0 ? 'sub-collections' : ''">
                                     <ul class="list-sub-collections fit-collapsible-content" v-if="item.childrens && item.childrens.length > 0" >
                                         <li v-for="(child, i) in item.childrens" :key="i">
-                                            <input class="w-4 h-4 mx-1" :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(child.slug) >= 0" :id="child.slug" @change="setParams($event, 'collections.slug-in', child.slug)" type="checkbox"/>
+                                            <input class="w-4 h-4 mx-1 checkbox" :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(child.slug) >= 0" :id="child.slug" @change="setParams($event, 'collections.slug-in', child.slug)" type="checkbox"/>
                                             <label  :for="child.slug" class="cursor-pointer c-p c-grey">{{ child.name }}</label>
                                         </li>
                                     </ul>
@@ -152,7 +152,7 @@
                     </div>
                     <div class="flex flex-wrap">
                         <div v-for="(item, i) in items" :key="i" class="p-2" :class="gridClass">
-                            <stage-product-block :item="item"></stage-product-block>
+                            <stage-product-block :item="item" class="px-3"></stage-product-block>
                         </div>
                     </div>
                     <div v-if="items.length>0" class="p-2 bg-white border-t items-center flex justify-end w-full">
@@ -373,6 +373,9 @@ export default {
 }
 </script>
 <style>
+.checkbox{
+    color: blue;
+}
 .color-option label{
     width: 24px;
     height: 24px;

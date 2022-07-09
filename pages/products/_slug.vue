@@ -30,20 +30,33 @@
                     <div class="price mt-5 pt-5">
                         <p class="text-4xl font-semibold">{{ formatPrice(item.price.salePrice).split(".")[0] }}<sup>.{{ formatPrice(item.price.salePrice).split(".")[1] }}</sup> {{ $store.state.currency.symbol }}</p>
                     </div>
+                    <div class="py-3 my-8 order container bg-transparent flex justify-start items-center">
+                        <div class="bg-red-400 py-3  px-14 mr-8 text-lg font-semibold rounded-3xl text-white cursor-pointer hover:bg-red-300" @click="addToCart">
+                            Order
+                        </div>
+                        <div v-if="$settings.sections.products.add_to_wishlist.active">
+                            <div class="py-3  px-14" v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist">
+                                <i class="fa fa-heart cursor-pointer text-red-400" style="font-size: 36px"></i>
+                            </div>
+                            <div class="py-3  px-14" v-else @click="addToWishlist">
+                                <i class="fa fa-heart cursor-pointer text-gray-700" style="font-size: 36px"></i>
+                            </div>
+                            <!-- <i class="fa fa-heart py-3  px-14 mr-8 fa-xl" style="color:#F87171;font-size: 36px"></i> -->
+                        </div>
+                        <!-- <button id="decrement"> - </button>
+                        <input type="number" min="1" max="100" value="1" id="quantity" readonly/>
+                        <button id="increment"> + </button> -->
+                    </div>
                     <div v-if="item.collections && item.collections.length>0" class="collections pt-6">
                         <p>Collection: <span v-for="(c,k) in item.collections" :key="k" class="collection mx-2">{{ c.name }}</span></p>
                     </div>
-                    <div class="order flex">
-                        <button id="decrement"> - </button>
-                        <input type="number" min="1" max="100" value="1" id="quantity" readonly/>
-                        <button id="increment"> + </button>
-                    </div>
+                    
                 </div>
             </div>
         </div>
         <div class="p-2 my-3 mx-2 description text-center container">
             <h4 class="text-center text-4xl py-3 font-semibold">Description</h4>
-            <div class="p-2 my-3 mx-2 description text-base" id="description" v-html="item.html"></div>
+            <div class="p-2 my-3 mx-2 description text-base" id="description" v-html="item.html" ></div>
         </div>
     
         <div>
@@ -311,6 +324,10 @@ export default {
 
 .small-img:hover img{
     transform: scale(1.1);
+}
+
+.description{
+    min-height: 40vh;
 }
 
 .collection{

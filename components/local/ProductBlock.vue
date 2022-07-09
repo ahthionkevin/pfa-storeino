@@ -1,5 +1,5 @@
 <template>
-        <div class="card">
+        <div class="card bg-white">
             <div class="imgBx bore relative">
                  <nuxt-link :to="`/products2/${item._id}`">
                     <!-- <img :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/> -->
@@ -42,7 +42,7 @@
                 </div>
                 <div class="flex justify-center mt-2">
                     <nuxt-link :to="`/products2/${item._id}`">
-                        <span class="order-now py-1 px-3 inline-block text-center font-semibold text-lg">Order Now</span>
+                        <span class="order-now py-1 px-3 inline-block text-center font-semibold text-lg">View Now</span>
                     </nuxt-link>
                 </div>
             </div>
@@ -157,7 +157,7 @@
 <style scoped>
 
      .card{
-        background: #fff;
+        /* background: #fff; */
         width: 310px;
         cursor: pointer;
         /* border: #333 .8px solid; */

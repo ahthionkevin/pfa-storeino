@@ -16,7 +16,8 @@ export default {
     "~/plugins/storeino.js",
     "~/plugins/init.js",
     "~/plugins/events.js",
-    "~/plugins/fontawesome.js"
+    "~/plugins/fontawesome.js",
+    { src: "~/plugins/vue-confetti.js", mode: "client" }
   ],
   components: true,
   buildModules: ["@nuxtjs/tailwindcss", "@nuxtjs/fontawesome", "@nuxtjs/svg"],
